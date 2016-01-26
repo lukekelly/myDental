@@ -1,0 +1,226 @@
+/* 
+    Document   : CSS Styling
+    Created on : 27/12/2015
+    Author     : Luke
+*/
+
+.body {
+    background: url("Pictures/855dental-tools.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -ms-filter: blur(50px);
+    filter: blur(50px);
+}
+.navbar {
+    // margin-top: 0;
+    position: relative;
+    margin-bottom: 0;
+
+    // background-color: #00bfff;
+    background-color:black;
+    z-index:0;
+    opacity:0.7;
+    //background: transparent;
+    //z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 5px;
+    border-radius: 0; 
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #00bfff !important;
+    background-color: #fff !important;
+    transition: 0.3s all linear;
+    font-weight: bolder;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+    //font-weight: bold;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    font-weight: bolder;
+    font-family: courier new;
+}
+
+.jumbotron { 
+    color: #00bfff;
+    font-weight: bolder;
+    //padding: 325px 25px;
+    min-height: 400px;
+    margin-bottom: 0em;
+    //background-color: #E50000;
+    //background: transparent;
+    background-color:black;
+    z-index:0;
+    opacity:0.7;
+}
+
+.bg-blue {
+    background-color: #00bfff;
+    z-index:0;
+    opacity:0.9;
+    color: black;
+    h2{
+       color: #fff; 
+    }
+        // background: transparent;
+}
+
+.bg-grey {
+    font-size: 15px;
+    color: #00bfff;
+    background-color:black;
+    z-index:0;
+    opacity:0.7;
+}
+.container-fluid {
+    margin-top: 0em;
+    padding: 60px 50px;
+    // background-color:#00bfff;
+    text-align: center;
+    font-weight: bolder;
+    //z-index:0;
+    // opacity:0.5;
+}
+
+.logo {
+    color: #00bfff;
+    font-size: 200px;
+    font-weight: bolder;
+}
+@media screen and (max-width: 768px) {
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+    }    
+}
+
+.logo-small {
+    color: #00bfff;
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 24px;
+    //color: #303030;
+    color: #00bfff;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+.footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #f4511e;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 10;
+}
+.form-signin input[type="text"] {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signin {
+    max-width: 330px;
+    //padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 10;
+}
+.form-signin input[type="text"] {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
