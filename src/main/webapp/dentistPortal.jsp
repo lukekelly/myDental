@@ -1,16 +1,17 @@
 <%-- 
-    Document   : patientPortal
-    Created on : 20-Jan-2016, 16:40:09
+    Document   : dentistPortal
+    Created on : 01-Feb-2016, 16:54:41
     Author     : Luke
 --%>
+
 <%@page import="stores.LoggedIn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Patient Portal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dentist Portal</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -33,29 +34,6 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-        
-<script language="JavaScript"> 
-var i = 0; var path = new Array(); 
-
-// LIST OF IMAGES 
-path[0] = "image_1.gif"; 
-path[1] = "image_2.gif"; 
-path[2] = "image_3.gif"; 
-
-function swapImage() 
-{ 
-document.slide.src = path[i]; 
-if(i < path.length - 1) i++; 
-else i = 0; 
-setTimeout("swapImage()",3000); 
-} 
-window.onload=swapImage; 
-</script> 
-<img height="600" name="slide" src="image_1.gif" width="1200"/>
-</body>
-        
-        
-        
-    
+        </nav>  
+</body>   
 </html>

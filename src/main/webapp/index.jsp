@@ -58,8 +58,9 @@
                         <li><a href="#contact">Contact</a></li>
                 </ul>
                          <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental/Login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                        <li><a href="Register.jsp">Register</a></li>
+                        <li><a href="/myDental/Login"><span class="glyphicon glyphicon-log-in"></span>Patient Login</a></li>
+                        <li><a href="/myDental/DentalLogin"><span class="glyphicon glyphicon-log-in"></span>Dental Login</a></li>
+                       <li><a href="DentalRegister.jsp">DentalRegister</a></li> 
                                       <!--       <li><a href="/myDental/Register">Register</a></li> -->
                     </ul>
                 </div>

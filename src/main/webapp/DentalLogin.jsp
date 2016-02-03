@@ -1,8 +1,9 @@
 <%-- 
-    Document   : patientPortal
-    Created on : 20-Jan-2016, 16:40:09
+    Document   : DentalLogin
+    Created on : 01-Feb-2016, 15:40:53
     Author     : Luke
 --%>
+
 <%@page import="stores.LoggedIn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,10 +11,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Patient Portal</title>
+        <title>Login</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link href="Styles.css" type="text/css" rel="stylesheet"> 
+        <link href="Styles.css" type="text/css" rel="stylesheet">
     </head>
     <body class="body">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -34,28 +35,18 @@
                 </div>
             </div>
         </nav>
-        
-<script language="JavaScript"> 
-var i = 0; var path = new Array(); 
 
-// LIST OF IMAGES 
-path[0] = "image_1.gif"; 
-path[1] = "image_2.gif"; 
-path[2] = "image_3.gif"; 
 
-function swapImage() 
-{ 
-document.slide.src = path[i]; 
-if(i < path.length - 1) i++; 
-else i = 0; 
-setTimeout("swapImage()",3000); 
-} 
-window.onload=swapImage; 
-</script> 
-<img height="600" name="slide" src="image_1.gif" width="1200"/>
-</body>
-        
-        
-        
-    
+        <div class="container-fluid">
+            <form class="form-signin" role="form" method="POST" action="DentalLogin">
+                <h2 class="form-signin-heading">Please Sign In as a dentist</h2>
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            </form>
+        </div>
+    </body>
 </html>

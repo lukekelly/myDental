@@ -33,6 +33,14 @@ public static void SetUpKeySpaces(Cluster c) {
                     + " LastName text,"
                     + " DateAdded timestamp"
                     + ")";
+            
+            String createDentistsTable = "CREATE TABLE IF NOT EXISTS mydental.dentists("
+                    + " Username text PRIMARY KEY,"
+                    + " Password varchar,"
+                    + " FirstName text,"
+                    + " LastName text,"
+                    + " DateAdded timestamp"
+                    + ")";
 
             
             Session session = c.connect();
@@ -54,6 +62,13 @@ public static void SetUpKeySpaces(Cluster c) {
                 session.execute(cqlQuery);
             } catch (Exception et) {
                 System.out.println("Can't create PATIENTS table " + et);
+            }
+             System.out.println("" + createDentistsTable);
+            try {
+                SimpleStatement cqlQuery = new SimpleStatement(createDentistsTable);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create DENTISTS table " + et);
             }
             
             session.close();
