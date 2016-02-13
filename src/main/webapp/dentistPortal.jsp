@@ -26,14 +26,65 @@
                         <span class="icon-bar"></span> 
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
-                </div>
-                 <div class="collapse navbar-collapse" id="myNavbar">
-                    
+                </div>  
+                <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental">Home</a></li>
+                        <li><a href="/myDental/logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>  
-</body>   
+    
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href="DentalRegister.jsp">Register a new Dental Practitioner</a></li> 
+            <li><a href="/myDental/Register">Register a New Patient</a></li> 
+        </ul>
+        
+            <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Dental Portal</h1>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                    <p>Create New Story</p>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                    <p>View Stories</p>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                        <p>Edit Story</p>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="picUpload.jsp">
+                    <img class="img-responsive" src="http://placehold.it/400x400" alt="Upload Photos">
+                    <p>Upload Photos</p>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                    <p>Send Story</p>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                    <p>Story Inbox</p>
+                </a>
+            </div>
+        </div> 
+            </div>
+    </body>
 </html>

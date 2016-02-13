@@ -134,11 +134,61 @@ h4 {
     color: #f4511e;
 }
 
+#image1{
+  background: url("Pictures/pic.jpg");
+  background-size:cover;
+}
+#image6{
+  background: url("Pictures/editstory.png");
+  background-size:cover;
+}
+.thumbnail{
+   width:250px;
+   height:250px;
+}
 
 
 
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
+.thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: border .2s ease-in-out;
+       -o-transition: border .2s ease-in-out;
+          transition: border .2s ease-in-out;
+}
+.thumbnail > img,
+.thumbnail a > img {
+  margin-right: auto;
+  margin-left: auto;
+}
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  border-color: #337ab7;
+}
+.thumbnail .caption {
+  padding: 9px;
+  color: #333;
+}
 
+.media-object.img-thumbnail {
+  max-width: none;
+}
 
 
 
@@ -224,3 +274,7 @@ h4 {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+
+
+
