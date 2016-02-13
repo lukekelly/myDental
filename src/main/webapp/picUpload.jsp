@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet">
     </head>
-    <body>        
+    <body class="body">        
              <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -35,6 +35,18 @@
                 </div>
             </div>
         </nav>
+        
+        
+        <article>
+            <h5>File Upload</h5>
+            <form method="POST" enctype="multipart/form-data" action="Image">
+                File to upload: <input type="file" name="upfile"><br/>
+
+                <br/>
+                <input type="submit" value="Press"> to upload the file!
+            </form>
+
+        </article>
 
 
          
