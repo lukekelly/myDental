@@ -38,14 +38,12 @@
         
         
         <article>
-            <h5>File Upload</h5>
+            <h1>File Upload</h1>
             <form method="POST" enctype="multipart/form-data" action="Image">
-                File to upload: <input type="file" name="upfile"><br/>
-
+                Browse for an Image: <input type="file" name="upfile"><br/>
                 <br/>
-                <input type="submit" value="Press"> to upload the file!
+                <input type="submit" value="Press"> to upload the image!
             </form>
-
         </article>
 
 

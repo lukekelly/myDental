@@ -133,7 +133,7 @@ public class Image extends HttpServlet {
             int i = is.available();
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
-            String username="majed";
+            String username="dentist";
             String login="";
             if (lg.getloggedin()){
                 username=lg.getUsername();
@@ -150,7 +150,7 @@ public class Image extends HttpServlet {
 
                 is.close();
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/dentistPortal.jsp");
              rd.forward(request, response);
         }
 
