@@ -41,6 +41,28 @@ public static void SetUpKeySpaces(Cluster c) {
                     + " LastName text,"
                     + " DateAdded timestamp"
                     + ")";
+            
+            String createPicTable = "CREATE TABLE if not exists mydental.Pics ("
+                    + " user varchar,"
+                    + " picid uuid, "
+                    + " interaction_time timestamp,"
+                    + " title varchar,"
+                    + " image blob,"
+                    + " thumb blob,"
+                    + " processed blob,"
+                    + " imagelength int,"
+                    + " thumblength int,"
+                    + "  processedlength int,"
+                    + " type  varchar,"
+                    + " name  varchar,"
+                    + " PRIMARY KEY (picid)"
+                    + ")";
+            String createUserPicListTable = "CREATE TABLE if not exists mydental.userpiclist (\n"
+                    + "picid uuid,\n"
+                    + "user varchar,\n"
+                    + "pic_added timestamp,\n"
+                    + "PRIMARY KEY (user,pic_added)\n"
+                    + ") WITH CLUSTERING ORDER BY (pic_added desc);";
 
             
             Session session = c.connect();
@@ -51,9 +73,9 @@ public static void SetUpKeySpaces(Cluster c) {
                         statement);
                 ResultSet rs = session
                         .execute(boundStatement);
-                System.out.println("created STS");
+                System.out.println("created myDental");
             } catch (Exception et) {
-                System.out.println("Can't create STS " + et);
+                System.out.println("Can't create myDental" + et);
             }
 
             System.out.println("" + createPatientsTable);
@@ -70,6 +92,21 @@ public static void SetUpKeySpaces(Cluster c) {
             } catch (Exception et) {
                 System.out.println("Can't create DENTISTS table " + et);
             }
+             System.out.println("" + createPicTable);
+            try {
+                SimpleStatement cqlQuery = new SimpleStatement(createPicTable);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create PICS table " + et);
+            }
+             System.out.println("" + createUserPicListTable);
+            try {
+                SimpleStatement cqlQuery = new SimpleStatement(createUserPicListTable);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create USERPICLIST table " + et);
+            }
+            
             
             session.close();
 

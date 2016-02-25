@@ -8,6 +8,7 @@ import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.security.Timestamp;
 import java.util.Date;
 import java.util.Set;
+import java.util.UUID;
 
 
 public class Dentist {
@@ -15,6 +16,7 @@ public class Dentist {
     String firstName = null;
     String lastName = null;
     Date date = null;
+    private UUID  proPic= null;
 
     public Date getDate() {
         return date;
@@ -47,5 +49,13 @@ public class Dentist {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setUUID(UUID proPic) {
+        this.proPic = proPic;
+    }
+
+    public UUID getUUID() {
+        return proPic;
     }
 }

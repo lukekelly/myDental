@@ -33,7 +33,8 @@ import stores.Pic;
     "/Image/*",
     "/Thumb/*",
     "/Images",
-    "/Images/*"
+    "/Images/*",
+    "/DentalPics/*"
 })
 @MultipartConfig
 
@@ -66,9 +67,11 @@ public class Image extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      * response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         String args[] = Convertors.SplitRequestPath(request);
+        HttpSession session=request.getSession();
+         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
         int command;
         try {
             command = (Integer) CommandsMap.get(args[1]);
@@ -81,7 +84,8 @@ public class Image extends HttpServlet {
                 DisplayImage(Convertors.DISPLAY_PROCESSED,args[2], response);
                 break;
             case 2:
-                DisplayImageList(args[2], request, response);
+                //DisplayImageList(args[2], request, response);
+                 DisplayImageList(lg.getUsername(), request, response);
                 break;
             case 3:
                 DisplayImage(Convertors.DISPLAY_THUMB,args[2],  response);
@@ -95,7 +99,8 @@ public class Image extends HttpServlet {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
         java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
-        RequestDispatcher rd = request.getRequestDispatcher("/UsersPics.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/DentalPics.jsp");
+        
         request.setAttribute("Pics", lsPics);
         rd.forward(request, response);
 
@@ -134,10 +139,10 @@ public class Image extends HttpServlet {
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
             String username="dentist";
-            String login="";
+            //String login="";
             if (lg.getloggedin()){
                 username=lg.getUsername();
-                login=lg.getUsername();
+                //login=lg.getUsername();
             }
             if (i > 0) {
                 byte[] b = new byte[i + 1];
@@ -146,11 +151,11 @@ public class Image extends HttpServlet {
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
                 
-                tm.insertPic(b, type, filename, username, login);
+                tm.insertPic(b, type, filename, username);
 
                 is.close();
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/dentistPortal.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/picUpload.jsp");
              rd.forward(request, response);
         }
 

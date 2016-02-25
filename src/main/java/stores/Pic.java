@@ -7,6 +7,7 @@ package stores;
 
 import com.datastax.driver.core.utils.Bytes;
 import java.nio.ByteBuffer;
+import java.util.List;
 
 /**
  *
@@ -18,10 +19,21 @@ public class Pic {
     private int length;
     private String type;
     private java.util.UUID UUID=null;
+    private java.util.List<String> comments = null;
     
     public void Pic() {
 
     }
+
+    public List<String> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<String> comments) {
+        this.comments = comments;
+    }
+
+    
     public void setUUID(java.util.UUID UUID){
         this.UUID =UUID;
     }

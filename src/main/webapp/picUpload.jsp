@@ -38,7 +38,7 @@
         
         
         <article>
-            <h1>File Upload</h1>
+            <h1>Upload Image</h1>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 Browse for an Image: <input type="file" name="upfile"><br/>
                 <br/>

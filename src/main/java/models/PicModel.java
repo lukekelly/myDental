@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.UUID;
 import javax.imageio.ImageIO;
 import static org.imgscalr.Scalr.*;
 import org.imgscalr.Scalr.Method;
@@ -37,7 +37,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user, String login) {
+    public void insertPic(byte[] b, String type, String name, String user) {
         try {
             Convertors convertor = new Convertors();
 
@@ -46,7 +46,7 @@ public class PicModel {
             int length = b.length;
             java.util.UUID picid = convertor.getTimeUUID();
             
-            //The following is a quick and dirty way of doing this, will fill the disk quickly !
+            //The following is a quick way of doing this, will fill the disk quickly !
             Boolean success = (new File("/var/tmp/myDental/")).mkdirs();
             FileOutputStream output = new FileOutputStream(new File("/var/tmp/myDental/" + picid));
 
@@ -59,18 +59,18 @@ public class PicModel {
             int processedlength=processedb.length;
             Session session = cluster.connect("myDental");
 
-            PreparedStatement psInsertPic = session.prepare("insert into pics (picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement psInsertPic = session.prepare("insert into pics (picid, image, thumb, processed, user, interaction_time, imagelength, thumblength, processedlength, type, name) values(?,?,?,?,?,?,?,?,?,?,?)");
             PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
-            PreparedStatement psInsertPicToProfile = session.prepare("update userprofiles set picid = ? where login = ?");
+            //PreparedStatement psInsertPicToProfile = session.prepare("update Dentist set picid = ? where login = ?");
             
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
             BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
-            BoundStatement bsInsertPicToProfile = new BoundStatement(psInsertPicToProfile);
+            //BoundStatement bsInsertPicToProfile = new BoundStatement(psInsertPicToProfile);
 
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));
-            session.execute(bsInsertPicToProfile.bind(picid,login));
+            //session.execute(bsInsertPicToProfile.bind(picid,login));
             
             
             
@@ -126,7 +126,7 @@ public class PicModel {
         return pad(img, 4);
     }
    
-    public java.util.LinkedList<Pic> getPicsForUser(String User) {
+      public java.util.LinkedList<Pic> getPicsForUser(String User) {
         java.util.LinkedList<Pic> Pics = new java.util.LinkedList<>();
         Session session = cluster.connect("myDental");
         PreparedStatement ps = session.prepare("select picid from userpiclist where user =?");
@@ -135,6 +135,9 @@ public class PicModel {
         rs = session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         User));
+        
+        //session.close();
+        
         if (rs.isExhausted()) {
             System.out.println("No Images returned");
             return null;
@@ -148,6 +151,7 @@ public class PicModel {
 
             }
         }
+
         return Pics;
     }
 
@@ -206,5 +210,4 @@ public class PicModel {
         return p;
 
     }
-
 }

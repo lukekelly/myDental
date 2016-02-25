@@ -34,11 +34,21 @@
                 </div>
             </div>
         </nav>  
+           <%
+                        
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String username = lg.getUsername();
+                            if (lg.getloggedin()) {
+                    %>
     
         <ul class="nav navbar-nav navbar-left">
             <li><a href="DentalRegister.jsp">Register a new Dental Practitioner</a></li> 
             <li><a href="/myDental/Register">Register a New Patient</a></li> 
+            
+            <li><a href="/myDental/Images">Picture Library</a></li> 
         </ul>
+        
         
             <div class="container">
 
@@ -49,7 +59,7 @@
             </div>
 
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
+                <a class="thumbnail" href="createNewStory.jsp">
                     <img class="img-responsive" src="http://placehold.it/400x400" alt="">
                     <p>Create New Story</p>
                 </a>
@@ -86,5 +96,12 @@
             </div>
         </div> 
             </div>
+                      <%}
+                            }else{
+                                %>
+                                <%
+                                        
+                            
+                    }%>
     </body>
 </html>

@@ -8,7 +8,6 @@ public class LoggedIn {
     boolean loggedin=false;
     String Username=null;
     @SuppressWarnings("unused")
-	private String username;
     
     public LoggedIn(){}
  
@@ -31,10 +30,5 @@ public class LoggedIn {
     }
     public boolean getloggedin(){
         return loggedin;
-    }
-    
-    public void setUser (String username)
-    {
-    	this.username=username;
     }
 }

@@ -18,6 +18,7 @@ import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
 import java.security.Timestamp;
 import java.util.Date;
+import java.util.LinkedList;
 
 
 import java.util.Set;
@@ -52,7 +53,7 @@ public class DentistModel {
             return false;
         }
         Session session = cluster.connect("myDental");        
-        PreparedStatement ps = session.prepare("insert into dentists (username, firstname, lastname, password, dateAdded) Values(?,?,?,?,?)");
+        PreparedStatement ps = session.prepare("insert into dentists (login, firstname, lastname, password, dateAdded) Values(?,?,?,?,?)");
        
         BoundStatement boundStatement = new BoundStatement(ps);
         Date dateAdded = new Date();
@@ -60,7 +61,46 @@ public class DentistModel {
        
         return true;
     }
+ 
+ // public LinkedList<Dentist> getUserInfo(String username)
+          public Dentist getUserInfo(String user){
+
+    	//java.util.LinkedList<Dentist> userProfile =  null; //new java.util.LinkedList<>();
+        
+        Session session = cluster.connect("myDental");
+        PreparedStatement ps = session.prepare("select login, firstname, lastname from dentists where login = ?");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        ResultSet rs = null;
+        rs = session.execute(boundStatement.bind(user));
+        session.close();
+        
+        Dentist profile = null;
+        
+        if (rs.isExhausted()) {
+            System.out.println("No profiles returned for user: " + user);
+            return null;
+        } else {
+            for (Row row : rs) {
+                profile = new Dentist();
+                
+                String username = row.getString("login");
+                String firstName = row.getString("first_name");
+                String lastName = row.getString("last_name");
+              //  java.util.UUID profilePic = row.getUUID("profile_pic");
+              //  Set<String> emails = row.getSet("email", String.class);
+                
+                profile.setUsername(username);
+                profile.setFirstName(firstName);
+                profile.setLastName(lastName);
+   
+            }
+        }
+        
+        
+        return profile;
+    }
     
+ 
     public boolean IsValidDentist(String username, String Password){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;
@@ -74,7 +114,7 @@ public class DentistModel {
             return false;
         }
         Session session = cluster.connect("myDental");
-        PreparedStatement ps = session.prepare("select password from dentists where username=?");
+        PreparedStatement ps = session.prepare("select password from dentists where username =?");
         System.out.println("The Dentist is: " + username);
         System.out.println("This is your encoded password: " + EncodedPassword);
         ResultSet rs = null;
