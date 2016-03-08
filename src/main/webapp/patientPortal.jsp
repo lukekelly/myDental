@@ -14,7 +14,6 @@
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
-        
     </head>
     <body class="body">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -30,24 +29,48 @@
                  <div class="collapse navbar-collapse" id="myNavbar">
                     
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental">Home</a></li>
+                        <li><a href="/myDental/logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        
-        
-        
-            <div id="sliderFrame">
-        <div id="slider">
-            <img src="slide-1.jpg" alt="Caption for slide 1" />
-            <img src="slide-2.jpg" />
-            <a href="http://menucool.com"><img src="slide-3.jpg" /></a>
-            <img src="slide-4.jpg" />
-            <img src="slide-5.jpg" alt="Caption for slide 5" />
+
+<div class="container">
+	<div id="content-slider">
+    	<div id="slider">
+        	<div id="mask">
+            <ul>
+           	<li id="first" class="firstanimation">
+            <a href="#">
+            <img src="Pictures/desk.jpg" alt="Cougar"/>
+            </a>
+            <div class="tooltip">
+            <h1>Reception</h1>
+            </div>
+            </li>
+
+            <li id="second" class="secondanimation">
+            <a href="#">
+            <img src="Pictures/download.jpg" alt="Lions"/>
+            </a>
+            <div class="tooltip">
+            <h1>Waiting Room</h1>
+            </div>
+            </li>
+            
+            <li id="third" class="thirdanimation">
+            <a href="#">
+            <img src="Pictures/image2_1.jpg" alt="Snowalker"/>
+            </a>
+            <div class="tooltip">
+            <h1>Dentist</h1>
+            </div>
+            </li>
+            </ul>
+            </div>
+            <div class="progress-bar"></div>
         </div>
     </div>
-        
-        
+</div>
 </body>   
 </html>

@@ -3,6 +3,7 @@
     Created on : 25-Nov-2014, 16:09:06
     Author     : Luke
 --%>
+<%@page import="stores.LoggedIn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet">
     </head>
-    <body>        
+    <body class="body">        
              <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -28,11 +29,20 @@
                  <div class="collapse navbar-collapse" id="myNavbar">
                     
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental">Home</a></li>
+                        <li><a href="/myDental/logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+                   <%
+                        
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String username = lg.getUsername();
+                            if (lg.getloggedin()) {
+                    %>
+    
+        
 
              <div class="container">
                 <form class="form-signin" role="form" method="POST" action="Register">
@@ -52,6 +62,13 @@
                 <input type="submit" value="Register">   
             </form>
               </div>
+                            <%}
+                            }else{
+                                %>
+                                <%
+                                        
+                            
+                    }%>
          
     </body>
 </html>

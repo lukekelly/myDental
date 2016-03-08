@@ -43,9 +43,8 @@
                     %>
     
         <ul class="nav navbar-nav navbar-left">
-            <li><a href="DentalRegister.jsp">Register a new Dental Practitioner</a></li> 
-            <li><a href="/myDental/Register">Register a New Patient</a></li> 
-            
+            <li><a href="/myDental/DentalRegister">Register a new Dental Practitioner</a></li> 
+            <li><a href="/myDental/Register">Register a New Patient</a></li>   
             <li><a href="/myDental/Images">Picture Library</a></li> 
         </ul>
         
@@ -60,37 +59,37 @@
 
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="createNewStory.jsp">
-                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                    <img class="img-responsive" src="Pictures/NewStory.png" alt="">
                     <p>Create New Story</p>
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                    <img class="img-responsive" src="Pictures/biyLEz9iL.png" alt="">
                     <p>View Stories</p>
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                    <img class="img-responsive" src="Pictures/Edit.png" alt="">
                         <p>Edit Story</p>
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="picUpload.jsp">
-                    <img class="img-responsive" src="http://placehold.it/400x400" alt="Upload Photos">
+                    <img class="img-responsive" src="Pictures/upload.gif" alt="Upload Photos">
                     <p>Upload Photos</p>
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                    <img class="img-responsive" src="Pictures/send.jpg" alt="">
                     <p>Send Story</p>
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                    <img class="img-responsive" src="Pictures/inbox.png" alt="">
                     <p>Story Inbox</p>
                 </a>
             </div>

@@ -30,7 +30,7 @@ import stores.Dentist;
  *
  * @author Luke
  */
-@WebServlet(name = "dentalPortal", urlPatterns = {"/dentistPortal/*"})
+@WebServlet(name = "dentalPortal", urlPatterns = {"/DentalPortal"})
 @MultipartConfig
 
 public class dentalPortal extends HttpServlet {
