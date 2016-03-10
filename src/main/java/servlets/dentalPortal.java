@@ -31,8 +31,6 @@ import stores.Dentist;
  * @author Luke
  */
 @WebServlet(name = "dentalPortal", urlPatterns = {"/DentalPortal"})
-@MultipartConfig
-
 public class dentalPortal extends HttpServlet {
      private Cluster cluster;
     
@@ -56,7 +54,7 @@ public class dentalPortal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/dentistPortal.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/DentalPortal");
         rd.forward(request, response);
     }
 

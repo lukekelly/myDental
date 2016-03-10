@@ -64,7 +64,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
+                <a class="thumbnail" href="ViewStories.jsp">
                     <img class="img-responsive" src="Pictures/biyLEz9iL.png" alt="">
                     <p>View Stories</p>
                 </a>

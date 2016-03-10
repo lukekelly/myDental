@@ -14,6 +14,8 @@
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body class="body">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -35,42 +37,69 @@
             </div>
         </nav>
 
-<div class="container">
-	<div id="content-slider">
-    	<div id="slider">
-        	<div id="mask">
-            <ul>
-           	<li id="first" class="firstanimation">
-            <a href="#">
-            <img src="Pictures/desk.jpg" alt="Cougar"/>
-            </a>
-            <div class="tooltip">
-            <h1>Reception</h1>
-            </div>
-            </li>
 
-            <li id="second" class="secondanimation">
-            <a href="#">
-            <img src="Pictures/download.jpg" alt="Lions"/>
-            </a>
-            <div class="tooltip">
-            <h1>Waiting Room</h1>
-            </div>
-            </li>
-            
-            <li id="third" class="thirdanimation">
-            <a href="#">
-            <img src="Pictures/image2_1.jpg" alt="Snowalker"/>
-            </a>
-            <div class="tooltip">
-            <h1>Dentist</h1>
-            </div>
-            </li>
-            </ul>
-            </div>
-            <div class="progress-bar"></div>
+ 
+
+<div class="container">
+  <br>
+  <h1>Check Up</h1>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+      <div class="item active">
+        <img src="Pictures/reception.jpg" alt="Reception" width="460" height="345">
+        <div class="carousel-caption">
+          <h3>You will go to the reception and sign in</h3>
         </div>
+      </div>
+
+      <div class="item">
+        <img src="Pictures/image2_1.jpg" alt="Chania" width="460" height="345">
+        <div class="carousel-caption">
+          <h3>The Dentist will review your treatment with you</h3>
+        </div>
+      </div>
+    
+      <div class="item">
+        <img src="img_flower.jpg" alt="Flower" width="460" height="345">
+        <div class="carousel-caption">
+          <h3>Flowers</h3>
+          <p>Beatiful flowers in Kolymbari, Crete.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="img_flower2.jpg" alt="Flower" width="460" height="345">
+        <div class="carousel-caption">
+          <h3>Flowers</h3>
+          <p>Beatiful flowers in Kolymbari, Crete.</p>
+        </div>
+      </div>
+  
     </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 </div>
+        
+ 
+        
 </body>   
 </html>

@@ -58,8 +58,8 @@
                 <input type="text" name="name" class="form-control" placeholder="First Name" required>
                 <label for="surname" class="sr-only">Second Name</label>
                 
-                <input type="text" name="surname" class="form-control" placeholder="Second Name" required>
-                <input type="submit" value="Register">   
+                <input type="text" name="surname" class="form-control" placeholder="Second Name" required> 
+                <button type="submit" class="btn btn-primary">Register</button>
             </form>
               </div>
                             <%}

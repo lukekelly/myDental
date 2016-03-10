@@ -49,17 +49,17 @@
                 <h2 class="form-signin-heading">Register a new Dental Practitioner</h2>
                 <label for="username" class="sr-only">Username</label>
                 <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
-                
+                <br>
                 <label for="inputPassword" class="sr-only">Password</label>
-                
                 <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <br>
                 <label for="name" class="sr-only">First Name</label>
-                
                 <input type="text" name="name" class="form-control" placeholder="First Name" required>
+                <br>
                 <label for="surname" class="sr-only">Second Name</label>
-                
                 <input type="text" name="surname" class="form-control" placeholder="Second Name" required>
-                <input type="submit" value="Register">   
+                <br>
+                <button type="submit" class="btn btn-primary">Register</button>   
             </form>
               </div>
                                         <%}

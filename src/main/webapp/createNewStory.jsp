@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental/DentistPortal">Dental Portal Home</a></li>
+                        <li><a href="/myDental/DentalLogin">Dental Portal Home</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,21 +48,33 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Create a new story</h1>
+                    <h1 class="page-header">Create a New Story</h1>
                 </div>
-                <INPUT type="button" value="Add Slide" onclick="addRow('dataTable')" />
+                <div class="col-sm-4">
+                <button type="button" class="btn btn-info" onclick="addRow('dataTable')" />Add Slide</button>
 
-                <INPUT type="button" value="Delete Slide" onclick="deleteRow('dataTable')" />
-
-                <TABLE id="dataTable" width="350px" border="1">
+                <button type="button" class="btn btn-danger" onclick="deleteRow('dataTable')" />Delete Slide</button>
+    
+                <button type="button" class="btn btn-success">Save Story</button>
+                <ul></ul>
+                <input type="text" class="form-control" id="usr" placeholder="Story Title">
+                </div>
+                <ul></ul>
+                <TABLE id="dataTable" width="600px" border="0">
                     <TR>
                         <TD><INPUT type="checkbox" name="chk"/></TD>
-                        <TD><INPUT type="button" value="Add Image"/></TD>
                         <TD>
-                            Description : <br />
-                            <textarea rows="5" cols="50" name="description">
-Enter description here...
-                            </textarea>
+                        <form method="POST" enctype="multipart/form-data" action="Image">
+                                <input type="file" name="upfile">
+                                <input type="submit" value="Upload">
+                            </form></TD>
+                        <TD>
+                            
+                            <div class="form-group">
+                                <label for="comment" class="sr-only">Slide Description</label>
+                                <textarea class="form-control" rows="5" id="comment" placeholder="Enter Description here. E.g. The Dentist will sit you down.." required autofocus></textarea>
+                            </div>
+
                         </TD>
                     </TR>
                 </TABLE>
