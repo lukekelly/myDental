@@ -53,7 +53,7 @@ public class DentistModel {
             return false;
         }
         Session session = cluster.connect("myDental");        
-        PreparedStatement ps = session.prepare("insert into dentists (login, firstname, lastname, password, dateAdded) Values(?,?,?,?,?)");
+        PreparedStatement ps = session.prepare("insert into dentists (username, firstname, lastname, password, dateAdded) Values(?,?,?,?,?)");
        
         BoundStatement boundStatement = new BoundStatement(ps);
         Date dateAdded = new Date();
@@ -68,7 +68,7 @@ public class DentistModel {
     	//java.util.LinkedList<Dentist> userProfile =  null; //new java.util.LinkedList<>();
         
         Session session = cluster.connect("myDental");
-        PreparedStatement ps = session.prepare("select login, firstname, lastname from dentists where login = ?");
+        PreparedStatement ps = session.prepare("select username, firstname, lastname from dentists where login = ?");
         BoundStatement boundStatement = new BoundStatement(ps);
         ResultSet rs = null;
         rs = session.execute(boundStatement.bind(user));

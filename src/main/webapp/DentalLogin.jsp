@@ -27,8 +27,8 @@
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
-                 <div class="collapse navbar-collapse" id="myNavbar">
-                    
+                <div class="collapse navbar-collapse" id="myNavbar">
+
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental">Home</a></li>
                     </ul>

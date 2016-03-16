@@ -77,7 +77,8 @@ public class Register extends HttpServlet {
         
        if (patientExists == true)
         {
-        	response.sendRedirect("/myDental");
+        	response.sendRedirect("/Register");
+         
         }
         else
         {
@@ -89,10 +90,10 @@ public class Register extends HttpServlet {
                 lg.setLoggedin();
                 lg.setUsername(username);
 
-                session.setAttribute("LoggedIn", lg);
+                //session.setAttribute("LoggedIn", lg);
             }
             
-            response.sendRedirect("/myDental");
+            response.sendRedirect("/Register.jsp");
         }  
     }
     

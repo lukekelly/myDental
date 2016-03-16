@@ -63,6 +63,14 @@ public static void SetUpKeySpaces(Cluster c) {
                     + "pic_added timestamp,\n"
                     + "PRIMARY KEY (user,pic_added)\n"
                     + ") WITH CLUSTERING ORDER BY (pic_added desc);";
+            String CreateComments = "CREATE TABLE if not exists mydental.comments (\n"
+                    + "	comment_id uuid PRIMARY KEY,\n"
+                    + "	pic_id uuid,\n"
+                    + "	date_created timestamp,\n"
+                    + "	user text,\n"
+                    + "	content text\n"
+                    + ");";
+            String CreateComments2ndIndex = " CREATE INDEX if not exists ON mydental.comments (pic_id);";
 
             
             Session session = c.connect();
@@ -106,6 +114,21 @@ public static void SetUpKeySpaces(Cluster c) {
             } catch (Exception et) {
                 System.out.println("Can't create USERPICLIST table " + et);
             }
+             try {
+                SimpleStatement cqlQuery = new SimpleStatement(CreateComments);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create comments " + et);
+            }
+            System.out.println("" + CreateComments);
+            
+            try {
+                SimpleStatement cqlQuery = new SimpleStatement(CreateComments2ndIndex);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create comments index " + et);
+            }
+            System.out.println("" + CreateComments2ndIndex);
             
             
             session.close();

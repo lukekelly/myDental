@@ -23,7 +23,7 @@ import static org.imgscalr.Scalr.*;
 import org.imgscalr.Scalr.Method;
 
 import lib.*;
-import stores.Pic;
+import stores.*;
 
 public class PicModel {
 
@@ -41,39 +41,37 @@ public class PicModel {
         try {
             Convertors convertor = new Convertors();
 
-            String types[]=Convertors.SplitFiletype(type);
+            String types[] = Convertors.SplitFiletype(type);
             ByteBuffer buffer = ByteBuffer.wrap(b);
             int length = b.length;
             java.util.UUID picid = convertor.getTimeUUID();
-            
+
             //The following is a quick way of doing this, will fill the disk quickly !
             Boolean success = (new File("/var/tmp/myDental/")).mkdirs();
             FileOutputStream output = new FileOutputStream(new File("/var/tmp/myDental/" + picid));
 
             output.write(b);
-            byte []  thumbb = picresize(picid.toString(),types[1]);
-            int thumblength= thumbb.length;
-            ByteBuffer thumbbuf=ByteBuffer.wrap(thumbb);
-            byte[] processedb = picdecolour(picid.toString(),types[1]);
-            ByteBuffer processedbuf=ByteBuffer.wrap(processedb);
-            int processedlength=processedb.length;
+            byte[] thumbb = picresize(picid.toString(), types[1]);
+            int thumblength = thumbb.length;
+            ByteBuffer thumbbuf = ByteBuffer.wrap(thumbb);
+            byte[] processedb = picdecolour(picid.toString(), types[1]);
+            ByteBuffer processedbuf = ByteBuffer.wrap(processedb);
+            int processedlength = processedb.length;
             Session session = cluster.connect("myDental");
 
             PreparedStatement psInsertPic = session.prepare("insert into pics (picid, image, thumb, processed, user, interaction_time, imagelength, thumblength, processedlength, type, name) values(?,?,?,?,?,?,?,?,?,?,?)");
             PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
             //PreparedStatement psInsertPicToProfile = session.prepare("update Dentist set picid = ? where login = ?");
-            
+
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
             BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
             //BoundStatement bsInsertPicToProfile = new BoundStatement(psInsertPicToProfile);
 
             Date DateAdded = new Date();
-            session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
+            session.execute(bsInsertPic.bind(picid, buffer, thumbbuf, processedbuf, user, DateAdded, length, thumblength, processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));
             //session.execute(bsInsertPicToProfile.bind(picid,login));
-            
-            
-            
+
             session.close();
 
         } catch (IOException ex) {
@@ -81,14 +79,14 @@ public class PicModel {
         }
     }
 
-    public byte[] picresize(String picid,String type) {
+    public byte[] picresize(String picid, String type) {
         try {
             BufferedImage BI = ImageIO.read(new File("/var/tmp/myDental/" + picid));
             BufferedImage thumbnail = createThumbnail(BI);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(thumbnail, type, baos);
             baos.flush();
-            
+
             byte[] imageInByte = baos.toByteArray();
             baos.close();
             return imageInByte;
@@ -97,8 +95,8 @@ public class PicModel {
         }
         return null;
     }
-    
-    public byte[] picdecolour(String picid,String type) {
+
+    public byte[] picdecolour(String picid, String type) {
         try {
             BufferedImage BI = ImageIO.read(new File("/var/tmp/myDental/" + picid));
             BufferedImage processed = createProcessed(BI);
@@ -119,14 +117,14 @@ public class PicModel {
         // Let's add a little border before we return result.
         return pad(img, 10);
     }
-    
-   public static BufferedImage createProcessed(BufferedImage img) {
-        int Width=img.getWidth()-1;
+
+    public static BufferedImage createProcessed(BufferedImage img) {
+        int Width = img.getWidth() - 1;
         img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_GRAYSCALE);
         return pad(img, 4);
     }
-   
-      public java.util.LinkedList<Pic> getPicsForUser(String User) {
+
+    public java.util.LinkedList<Pic> getPicsForUser(String User) {
         java.util.LinkedList<Pic> Pics = new java.util.LinkedList<>();
         Session session = cluster.connect("myDental");
         PreparedStatement ps = session.prepare("select picid from userpiclist where user =?");
@@ -135,9 +133,8 @@ public class PicModel {
         rs = session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         User));
-        
+
         //session.close();
-        
         if (rs.isExhausted()) {
             System.out.println("No Images returned");
             return null;
@@ -164,9 +161,9 @@ public class PicModel {
             Convertors convertor = new Convertors();
             ResultSet rs = null;
             PreparedStatement ps = null;
-         
+
             if (image_type == Convertors.DISPLAY_IMAGE) {
-                
+
                 ps = session.prepare("select image,imagelength,type from pics where picid =?");
             } else if (image_type == Convertors.DISPLAY_THUMB) {
                 ps = session.prepare("select thumb,imagelength,thumblength,type from pics where picid =?");
@@ -189,12 +186,12 @@ public class PicModel {
                     } else if (image_type == Convertors.DISPLAY_THUMB) {
                         bImage = row.getBytes("thumb");
                         length = row.getInt("thumblength");
-                
+
                     } else if (image_type == Convertors.DISPLAY_PROCESSED) {
                         bImage = row.getBytes("processed");
                         length = row.getInt("processedlength");
                     }
-                    
+
                     type = row.getString("type");
 
                 }
@@ -209,5 +206,52 @@ public class PicModel {
 
         return p;
 
+    }
+
+    public void insertComment(String username, UUID picID, String comment) {
+        Convertors convertor = new Convertors();
+        java.util.UUID commentID = convertor.getTimeUUID();
+        Date dateCreated = new Date();
+
+        Session session = cluster.connect("myDental");
+        PreparedStatement psInsertComment = session.prepare("insert into comments (comment_id, pic_id, user, date_created, content) values(?,?,?,?,?)");
+        BoundStatement bsInsertComment = new BoundStatement(psInsertComment);
+        session.execute(bsInsertComment.bind(commentID, picID, username, dateCreated, comment));
+
+        session.close();
+    }
+
+    public java.util.LinkedList<Comment> getPicComments(java.util.UUID picID) {
+        Session session = cluster.connect("myDental");
+        PreparedStatement ps = session.prepare("select comment_id, user, date_created, content from comments where pic_id = ?");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        ResultSet rs = session.execute(boundStatement.bind(picID));
+        session.close();
+
+        java.util.LinkedList<Comment> comments = new java.util.LinkedList<>();
+
+        if (rs.isExhausted()) {
+            System.out.println("No comments found");
+            return null;
+        } else {
+            for (Row row : rs) {
+                Comment comment = new Comment();
+
+                java.util.UUID commentID = row.getUUID("comment_id");
+                String user = row.getString("user");
+                Date dateCreated = row.getDate("date_created");
+                String content = row.getString("content");
+
+                comment.setCommentID(commentID);
+                comment.setPicID(picID);
+                comment.setUser(user);
+                comment.setDateCreated(dateCreated);
+                comment.setContent(content);
+
+                comments.add(comment);
+            }
+        }
+
+        return comments;
     }
 }

@@ -35,13 +35,7 @@
                 </div>
             </div>
         </nav>
-           <%
-                        
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        if (lg != null) {
-                            String username = lg.getUsername();
-                            if (lg.getloggedin()) {
-                    %>
+       
     
         
              <div class="container">
@@ -62,13 +56,7 @@
                 <button type="submit" class="btn btn-primary">Register</button>   
             </form>
               </div>
-                                        <%}
-                            }else{
-                                %>
-                                <%
-                                        
-                            
-                    }%>
+          
          
     </body>
 </html>

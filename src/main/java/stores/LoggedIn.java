@@ -7,6 +7,7 @@ package stores;
 public class LoggedIn {
     boolean loggedin=false;
     String Username=null;
+    String firstName=null;
     @SuppressWarnings("unused")
     
     public LoggedIn(){}
@@ -18,6 +19,14 @@ public class LoggedIn {
         return Username;
     }
     
+     public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+       public String getFirstName() {
+        return firstName;
+    }
+
     public void setLoggedin(){
         loggedin=true;
     }

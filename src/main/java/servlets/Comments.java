@@ -7,37 +7,31 @@ package servlets;
 
 import com.datastax.driver.core.Cluster;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.UUID;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-
 import lib.CassandraHosts;
 import lib.Convertors;
 import models.PicModel;
-import models.DentistModel;
-import stores.LoggedIn;
-import stores.Dentist;
+import stores.*;
 
 /**
  *
  * @author Luke
  */
-@WebServlet(name = "dentalPortal", urlPatterns = {"/dentalportal"})
-public class dentalPortal extends HttpServlet {
-     private Cluster cluster;
+
+@WebServlet(name = "Comments", urlPatterns = {"/Comments/*"})
+public class Comments extends HttpServlet {
     
-    public dentalPortal(){
-}
-
-
+    private Cluster cluster;
+    
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
@@ -54,7 +48,18 @@ public class dentalPortal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/DentalPortal");
+        String args[] = Convertors.SplitRequestPath(request);
+        request.setAttribute("picID", args[2]);
+        
+        PicModel pm = new PicModel();
+        pm.setCluster(cluster);
+        
+        java.util.UUID picID = java.util.UUID.fromString(args[2]);
+        LinkedList<Comment> comments = pm.getPicComments(picID);
+        
+        request.setAttribute("Comments", comments);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("/Comments.jsp");
         rd.forward(request, response);
     }
 
@@ -67,19 +72,10 @@ public class dentalPortal extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String args[] = Convertors.SplitRequestPath(request);
-        
-        DentistModel us = new DentistModel();
-        us.setCluster(cluster);
-        
-        Dentist pp = us.getUserInfo(args[2]);
-        request.setAttribute("Dentist", pp);
-        
-        RequestDispatcher rd = request.getRequestDispatcher("/dentalPortal.jsp");
-        rd.forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -90,37 +86,28 @@ public class dentalPortal extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        for (Part part : request.getParts()) {
-            System.out.println("Part Name " + part.getName());
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+        
+        if (lg == null || !lg.getloggedin()){
+            response.sendRedirect("/myDental");
+        } else {
+            String comment = request.getParameter("comment");
+            String picIDString = request.getParameter("picID");
 
-            String type = part.getContentType();
-            String filename = part.getSubmittedFileName();
-            
-            InputStream is = request.getPart(part.getName()).getInputStream();
-            int i = is.available();
-            HttpSession session=request.getSession();
-            LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
-            String username="Dentist";
-            if (lg.getloggedin()){
-                username=lg.getUsername();
-            }
-            if (i > 0) {
-                byte[] b = new byte[i + 1];
-                is.read(b);
-                System.out.println("Length : " + b.length);
-                PicModel tm = new PicModel();
-                tm.setCluster(cluster);
-                
-                tm.insertPic(b, type, filename, username);
+            UUID picID = UUID.fromString(picIDString);
 
-                is.close();
+            if (comment.compareTo("") != 0){
+                String username = lg.getUsername();
+                PicModel pm = new PicModel();
+                pm.setCluster(cluster);
+                pm.insertComment(username, picID, comment);
+
+                response.sendRedirect("/myDental/Comments/" + picID);
             }
-            //RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-            //rd.forward(request, response);
-            response.sendRedirect("/myDental/dentalPortal/" + username);
         }
     }
 
@@ -134,4 +121,9 @@ public class dentalPortal extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void PicModel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
+

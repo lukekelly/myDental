@@ -5,6 +5,9 @@
 --%>
 
 <%@page import="stores.LoggedIn"%>
+<%@page import="stores.Comment"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="stores.Pic"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -66,13 +69,14 @@
                         <TD>
                         <form method="POST" enctype="multipart/form-data" action="Image">
                                 <input type="file" name="upfile">
-                                <input type="submit" value="Upload">
+                                <input type="submit" value="Upload"> 
                             </form></TD>
                         <TD>
                             
                             <div class="form-group">
                                 <label for="comment" class="sr-only">Slide Description</label>
-                                <textarea class="form-control" rows="5" id="comment" placeholder="Enter Description here. E.g. The Dentist will sit you down.." required autofocus></textarea>
+                                <textarea class="form-control" rows="5" id="comment" placeholder="Enter Description here..." required autofocus></textarea>
+                                
                             </div>
 
                         </TD>

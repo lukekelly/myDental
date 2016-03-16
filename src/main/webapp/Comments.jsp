@@ -1,12 +1,13 @@
 <%-- 
-    Document   : DentalPics
-    Created on : 21-Feb-2016, 18:10:12
+    Document   : Comments
+    Created on : 11-Mar-2016, 16:16:18
     Author     : Luke
 --%>
 
-<%@page import="java.util.*"%>
+<%@page import="stores.Comment"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="stores.Pic"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import= "stores.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,42 +36,37 @@
                 </div>
             </div>
         </nav> 
+        <% String picID = (String) request.getAttribute("picID");%>
 
-        <div class="container">
+        <a href="/myDental/Image/<%=picID%>" ><img src="/myDental/Thumb/<%=picID%>"></a>
 
-            <div class="row">
+        <%
+            java.util.LinkedList<Comment> comments = (java.util.LinkedList<Comment>) request.getAttribute("Comments");
+            if (comments == null) { %>
+        <p>No comments found</p>
+        <% } else { %>
+        <h3>Comments</h3>
+        <% Iterator<Comment> iterator = comments.iterator();
+            while (iterator.hasNext()) {
+                Comment comment = iterator.next();
+        %><table border="1"><tr>
+                <td><%=comment.getUser()%></td>
+                <td><%=comment.getDateCreated()%></td>
+            </tr>
+            <tr>
+                <td colspan="2"><%=comment.getContent()%></td>
+            </tr></table><br>
+            <% } %>
 
-                <%
-                    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                    if (lg != null) {
-                        if (lg.getloggedin()) {
-                %>
-                <div class="col-lg-12">
-                    <h1 class="page-header"><%=lg.getUsername()%>'s Picture Library</h1>
-                </div>
-                <%}
-                } else {%>
-                <h1>Your Pics</h1>
-                <%}%>
-                <%
-                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-                    if (lsPics == null) {
-                %>
-                <p>No Pictures found</p>
-                <%
-                } else {
-                    Iterator<Pic> iterator;
-                    iterator = lsPics.iterator();
-                    while (iterator.hasNext()) {
-                        Pic p = (Pic) iterator.next();
+        <br>
+        <% }
+        %>
 
-                %>
-                <a href="/myDental/Comments/<%=p.getSUUID()%>" ><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
+        <form method="POST" action="newComment">
+            <input type="hidden" name="picID" value="<%=picID.toString()%>">
+            <p><input type="text" name="comment"></p>
+            <p><input type="submit" value="Add Comment"></p>
+        </form>
 
-                        }
-                    }
-                    %>
-            </div>
-        </div>
     </body>
 </html>
