@@ -18,9 +18,10 @@ public class Pic {
     private ByteBuffer bImage = null;
     private int length;
     private String type;
-    private java.util.UUID UUID=null;
+    private String title;
+    private java.util.UUID UUID = null;
     private java.util.List<String> comments = null;
-    
+
     public void Pic() {
 
     }
@@ -33,17 +34,19 @@ public class Pic {
         this.comments = comments;
     }
 
-    
-    public void setUUID(java.util.UUID UUID){
-        this.UUID =UUID;
+    public void setUUID(java.util.UUID UUID) {
+        this.UUID = UUID;
     }
-    public String getSUUID(){
+
+    public String getSUUID() {
         return UUID.toString();
     }
-    public void setPic(ByteBuffer bImage, int length,String type) {
+
+    public void setPic(ByteBuffer bImage, int length, String type) {
         this.bImage = bImage;
         this.length = length;
-        this.type=type;
+        this.type = type;
+        this.title = title;
     }
 
     public ByteBuffer getBuffer() {
@@ -53,13 +56,21 @@ public class Pic {
     public int getLength() {
         return length;
     }
-    
-    public String getType(){
+
+    public String getType() {
         return type;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
     public byte[] getBytes() {
-         
+
         byte image[] = Bytes.getArray(bImage);
         return image;
     }

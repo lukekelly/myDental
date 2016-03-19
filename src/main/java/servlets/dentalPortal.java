@@ -104,6 +104,7 @@ public class dentalPortal extends HttpServlet {
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
             String username="Dentist";
+            String title="";
             if (lg.getloggedin()){
                 username=lg.getUsername();
             }

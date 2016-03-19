@@ -12,6 +12,7 @@ import java.util.UUID;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,7 @@ import stores.*;
  * @author Luke
  */
 
-@WebServlet(name = "Comments", urlPatterns = {"/Comments/*"})
+@WebServlet(name = "Comments", urlPatterns = {"/Comments/*"}) @MultipartConfig
 public class Comments extends HttpServlet {
     
     private Cluster cluster;

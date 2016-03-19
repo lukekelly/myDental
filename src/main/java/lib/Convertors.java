@@ -93,7 +93,7 @@ public final class Convertors {
 
         StringTokenizer st = Convertors.SplitTagString(Tags);
         args = new String[st.countTokens() + 1];  //+1 for _No_Tag_
-        //Lets assume the number is the last argument
+        // Assuming the number is the last argument
 
         int argv = 0;
         while (st.hasMoreTokens()) {;
@@ -115,7 +115,7 @@ public final class Convertors {
 
         StringTokenizer st = SplitString(type);
         args = new String[st.countTokens()];
-		//Lets assume the number is the last argument
+		//Again, assuming the number is the last argument
 
         int argv = 0;
         while (st.hasMoreTokens()) {;

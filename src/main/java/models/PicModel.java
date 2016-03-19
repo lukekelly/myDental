@@ -70,7 +70,6 @@ public class PicModel {
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf, processedbuf, user, DateAdded, length, thumblength, processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));
-            //session.execute(bsInsertPicToProfile.bind(picid,login));
 
             session.close();
 
@@ -96,7 +95,7 @@ public class PicModel {
         return null;
     }
 
-    public byte[] picdecolour(String picid, String type) {
+   public byte[] picdecolour(String picid, String type) {
         try {
             BufferedImage BI = ImageIO.read(new File("/var/tmp/myDental/" + picid));
             BufferedImage processed = createProcessed(BI);
@@ -113,15 +112,14 @@ public class PicModel {
     }
 
     public static BufferedImage createThumbnail(BufferedImage img) {
-        img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);
-        // Let's add a little border before we return result.
-        return pad(img, 10);
+        img = resize(img, Method.SPEED, 300, OP_ANTIALIAS);
+        return pad(img, 2);
     }
 
     public static BufferedImage createProcessed(BufferedImage img) {
-        int Width = img.getWidth() - 1;
-        img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_GRAYSCALE);
-        return pad(img, 4);
+        int Width = img.getWidth();
+        img = resize(img, Method.SPEED, Width, OP_ANTIALIAS);
+        return pad(img, 2);
     }
 
     public java.util.LinkedList<Pic> getPicsForUser(String User) {
@@ -164,11 +162,11 @@ public class PicModel {
 
             if (image_type == Convertors.DISPLAY_IMAGE) {
 
-                ps = session.prepare("select image,imagelength,type from pics where picid =?");
+                ps = session.prepare("select image,imagelength,type,title from pics where picid =?");
             } else if (image_type == Convertors.DISPLAY_THUMB) {
-                ps = session.prepare("select thumb,imagelength,thumblength,type from pics where picid =?");
+                ps = session.prepare("select thumb,imagelength,thumblength,type,title from pics where picid =?");
             } else if (image_type == Convertors.DISPLAY_PROCESSED) {
-                ps = session.prepare("select processed,processedlength,type from pics where picid =?");
+                ps = session.prepare("select processed,processedlength,type,title from pics where picid =?");
             }
             BoundStatement boundStatement = new BoundStatement(ps);
             rs = session.execute( // this is where the query is executed

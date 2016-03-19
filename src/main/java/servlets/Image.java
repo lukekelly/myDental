@@ -88,7 +88,7 @@ public class Image extends HttpServlet {
                  DisplayImageList(lg.getUsername(), request, response);
                 break;
             case 3:
-                DisplayImage(Convertors.DISPLAY_THUMB,args[2],  response);
+                DisplayImage(Convertors.DISPLAY_THUMB,args[2], response);
                 break;
             default:
                 error("Bad Operator", response);

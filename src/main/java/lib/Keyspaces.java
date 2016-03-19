@@ -60,6 +60,7 @@ public static void SetUpKeySpaces(Cluster c) {
             String createUserPicListTable = "CREATE TABLE if not exists mydental.userpiclist (\n"
                     + "picid uuid,\n"
                     + "user varchar,\n"
+                    + "title varchar,\n"
                     + "pic_added timestamp,\n"
                     + "PRIMARY KEY (user,pic_added)\n"
                     + ") WITH CLUSTERING ORDER BY (pic_added desc);";

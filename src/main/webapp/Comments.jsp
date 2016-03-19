@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dentist Library</title>
+        <title>Library</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -36,37 +36,39 @@
                 </div>
             </div>
         </nav> 
-        <% String picID = (String) request.getAttribute("picID");%>
 
-        <a href="/myDental/Image/<%=picID%>" ><img src="/myDental/Thumb/<%=picID%>"></a>
+        <div class="container">
+            <% String picID = (String) request.getAttribute("picID");%>
 
-        <%
-            java.util.LinkedList<Comment> comments = (java.util.LinkedList<Comment>) request.getAttribute("Comments");
-            if (comments == null) { %>
-        <p>No comments found</p>
-        <% } else { %>
-        <h3>Comments</h3>
-        <% Iterator<Comment> iterator = comments.iterator();
-            while (iterator.hasNext()) {
-                Comment comment = iterator.next();
-        %><table border="1"><tr>
-                <td><%=comment.getUser()%></td>
-                <td><%=comment.getDateCreated()%></td>
-            </tr>
-            <tr>
-                <td colspan="2"><%=comment.getContent()%></td>
-            </tr></table><br>
-            <% } %>
+            <a href="/myDental/Image/<%=picID%>" ><img src="/myDental/Thumb/<%=picID%>"></a>
 
-        <br>
-        <% }
-        %>
+            <%
+                java.util.LinkedList<Comment> comments = (java.util.LinkedList<Comment>) request.getAttribute("Comments");
+                if (comments == null) { %>
+            <p>No comments found</p>
+            <% } else { %>
+            <h3>Comments</h3>
+            <% Iterator<Comment> iterator = comments.iterator();
+                while (iterator.hasNext()) {
+                    Comment comment = iterator.next();
+            %><table border=""><tr>
+                    <td><%=comment.getUser()%></td>
+                    <td><%=comment.getDateCreated()%></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><%=comment.getContent()%></td>
+                </tr></table><br>
+                <% } %>
 
-        <form method="POST" action="newComment">
-            <input type="hidden" name="picID" value="<%=picID.toString()%>">
-            <p><input type="text" name="comment"></p>
-            <p><input type="submit" value="Add Comment"></p>
-        </form>
+            <br>
+            <% }
+            %>
 
+            <form method="POST" action="newComment">
+                <input type="hidden" name="picID" value="<%=picID.toString()%>">
+                <p><input type="text" name="comment"></p>
+                <p><input type="submit" value="Add Comment"></p>
+            </form>
+        </div>
     </body>
 </html>
