@@ -18,7 +18,7 @@ public class Pic {
     private ByteBuffer bImage = null;
     private int length;
     private String type;
-    private String title;
+    private String caption;
     private java.util.UUID UUID = null;
     private java.util.List<String> comments = null;
 
@@ -46,7 +46,6 @@ public class Pic {
         this.bImage = bImage;
         this.length = length;
         this.type = type;
-        this.title = title;
     }
 
     public ByteBuffer getBuffer() {
@@ -61,12 +60,12 @@ public class Pic {
         return type;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCaption(String caption) {
+        this.caption = caption;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCaption() {
+        return caption;
     }
 
     public byte[] getBytes() {

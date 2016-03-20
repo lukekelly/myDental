@@ -66,6 +66,7 @@
 
                 %>
                 <a href="/myDental/Comments/<%=p.getSUUID()%>" ><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
+                 out.println(p.getCaption());	
 
                         }
                     }

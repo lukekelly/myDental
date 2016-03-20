@@ -42,6 +42,8 @@
 
             <a href="/myDental/Image/<%=picID%>" ><img src="/myDental/Thumb/<%=picID%>"></a>
 
+            
+
             <%
                 java.util.LinkedList<Comment> comments = (java.util.LinkedList<Comment>) request.getAttribute("Comments");
                 if (comments == null) { %>
@@ -63,11 +65,12 @@
             <br>
             <% }
             %>
+           
 
             <form method="POST" action="newComment">
                 <input type="hidden" name="picID" value="<%=picID.toString()%>">
-                <p><input type="text" name="comment"></p>
-                <p><input type="submit" value="Add Comment"></p>
+                <p><input type="text" name="comment" value="Write your comments here.."></p>
+                <p><input type="submit" value="Add Note"></p>
             </form>
         </div>
     </body>

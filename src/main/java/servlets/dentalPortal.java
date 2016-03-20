@@ -91,11 +91,12 @@ public class dentalPortal extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+   /* protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
 
+            String caption = request.getParameter("caption");	// retrieve the name
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             
@@ -104,7 +105,7 @@ public class dentalPortal extends HttpServlet {
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
             String username="Dentist";
-            String title="";
+            
             if (lg.getloggedin()){
                 username=lg.getUsername();
             }
@@ -115,7 +116,7 @@ public class dentalPortal extends HttpServlet {
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
                 
-                tm.insertPic(b, type, filename, username);
+                tm.insertPic(b, type, filename, username, caption);
 
                 is.close();
             }
@@ -123,7 +124,7 @@ public class dentalPortal extends HttpServlet {
             //rd.forward(request, response);
             response.sendRedirect("/myDental/dentalPortal/" + username);
         }
-    }
+    }*/
 
     /**
      * Returns a short description of the servlet.

@@ -40,10 +40,11 @@
         <article>
             <h1>Upload Image</h1>
             <form method="POST" enctype="multipart/form-data" action="Image">
-                Browse for an Image: <input type="file" name="upfile"><br/>
-                <br/>
-                <input type="submit" value="Press"> to upload the image!
-            </form>
+			<label>File to upload:</label> <br>
+			<input type="file" name="upfile"><br>
+                         <input type="text" name="caption" placeholder="Enter a caption here.."> <br/>
+			<br> <input type="submit" value="Press" id="submit"> to upload then file!
+		</form>
         </article>
 
 

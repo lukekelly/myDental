@@ -131,6 +131,10 @@ public class Image extends HttpServlet {
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
 
+            String caption = request.getParameter("caption");
+            if (caption.isEmpty()) {
+            	caption = "(unnamed slide)";
+            }
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             
@@ -149,7 +153,7 @@ public class Image extends HttpServlet {
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
                 
-                tm.insertPic(b, type, filename, username);
+                tm.insertPic(b, type, filename, username, caption);
 
                 is.close();
             }

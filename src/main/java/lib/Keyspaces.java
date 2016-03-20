@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lib;
 
 import com.datastax.driver.core.BoundStatement;
@@ -57,13 +52,15 @@ public static void SetUpKeySpaces(Cluster c) {
                     + " name  varchar,"
                     + " PRIMARY KEY (picid)"
                     + ")";
+            
             String createUserPicListTable = "CREATE TABLE if not exists mydental.userpiclist (\n"
                     + "picid uuid,\n"
                     + "user varchar,\n"
-                    + "title varchar,\n"
+                    + "caption varchar,\n"
                     + "pic_added timestamp,\n"
                     + "PRIMARY KEY (user,pic_added)\n"
                     + ") WITH CLUSTERING ORDER BY (pic_added desc);";
+            
             String CreateComments = "CREATE TABLE if not exists mydental.comments (\n"
                     + "	comment_id uuid PRIMARY KEY,\n"
                     + "	pic_id uuid,\n"
@@ -72,6 +69,12 @@ public static void SetUpKeySpaces(Cluster c) {
                     + "	content text\n"
                     + ");";
             String CreateComments2ndIndex = " CREATE INDEX if not exists ON mydental.comments (pic_id);";
+            
+            String CreateFlag= "CREATE TABLE if not exists mydental.flag ("
+                    + " user varchar,\n"
+                    + " picid uuid,\n  "
+                    + " PRIMARY KEY (picid,user)"
+                    + ")";
 
             
             Session session = c.connect();
@@ -115,6 +118,7 @@ public static void SetUpKeySpaces(Cluster c) {
             } catch (Exception et) {
                 System.out.println("Can't create USERPICLIST table " + et);
             }
+                System.out.println("" + CreateComments);
              try {
                 SimpleStatement cqlQuery = new SimpleStatement(CreateComments);
                 session.execute(cqlQuery);
@@ -130,7 +134,13 @@ public static void SetUpKeySpaces(Cluster c) {
                 System.out.println("Can't create comments index " + et);
             }
             System.out.println("" + CreateComments2ndIndex);
-            
+            try {
+                SimpleStatement cqlQuery = new SimpleStatement(CreateFlag);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create flags table " + et);
+            }
+            System.out.println("" + CreateFlag);
             
             session.close();
 
