@@ -66,121 +66,93 @@
                 <TABLE id="dataTable" width="600px" border="0">
                     <TR>
                         <TD><INPUT type="checkbox" name="chk"/></TD>
-                        
-
-
                         <TD><form method="POST" enctype="multipart/form-data" action="Image">
-                                <center>
-                                    <table border="1">
-                                        <tr>
-                                            <td align="center"><b>Create Story</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="file" name="upfile">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="file" name="upfile">
-                                            </td>
-                                        <tr>
-                                            <td>
-                                                <input type="file" name="upfile">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                               
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <center>
-                                        </form>
-                                        <input type="submit" name="Submit" value="Save Story"/>
+                                <table border="1">
+                                    <tr>
+                                        <td align="center"><b>Slide #</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="file" name="upfile" multiple="multiple">
+                                            <input type="text" name="caption" placeholder="Enter a caption here..">
+                                            <input type="submit" id="submit" value="Save Story"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                    </TR>
+                </TABLE>
+                
+                
 
-                                        <form action="Image" method="POST" enctype="multipart/form-data"><br>
-                                            Title:<input type="text" name="title" id="title" /><br>
-                                            Image:<input type="file" name="upfile" id="image" /><br>
-                                            <input type="submit" value="Upload">
-                                        </form></TD>
+                
+            </div>
+        </div>
 
 
-                                        <TD>
-                                            <div class="form-group">
-                                                <label for="comment" class="sr-only">Slide Description</label>
-                                                <textarea class="form-control" rows="5" id="comment" placeholder="Enter Description here..." required autofocus></textarea>
-                                            </div>
-                                        </TD>
-                                        </TR>
-                                        </TABLE>
-                                        </div>
-                                        </div>
-
-
-                                        <%}
-                                        } else {
-                                        %>
-                                        <%
-                                    }%>
+        <%}
+        } else {
+        %>
+        <%
+                                            }%>
 
 
 
-                                        <script>
-                                            function addRow(tableID) {
+        <script>
+            function addRow(tableID) {
 
-                                                var table = document.getElementById(tableID);
+                var table = document.getElementById(tableID);
 
-                                                var rowCount = table.rows.length;
-                                                var row = table.insertRow(rowCount);
+                var rowCount = table.rows.length;
+                var row = table.insertRow(rowCount);
 
-                                                var colCount = table.rows[0].cells.length;
+                var colCount = table.rows[0].cells.length;
 
-                                                for (var i = 0; i < colCount; i++) {
+                for (var i = 0; i < colCount; i++) {
 
-                                                    var newcell = row.insertCell(i);
+                    var newcell = row.insertCell(i);
 
-                                                    newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-                                                    //alert(newcell.childNodes);
-                                                    switch (newcell.childNodes[0].type) {
-                                                        case "text":
-                                                            newcell.childNodes[0].value = "";
-                                                            break;
-                                                        case "checkbox":
-                                                            newcell.childNodes[0].checked = false;
-                                                            break;
-                                                        case "select-one":
-                                                            newcell.childNodes[0].selectedIndex = 0;
-                                                            break;
-                                                    }
-                                                }
-                                            }
+                    newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+                    //alert(newcell.childNodes);
+                    switch (newcell.childNodes[0].type) {
+                        case "text":
+                            newcell.childNodes[0].value = "";
+                            break;
+                        case "checkbox":
+                            newcell.childNodes[0].checked = false;
+                            break;
+                        case "select-one":
+                            newcell.childNodes[0].selectedIndex = 0;
+                            break;
+                    }
+                }
+            }
 
-                                            function deleteRow(tableID) {
-                                                try {
-                                                    var table = document.getElementById(tableID);
-                                                    var rowCount = table.rows.length;
+            function deleteRow(tableID) {
+                try {
+                    var table = document.getElementById(tableID);
+                    var rowCount = table.rows.length;
 
-                                                    for (var i = 0; i < rowCount; i++) {
-                                                        var row = table.rows[i];
-                                                        var chkbox = row.cells[0].childNodes[0];
-                                                        if (null != chkbox && true == chkbox.checked) {
-                                                            if (rowCount <= 1) {
-                                                                alert("Cannot delete all the rows.");
-                                                                break;
-                                                            }
-                                                            table.deleteRow(i);
-                                                            rowCount--;
-                                                            i--;
-                                                        }
+                    for (var i = 0; i < rowCount; i++) {
+                        var row = table.rows[i];
+                        var chkbox = row.cells[0].childNodes[0];
+                        if (null != chkbox && true == chkbox.checked) {
+                            if (rowCount <= 1) {
+                                alert("Cannot delete all the rows.");
+                                break;
+                            }
+                            table.deleteRow(i);
+                            rowCount--;
+                            i--;
+                        }
 
 
-                                                    }
-                                                } catch (e) {
-                                                    alert(e);
-                                                }
-                                            }
+                    }
+                } catch (e) {
+                    alert(e);
+                }
+            }
 
-                                        </script>
-        </body>
+        </script>
+    </body>
 </html>

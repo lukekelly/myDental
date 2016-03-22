@@ -37,10 +37,11 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user, String caption) {
+    public void insertPic(byte[] b, String type, String name, String user, String caption, int flags) {
         try {
             Convertors convertor = new Convertors();
 
+            flags = 0;
             String types[] = Convertors.SplitFiletype(type);
             ByteBuffer buffer = ByteBuffer.wrap(b);
             int length = b.length;
@@ -61,13 +62,16 @@ public class PicModel {
 
             PreparedStatement psInsertPic = session.prepare("insert into pics (picid, image, thumb, processed, user, interaction_time, imagelength, thumblength, processedlength, type, name) values(?,?,?,?,?,?,?,?,?,?,?)");
             PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added, caption) values(?,?,?,?)");
+            PreparedStatement psInsertFlags = session.prepare("insert into flags (flags,login,picid) values(?,?,?)");
 
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
             BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
+            BoundStatement bsInsertFlags = new BoundStatement(psInsertFlags);
 
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf, processedbuf, user, DateAdded, length, thumblength, processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, caption));
+            session.execute(bsInsertFlags.bind(flags, user, picid.toString()));
 
             session.close();
 
@@ -93,7 +97,7 @@ public class PicModel {
         return null;
     }
 
-   public byte[] picdecolour(String picid, String type) {
+    public byte[] picdecolour(String picid, String type) {
         try {
             BufferedImage BI = ImageIO.read(new File("/var/tmp/myDental/" + picid));
             BufferedImage processed = createProcessed(BI);
@@ -118,6 +122,34 @@ public class PicModel {
         int Width = img.getWidth();
         img = resize(img, Method.SPEED, Width, OP_ANTIALIAS);
         return pad(img, 2);
+    }
+
+    public void writeFlags(String login, String picid, int flags) {
+        Session session = cluster.connect("myDental");
+
+        PreparedStatement ps = session.prepare("insert into flags (login,picid,flags) values(?,?,?)");
+        BoundStatement bs = new BoundStatement(ps);
+        session.execute(bs.bind(login, picid, flags));
+    }
+
+    public int getFlagsForPic(String picid) {
+        int flags = 0;
+        Session session = cluster.connect("myDental");
+        PreparedStatement ps = session.prepare("select login,flags from flags where picid=?  ALLOW FILTERING");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        ResultSet rs = null;
+        rs = session.execute(boundStatement.bind(picid));
+
+        if (rs.isExhausted()) {
+            System.out.println("No Flags Yet.");
+            return 0;
+        } else {
+            for (Row row : rs) {
+                flags = row.getInt("flags");
+            }
+        }
+
+        return flags;
     }
 
     public java.util.LinkedList<Pic> getPicsForUser(String User) {

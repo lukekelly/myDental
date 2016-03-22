@@ -70,12 +70,12 @@ public static void SetUpKeySpaces(Cluster c) {
                     + ");";
             String CreateComments2ndIndex = " CREATE INDEX if not exists ON mydental.comments (pic_id);";
             
-            String CreateFlag= "CREATE TABLE if not exists mydental.flag ("
-                    + " user varchar,\n"
-                    + " picid uuid,\n  "
-                    + " PRIMARY KEY (picid,user)"
-                    + ")";
-
+              String CreateFlags = "CREATE TABLE if not exists mydental.flags (\n"            		
+            		+ " flags int,\n"
+            		+ " login text,\n"
+            		+ " picid text,\n"
+            		+ " PRIMARY KEY (picid)\n"
+            		+ "  );";
             
             Session session = c.connect();
             try {
@@ -134,13 +134,15 @@ public static void SetUpKeySpaces(Cluster c) {
                 System.out.println("Can't create comments index " + et);
             }
             System.out.println("" + CreateComments2ndIndex);
+            
+             System.out.println("" + CreateFlags);
             try {
-                SimpleStatement cqlQuery = new SimpleStatement(CreateFlag);
+                SimpleStatement cqlQuery = new SimpleStatement(CreateFlags);
                 session.execute(cqlQuery);
             } catch (Exception et) {
-                System.out.println("Can't create flags table " + et);
+                System.out.println("Can't create Flags table " + et);
             }
-            System.out.println("" + CreateFlag);
+            
             
             session.close();
 

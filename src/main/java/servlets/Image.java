@@ -133,11 +133,12 @@ public class Image extends HttpServlet {
 
             String caption = request.getParameter("caption");
             if (caption.isEmpty()) {
-            	caption = "(unnamed slide)";
+            	caption = "";
             }
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
-            
+            int flags = 0;
+           
             InputStream is = request.getPart(part.getName()).getInputStream();
             int i = is.available();
             HttpSession session=request.getSession();
@@ -153,7 +154,7 @@ public class Image extends HttpServlet {
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
                 
-                tm.insertPic(b, type, filename, username, caption);
+                tm.insertPic(b, type, filename, username, caption, flags);
 
                 is.close();
             }
