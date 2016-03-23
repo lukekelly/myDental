@@ -30,7 +30,7 @@ import stores.Dentist;
  *
  * @author Luke
  */
-@WebServlet(name = "dentalPortal", urlPatterns = {"/dentalportal"})
+@WebServlet(name = "dentalPortal", urlPatterns = {"/dentalportal", "/dentalPortal/*"})
 public class dentalPortal extends HttpServlet {
      private Cluster cluster;
     

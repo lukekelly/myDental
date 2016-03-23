@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import com.datastax.driver.core.Cluster;
@@ -24,7 +19,7 @@ import models.PicModel;
 import stores.*;
 
 /**
- *
+ * Servlet for image Notes/Comments
  * @author Luke
  */
 

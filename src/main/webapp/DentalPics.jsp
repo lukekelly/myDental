@@ -37,30 +37,29 @@
                         <li><a href="/myDental/logout">Logout</a></li>
                     </ul>
                 </div>
-            </div><%  LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>
-            <% 
-				 String user = lg.getUsername();
-			     Dentist us = new Dentist();	 
-			     Cluster cluster = null;           
-			     cluster = CassandraHosts.getCluster();
-			     
-			     
-			     PicModel picMod = new PicModel();
-			   	 picMod.setCluster(cluster);
-			     				     
-						
-				%>
+            </div>
+
+            <%  LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>
+            <%
+                String user = lg.getUsername();
+                Dentist us = new Dentist();
+                Cluster cluster = null;
+                cluster = CassandraHosts.getCluster();
+
+                PicModel picMod = new PicModel();
+                picMod.setCluster(cluster);
+
+
+            %>
         </nav> 
 
         <div class="container">
 
             <div class="row">
 
-                <%
-                  
-                    if (lg != null) {
+                <%                    if (lg != null) {
                         if (lg.getloggedin()) {
-                            
+
                 %>
                 <div class="col-lg-12">
                     <h1 class="page-header"><%=lg.getUsername()%>'s Picture Library</h1>
@@ -71,7 +70,6 @@
                 <%}%>
                 <%
                     java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-                    //add comments here too?
                     int lsFlags = 0;
                     if (lsPics == null) {
                 %>
@@ -83,27 +81,32 @@
                     while (iterator.hasNext()) {
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
-
                 %>
-                 <form method="POST" action="/myDental/Flag">	
-         		<input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>			
-  				<input type="text" name="picid" value="<%=p.getSUUID() %>" hidden > 
-          		<input type="text" name="login" value="<%=lg.getUsername() %>" hidden>  
-  				<input type="text" name="page" value="login" hidden >  			
-         	<input type="submit"	value="Flag"> <br><br>	
-          </form>
-                <a href="/myDental/Comments/<%=p.getSUUID()%>" ><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
-                            if (p.getCaption().isEmpty()) {
-                            } else {
-                                out.println(p.getCaption());
+                <div class="container-fluid">
+                    <form method="POST" action="/myDental/Flag">	
+                        <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>			
+                        <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden > 
+                        <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
+                        <input type="text" name="page" value="login" hidden >  			
+                        <button type="submit" class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
+                        <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
+                    </form>
+
+
+                    <a><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
+                                if (p.getCaption().isEmpty()) {
+                                } else {
+                                    out.println(p.getCaption());
+                                }
                             }
-
                         }
-                    }
-                    
-                    %>
-
+                        %>
+                </div>
             </div>
+
+
+
+
         </div>
-    </body>
+</body>
 </html>

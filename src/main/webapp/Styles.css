@@ -1,11 +1,11 @@
 /* 
-    Document   : CSS Styling
+    Document   : MyDental CSS Styling
     Created on : 27/12/2015
     Author     : Luke
 */
 
 .body {
-    background: url("Pictures/855dental-tools.jpg") no-repeat center center fixed; 
+    background: url("Pictures/background.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

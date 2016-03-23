@@ -77,7 +77,8 @@ public class Register extends HttpServlet {
         
        if (patientExists == true)
         {
-        	response.sendRedirect("/Register");
+        	// get back to the referer page using redirect
+            response.sendRedirect(request.getHeader("Referer"));
          
         }
         else
@@ -85,15 +86,12 @@ public class Register extends HttpServlet {
             boolean success = st.RegisterPatient(username, password, name, surname);
             
             if (success){
-                HttpSession session=request.getSession();
-                LoggedIn lg= new LoggedIn();
-                lg.setLoggedin();
-                lg.setUsername(username);
-
-                //session.setAttribute("LoggedIn", lg);
+                // get back to the referer page using redirect
+            response.sendRedirect(request.getHeader("Referer"));
+            // Success messgage
             }
             
-            response.sendRedirect("/Register.jsp");
+            
         }  
     }
     

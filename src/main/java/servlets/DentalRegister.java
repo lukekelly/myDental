@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import java.io.IOException;
@@ -23,84 +18,69 @@ import javax.servlet.http.HttpSession;
 import stores.LoggedIn;
 
 /**
- *
+ * Servlet for registering a new Dental Practitioner
  * @author Luke
  */
 @WebServlet(name = "DentalRegister", urlPatterns = {"/DentalRegister"})
 public class DentalRegister extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-	Cluster cluster=null;
+    private static final long serialVersionUID = 1L;
+    Cluster cluster = null;
+
     public void init(ServletConfig config) throws ServletException {
         cluster = CassandraHosts.getCluster();
     }
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd = request.getRequestDispatcher("/DentalRegister.jsp");
         rd.forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
-        String name=request.getParameter("name");
-        String surname=request.getParameter("surname");
-      
-        
-        if (username.equals(""))
-        {
-        	error("Please enter a username", response);
-        	return;
-        }
-        else if (password.equals(""))
-        {
-        	error("Please enter your password", response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+
+        if (username.equals("")) {
+            error("Please enter a username", response);
+            return;
+        } else if (password.equals("")) {
+            error("Please enter your password", response);
+            return;
+        } else if (name.equals("")) {
+            error("Please enter your first name", response);
+            return;
+        } else if (surname.equals("")) {
+            error("Please enter your second name", response);
             return;
         }
-        else if (name.equals(""))
-        {
-        	error("Please enter your first name", response);
-            return;
-        }
-        else if (surname.equals(""))
-        {
-        	error("Please enter your second name", response);
-            return;
-        }
-        
+
         DentistModel st = new DentistModel();
         st.setCluster(cluster);
-        
-        boolean dentistExists = st.existingDentist(username);
-        
-       if (dentistExists == true)
-        {
-        	response.sendRedirect("/myDental");
-        }
-        else
-        {
-            boolean success = st.RegisterDentist(username, password, name, surname);
-            
-            if (success){
-                HttpSession session=request.getSession();
-                LoggedIn lg= new LoggedIn();
-                lg.setLoggedin();
-                lg.setUsername(username);
 
-                session.setAttribute("LoggedIn", lg);
-            }
+        boolean dentistExists = st.existingDentist(username);
+
+        if (dentistExists == true) {
+            // get back to the referer page using redirect
+            response.sendRedirect(request.getHeader("Referer"));
             
-            response.sendRedirect("/myDental");
-        }  
+        } else {
+            boolean success = st.RegisterDentist(username, password, name, surname);
+
+            if (success) {
+                  // get back to the referer page using redirect
+            response.sendRedirect(request.getHeader("Referer"));
+            // Success messgage
+            }
+        }
     }
-    
-    private void error(String fault, HttpServletResponse response) throws ServletException, IOException
-    {
-    	 PrintWriter out = new PrintWriter(response.getOutputStream());
-    	 out.println("<h1>You have made a mistake, please try again</h1>");
-    	 out.close();
+
+    private void error(String fault, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = new PrintWriter(response.getOutputStream());
+        out.println("<h1>You have made a mistake, please try again</h1>");
+        out.close();
     }
 
 }
