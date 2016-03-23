@@ -38,23 +38,22 @@
         </nav>
 
         <%
-                 Error e = (Error) session.getAttribute("ErrorMessages");
-                String errorMessage = "";
-                  if(e != null){
-                      errorMessage = e.getErrorMessage();
-             
-             
-        %>
+            Error e = (Error) session.getAttribute("ErrorMessages");
+            String errorMessage = "";
+            if (e != null) {
+                errorMessage = e.getErrorMessage();
 
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Oops!</strong><%=errorMessage%>
+
+        %>
+               
+        <div class="alert alert-danger" role="alert" align="centre">
+            <strong>Oops!</strong><%=errorMessage%> 
         </div>
 
 
-        <%   
-                     }
-                  else{}
+        <%
+            } else {
+            }
         %>
 
 

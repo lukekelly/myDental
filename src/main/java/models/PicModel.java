@@ -114,7 +114,7 @@ public class PicModel {
     }
 
     public static BufferedImage createThumbnail(BufferedImage img) {
-        img = resize(img, Method.SPEED, 300, OP_ANTIALIAS);
+        img = resize(img, Method.SPEED, 500, OP_ANTIALIAS);
         return pad(img, 2);
     }
 

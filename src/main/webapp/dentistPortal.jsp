@@ -82,13 +82,13 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
+                <a class="thumbnail" href="sendStory.jsp">
                     <img class="img-responsive" src="Pictures/send.jpg" alt="">
                     <p>Send Story</p>
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
+                <a class="thumbnail" href="inbox.jsp">
                     <img class="img-responsive" src="Pictures/inbox.png" alt="">
                     <p>Story Inbox</p>
                 </a>

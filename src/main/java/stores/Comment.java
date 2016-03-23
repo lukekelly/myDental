@@ -18,6 +18,7 @@ public class Comment {
     private String user = null;
     private Date dateCreated = null;
     private String content = null;
+    private int flag = 0;
     
     public Comment(){
         

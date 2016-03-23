@@ -91,7 +91,7 @@ public class DentalLogIn extends HttpServlet {
             
         }else{
             
-             e.setErrorMessage("The details you entered may have been incorrect or invalid, please try again.");
+             e.setErrorMessage("  The details you entered may have been incorrect or invalid, please try again...");
              session.setAttribute("ErrorMessages", e);
              response.sendRedirect(request.getHeader("Referer"));
         }

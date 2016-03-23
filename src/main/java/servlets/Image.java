@@ -34,6 +34,8 @@ import stores.Pic;
     "/Thumb/*",
     "/Images",
     "/Images/*",
+    "/inbox",
+    "/inbox/*",
     "/DentalPics/*"
 })
 @MultipartConfig

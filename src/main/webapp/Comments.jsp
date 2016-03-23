@@ -24,23 +24,7 @@
     </head>
     
     <body class="body">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> 
-                    </button>
-                    <a class="navbar-brand" href="/myDental">myDental</a>      
-                </div>  
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental/logout">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav> 
+
 
         <div class="container-fluid">
             <% String picID = (String) request.getAttribute("picID");%>
@@ -53,7 +37,7 @@
                 java.util.LinkedList<Comment> comments = (java.util.LinkedList<Comment>) request.getAttribute("Comments");
                 if (comments == null) { %>
             <% } else { %>
-            <h3>Comments</h3>
+            <h3>Patient Notes</h3>
             <% Iterator<Comment> iterator = comments.iterator();
                 while (iterator.hasNext()) {
                     Comment comment = iterator.next();
