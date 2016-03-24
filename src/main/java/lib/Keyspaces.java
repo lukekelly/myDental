@@ -71,7 +71,7 @@ public static void SetUpKeySpaces(Cluster c) {
             String CreateComments2ndIndex = " CREATE INDEX if not exists ON mydental.comments (pic_id);";
             
               String CreateFlags = "CREATE TABLE if not exists mydental.flags (\n"            		
-            		+ " flags boolean,\n"
+            		+ " flags int,\n"
             		+ " login text,\n"
             		+ " picid text,\n"
             		+ " PRIMARY KEY (picid)\n"

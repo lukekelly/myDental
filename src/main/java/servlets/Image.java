@@ -139,7 +139,7 @@ public class Image extends HttpServlet {
             }
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
-            boolean flags = false;
+            int flags = 0;
            
             InputStream is = request.getPart(part.getName()).getInputStream();
             int i = is.available();
