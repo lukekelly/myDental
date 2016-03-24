@@ -47,9 +47,11 @@ public class Flag extends HttpServlet {
 		String flags = request.getParameter("flags");
 		String currentPage = request.getParameter("page");
 		
-		int flagsInt = Integer.parseInt(flags);
+		//int flagsInt = Integer.parseInt(flags);
+                
+                boolean flagsInt = true;
 		
-		flagsInt = flagsInt + 1;
+		//flagsInt = flagsInt + 1;
 			
         pm.writeFlags(login, picid, flagsInt);
         

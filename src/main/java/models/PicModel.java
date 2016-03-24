@@ -37,11 +37,11 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user, String caption, int flags) {
+    public void insertPic(byte[] b, String type, String name, String user, String caption, boolean flags) {
         try {
             Convertors convertor = new Convertors();
 
-            flags = 0;
+            //flags = 0;
             String types[] = Convertors.SplitFiletype(type);
             ByteBuffer buffer = ByteBuffer.wrap(b);
             int length = b.length;
@@ -124,7 +124,7 @@ public class PicModel {
         return pad(img, 2);
     }
 
-    public void writeFlags(String login, String picid, int flags) {
+    public void writeFlags(String login, String picid, boolean flags) {
         Session session = cluster.connect("myDental");
 
         PreparedStatement ps = session.prepare("insert into flags (login,picid,flags) values(?,?,?)");
@@ -133,7 +133,7 @@ public class PicModel {
     }
 
     public int getFlagsForPic(String picid) {
-        int flags = 0;
+        boolean flags = false;
         Session session = cluster.connect("myDental");
         PreparedStatement ps = session.prepare("select login,flags from flags where picid=?  ALLOW FILTERING");
         BoundStatement boundStatement = new BoundStatement(ps);
@@ -142,14 +142,15 @@ public class PicModel {
 
         if (rs.isExhausted()) {
             System.out.println("No Flags Yet.");
-            return 0;
+            flags = false;
         } else {
             for (Row row : rs) {
-                flags = row.getInt("flags");
+                //flags = row.getInt("flags");
+                flags = true;
             }
         }
 
-        return flags;
+        return 0;
     }
 
     public java.util.LinkedList<Pic> getPicsForUser(String User) {

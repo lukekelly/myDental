@@ -134,6 +134,16 @@ h4 {
     color: #f4511e;
 }
 
+.btn-flag:focus {
+      background: red;
+    }
+    
+    .btn-flag:active {
+         //sbackground: purple !important; 
+        }
+
+
+
 #image1{
     background: url("Pictures/pic.jpg");
     background-size:cover;
@@ -194,6 +204,9 @@ a.thumbnail.active {
 .media-object.img-thumbnail {
     max-width: none;
 }
+
+
+
 
 
 /* ANIMATION */

@@ -42,7 +42,7 @@
                 </div>
             </div>
         </nav>
-        <a href="/myDental/DentistPortal" class="btn btn-info" role="button">Dental Portal</a>
+        <a href="dentistPortal.jsp" class="btn btn-info" role="button">Dental Portal</a>
         
 
         <div class="container-fluid">
