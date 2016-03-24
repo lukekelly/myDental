@@ -88,7 +88,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="inbox.jsp">
+                <a class="thumbnail" href="/myDental/inbox/">
                     <img class="img-responsive" src="Pictures/inbox.png" alt="">
                     <p>Story Inbox</p>
                 </a>

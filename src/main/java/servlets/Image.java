@@ -57,6 +57,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("Image", 1);
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
+        CommandsMap.put("inbox", 4);
 
     }
 
@@ -92,6 +93,10 @@ public class Image extends HttpServlet {
             case 3:
                 DisplayImage(Convertors.DISPLAY_THUMB,args[2], response);
                 break;
+            case 4:
+                //DisplayImageList(args[2], request, response);
+                 DisplayImageList(lg.getUsername(), request, response);
+                break;   
             default:
                 error("Bad Operator", response);
         }
@@ -119,7 +124,6 @@ public class Image extends HttpServlet {
 
         response.setContentType(p.getType());
         response.setContentLength(p.getLength());
-        //out.write(Image);
         InputStream is = new ByteArrayInputStream(p.getBytes());
         BufferedInputStream input = new BufferedInputStream(is);
         byte[] buffer = new byte[8192];

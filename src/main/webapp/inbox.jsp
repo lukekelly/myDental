@@ -71,9 +71,11 @@
                     int lsFlags = 0;
                     if (lsPics == null) {
                 %>
-                <p>No Pictures found</p>
+                <p>Inbox Empty</p>
                 <%
-                } else {
+                       
+                } else  {
+                         if (lsFlags != 0){
                     Iterator<Pic> iterator;
                     iterator = lsPics.iterator();
                     while (iterator.hasNext()) {
@@ -82,18 +84,22 @@
                 %>
                 <div class="container-fluid">
             	
+                        <div class="container-fluid">
+                    <form method="POST" action="/myDental/Flag">	
                         <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
-                        <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a>
+                       <!-- <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
                         <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
-                        <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  	
+                        <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
+                        <input type="text" name="page" value="login" hidden >  			
+                        <button type="submit" class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
+                        <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
+                    </form>  	
                     <%
-                                if (p.getCaption().isEmpty()) {
-                                } else {
-                                    out.println(p.getCaption());
-                                }
                             }
-                        }
+                        }}
+                 
                         %>
+                </div>
                 </div>
             </div>
         </div>
