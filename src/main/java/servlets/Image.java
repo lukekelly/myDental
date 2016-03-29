@@ -34,8 +34,8 @@ import stores.Pic;
     "/Thumb/*",
     "/Images",
     "/Images/*",
-    "/inbox",
-    "/inbox/*",
+    "/Inbox/",
+    "/Inbox/*",
     "/DentalPics/*"
 })
 @MultipartConfig
@@ -57,7 +57,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("Image", 1);
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
-        CommandsMap.put("inbox", 4);
+        CommandsMap.put("Inbox", 4);
 
     }
 
@@ -92,11 +92,11 @@ public class Image extends HttpServlet {
                 break;
             case 3:
                 DisplayImage(Convertors.DISPLAY_THUMB,args[2], response);
-                break;
+                break;  
             case 4:
                 //DisplayImageList(args[2], request, response);
-                 DisplayImageList(lg.getUsername(), request, response);
-                break;   
+                 DisplayInbox(lg.getUsername(), request, response);
+                break;
             default:
                 error("Bad Operator", response);
         }
@@ -110,7 +110,16 @@ public class Image extends HttpServlet {
         
         request.setAttribute("Pics", lsPics);
         rd.forward(request, response);
-
+    }
+    
+        private void DisplayInbox(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+        java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
+        RequestDispatcher rd = request.getRequestDispatcher("/Inbox.jsp");
+        
+        request.setAttribute("Pics", lsPics);
+        rd.forward(request, response);
     }
 
     private void DisplayImage(int type,String Image, HttpServletResponse response) throws ServletException, IOException {

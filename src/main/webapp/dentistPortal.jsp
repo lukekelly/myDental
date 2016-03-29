@@ -4,6 +4,11 @@
     Author     : Luke
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="com.datastax.driver.core.Cluster"%>
+<%@page import="lib.CassandraHosts"%>
+<%@page import="models.PicModel"%>
+<%@page import="stores.Pic"%>
 <%@page import="stores.LoggedIn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,73 +39,101 @@
                 </div>
             </div>
         </nav>  
-           <%
-                        
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        if (lg != null) {
-                            String username = lg.getUsername();
-                            if (lg.getloggedin()) {
-                    %>
-    
+        <%
+
+            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+            if (lg != null) {
+                String username = lg.getUsername();
+                if (lg.getloggedin()) {
+        %>
+
         <ul class="nav navbar-nav navbar-left">
             <li><a href="/myDental/DentalRegister">Register a new Dental Practitioner</a></li> 
             <li><a href="/myDental/Register">Register a New Patient</a></li>   
             <li><a href="/myDental/Images">Picture Library</a></li> 
         </ul>
-        
-        
-            <div class="container">
 
-        <div class="row">
 
-            <div class="col-lg-12">
-                <h1 class="page-header">Dental Portal</h1>
-            </div>
+        <div class="container">
 
-            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="createNewStory.jsp">
-                    <img class="img-responsive" src="Pictures/NewStory.png" alt="">
-                    <p>Create New Story</p>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="ViewStories.jsp">
-                    <img class="img-responsive" src="Pictures/biyLEz9iL.png" alt="">
-                    <p>View Stories</p>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="Pictures/Edit.png" alt="">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dental Portal</h1>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="createNewStory.jsp">
+                        <img class="img-responsive" src="Pictures/NewStory.png" alt="">
+                        <p>Create New Story</p>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="ViewStories.jsp">
+                        <img class="img-responsive" src="Pictures/biyLEz9iL.png" alt="">
+                        <p>View Stories</p>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="Edit.jsp">
+                        <img class="img-responsive" src="Pictures/Edit.png" alt="">
                         <p>Edit Story</p>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="picUpload.jsp">
-                    <img class="img-responsive" src="Pictures/upload.gif" alt="Upload Photos">
-                    <p>Upload Photos</p>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="sendStory.jsp">
-                    <img class="img-responsive" src="Pictures/send.jpg" alt="">
-                    <p>Send Story</p>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="/myDental/inbox/">
-                    <img class="img-responsive" src="Pictures/inbox.png" alt="">
-                    <p>Story Inbox</p>
-                </a>
-            </div>
-        </div> 
-            </div>
-                      <%}
-                            }else{
-                                %>
-                                <%
-                                        
-                            
-                    }%>
-    </body>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="picUpload.jsp">
+                        <img class="img-responsive" src="Pictures/upload.gif" alt="Upload Photos">
+                        <p>Upload Photos</p>
+                    </a>
+                </div>     
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="sendStory.jsp">
+                        <img class="img-responsive" src="Pictures/send.jpg" alt="">
+                        <p>Send Story</p>
+                    </a>
+                </div>
+                <%
+                    Cluster cluster = null;
+                    cluster = CassandraHosts.getCluster();
+
+                    PicModel picMod = new PicModel();
+                    picMod.setCluster(cluster);
+                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
+                    int lsFlags = 0;
+                    if (lsPics == null) {
+                %>
+                <%
+                } else {
+                    Iterator<Pic> iterator;
+                    iterator = lsPics.iterator();
+                    while (iterator.hasNext()) {
+                        Pic p = (Pic) iterator.next();
+                        lsFlags = picMod.getFlagsForPic(p.getSUUID());
+
+                        if (lsFlags != 0) {                %>
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="/myDental/Inbox">
+                        <img class="img-responsive" src="Pictures/inbox.png" alt="">
+                        <p>Story Inbox: New Notifications!</p>
+                    </a>
+                </div>
+           
+        <%}
+                        else{ %>
+                                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="/myDental/Inbox">
+                        <img class="img-responsive" src="Pictures/inbox.png" alt="">
+                        <p>Story Inbox: Empty</p>
+                    </a>
+                </div>
+                <%        }
+
+                                      }
+                                  }
+                              }
+                          }%>
+    
+             </div> 
+        </div>
+            </body>
 </html>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : DentalPics
-    Created on : 21-Feb-2016, 18:10:12
+    Document   : Edit
+    Created on : 25-Mar-2016, 14:06:54
     Author     : Luke
 --%>
 
@@ -81,14 +81,15 @@
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         
                         if (lsFlags != 0){                %>
-                       
+
                 <div class="container-fluid">
-                    <form>	
-                        <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
+                    <form method="POST" action="/myDental/Flag">	
+                        <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
+                       <!-- <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
                         <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
                         <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
                         <input type="text" name="page" value="login" hidden >  			
-                        <button class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
+                        <button type="submit" class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
                         <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
                     </form>
    <%      }
@@ -121,3 +122,4 @@
         </div>
 </body>
 </html>
+

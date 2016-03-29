@@ -21,6 +21,7 @@ import java.util.UUID;
 import javax.imageio.ImageIO;
 import static org.imgscalr.Scalr.*;
 import org.imgscalr.Scalr.Method;
+import java.util.Scanner;
 
 import lib.*;
 import stores.*;
@@ -150,6 +151,22 @@ public class PicModel {
         }
 
         return flags;
+    }
+   
+    public int getAllFlags() {
+        int totFlags = 0;
+        Session session = cluster.connect("myDental");
+        PreparedStatement ps = session.prepare("select count(*) from flags");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement);
+
+        Row r = rs.one();
+        if (r != null) {
+            r.getString("flags");
+        }
+
+        return totFlags;
     }
 
     public java.util.LinkedList<Pic> getPicsForUser(String User) {
