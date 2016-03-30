@@ -38,15 +38,14 @@
                     </ul>
                 </div>
             </div>
+            <%
+
+                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                if (lg != null) {
+                    String username = lg.getUsername();
+                    if (lg.getloggedin()) {
+            %>
         </nav>  
-        <%
-
-            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-            if (lg != null) {
-                String username = lg.getUsername();
-                if (lg.getloggedin()) {
-        %>
-
         <ul class="nav navbar-nav navbar-left">
             <li><a href="/myDental/DentalRegister">Register a new Dental Practitioner</a></li> 
             <li><a href="/myDental/Register">Register a New Patient</a></li>   
@@ -59,9 +58,9 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dental Portal</h1>
+                    <h1 class="page-header">Dental Portal: <%=lg.getFirstName()%></h1>
                 </div>
-
+   
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="createNewStory.jsp">
                         <img class="img-responsive" src="Pictures/NewStory.png" alt="">
@@ -92,48 +91,17 @@
                         <p>Send Story</p>
                     </a>
                 </div>
-                <%
-                    Cluster cluster = null;
-                    cluster = CassandraHosts.getCluster();
-
-                    PicModel picMod = new PicModel();
-                    picMod.setCluster(cluster);
-                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-                    int lsFlags = 0;
-                    if (lsPics == null) {
-                %>
-                <%
-                } else {
-                    Iterator<Pic> iterator;
-                    iterator = lsPics.iterator();
-                    while (iterator.hasNext()) {
-                        Pic p = (Pic) iterator.next();
-                        lsFlags = picMod.getFlagsForPic(p.getSUUID());
-
-                        if (lsFlags != 0) {                %>
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="/myDental/Inbox">
                         <img class="img-responsive" src="Pictures/inbox.png" alt="">
                         <p>Story Inbox: New Notifications!</p>
                     </a>
                 </div>
-           
-        <%}
-                        else{ %>
-                                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="/myDental/Inbox">
-                        <img class="img-responsive" src="Pictures/inbox.png" alt="">
-                        <p>Story Inbox: Empty</p>
-                    </a>
-                </div>
-                <%        }
 
-                                      }
-                                  }
-                              }
-                          }%>
-    
-             </div> 
+            </div> 
         </div>
-            </body>
+                             <%
+     } else {
+     }}%>
+    </body>
 </html>

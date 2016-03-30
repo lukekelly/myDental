@@ -185,14 +185,24 @@ public class DentistModel {
             }
         }
         return dentist;
-    }      
-   
-/*public boolean editProfile(String username, String firstname, String lastname, String bio)
-{
-    Session session = cluster.connect("myDental");
-    PreparedStatement ps = session.prepare("UPDATE patients SET firstname = ?, lastname = ? WHERE username = ?");
-    BoundStatement bs = new BoundStatement(ps);
-    session.execute(bs.bind(firstname, lastname, username));
-    return true;
-}*/
+    }  
+      
+        
+       public String getFirstName(String username){
+    	   String firstName = "no name found";
+    	   Session session = cluster.connect("myDental");
+           PreparedStatement ps = session.prepare("select firstname from dentists where username = ?");
+           ResultSet rs = null;
+           BoundStatement boundStatement = new BoundStatement(ps);
+           rs = session.execute(boundStatement.bind(username));                         
+           if (rs.isExhausted()) {
+               System.out.println("No name found");
+               return "";
+           } else {
+               for (Row row : rs) {                  
+                   firstName = row.getString("firstname");               
+                   }
+           }   
+       return firstName ;  
+       }  
 }

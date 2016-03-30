@@ -61,6 +61,7 @@ public class DentalLogIn extends HttpServlet {
         e.setErrorMessage("");
          String username=request.getParameter("username");
         String password=request.getParameter("password");
+        String firstName = request.getParameter("firstname");
         
 		            if (username.equals(""))
 		              {
@@ -83,6 +84,8 @@ public class DentalLogIn extends HttpServlet {
             LoggedIn lg= new LoggedIn();
             lg.setLoggedin();
             lg.setUsername(username);
+            lg.setFirstName(us.getFirstName(username));
+            
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
