@@ -1,5 +1,5 @@
 <%-- 
-    Document   : inbox
+    Document   : Inbox
     Created on : 23-Mar-2016, 18:50:50
     Author     : Luke
 --%>
@@ -15,13 +15,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inbox</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link href="Styles.css" type="text/css" rel="stylesheet">
+        <link href="Styles.css" type="text/css" rel="stylesheet"> 
     </head>
-
     <body class="body">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -65,43 +64,45 @@
                 </div>
                 <%}
                 } else {%>
+                <h1>Your Inbox</h1>
                 <%}%>
-                <%
+                 <%
                     java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
                     int lsFlags = 0;
                     if (lsPics == null) {
                 %>
-                <p>Inbox Empty</p>
                 <%
-                       
-                } else  {
-                         if (lsFlags != 0){
+                } else {
                     Iterator<Pic> iterator;
                     iterator = lsPics.iterator();
                     while (iterator.hasNext()) {
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
-                %>
+                        
+                        if (lsFlags != 0){                %>
+
                 <div class="container-fluid">
-            	
-                        <div class="container-fluid">
-                    <form method="POST" action="/myDental/Flag">	
-                        <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
-                       <!-- <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
+                    <form>
+                        <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> 
                         <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
-                        <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
-                        <input type="text" name="page" value="login" hidden >  			
-                        <button type="submit" class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
+                        <a name="flags"><span class="badge"><%=lg.getUsername()%></span></a>  
+                        <input type="text" name="page" value="login" hidden>  			
                         <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
-                    </form>  	
-                    <%
+                        </form>
+                    <a><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
+                                if (p.getCaption().isEmpty()) {
+                                } else {
+                                    out.println(p.getCaption());
+                                }
                             }
-                        }}
-                 
-                        %>
-                </div>
+                        }
+                    }
+                %>
+
+                    
                 </div>
             </div>
         </div>
+        
 </body>
 </html>

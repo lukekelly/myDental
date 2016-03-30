@@ -34,8 +34,8 @@ import stores.Pic;
     "/Thumb/*",
     "/Images",
     "/Images/*",
-    "/Inbox/",
-    "/Inbox/*",
+    "/inbox/",
+    "/inbox/*",
     "/DentalPics/*"
 })
 @MultipartConfig
@@ -57,7 +57,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("Image", 1);
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
-        CommandsMap.put("Inbox", 4);
+        CommandsMap.put("inbox", 4);
 
     }
 
@@ -116,7 +116,7 @@ public class Image extends HttpServlet {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
         java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
-        RequestDispatcher rd = request.getRequestDispatcher("/Inbox.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/inbox.jsp");
         
         request.setAttribute("Pics", lsPics);
         rd.forward(request, response);
