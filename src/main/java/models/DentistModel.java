@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package models;
 
 import java.io.UnsupportedEncodingException;
@@ -61,11 +55,8 @@ public class DentistModel {
        
         return true;
     }
- 
- // public LinkedList<Dentist> getUserInfo(String username)
-          public Dentist getUserInfo(String user){
 
-    	//java.util.LinkedList<Dentist> userProfile =  null; //new java.util.LinkedList<>();
+          public Dentist getUserInfo(String user){
         
         Session session = cluster.connect("myDental");
         PreparedStatement ps = session.prepare("select username, firstname, lastname from dentists where login = ?");
@@ -86,8 +77,6 @@ public class DentistModel {
                 String username = row.getString("login");
                 String firstName = row.getString("first_name");
                 String lastName = row.getString("last_name");
-              //  java.util.UUID profilePic = row.getUUID("profile_pic");
-              //  Set<String> emails = row.getSet("email", String.class);
                 
                 profile.setUsername(username);
                 profile.setFirstName(firstName);

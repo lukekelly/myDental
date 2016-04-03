@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
 import static org.imgscalr.Scalr.*;
 import org.imgscalr.Scalr.Method;
 import java.util.Scanner;
+import java.util.LinkedList;
 
 import lib.*;
 import stores.*;
@@ -48,7 +49,7 @@ public class PicModel {
             int length = b.length;
             java.util.UUID picid = convertor.getTimeUUID();
 
-            //The following is a quick way of doing this, will fill the disk quickly !
+            //Quick way to do this, will fill the disk quickly!
             Boolean success = (new File("/var/tmp/myDental/")).mkdirs();
             FileOutputStream output = new FileOutputStream(new File("/var/tmp/myDental/" + picid));
 
@@ -64,15 +65,18 @@ public class PicModel {
             PreparedStatement psInsertPic = session.prepare("insert into pics (picid, image, thumb, processed, user, interaction_time, imagelength, thumblength, processedlength, type, name) values(?,?,?,?,?,?,?,?,?,?,?)");
             PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added, caption) values(?,?,?,?)");
             PreparedStatement psInsertFlags = session.prepare("insert into flags (flags,login,picid) values(?,?,?)");
-
+            			
+            
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
             BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
             BoundStatement bsInsertFlags = new BoundStatement(psInsertFlags);
+           
 
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf, processedbuf, user, DateAdded, length, thumblength, processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, caption));
             session.execute(bsInsertFlags.bind(flags, user, picid.toString()));
+           
 
             session.close();
 
@@ -152,6 +156,27 @@ public class PicModel {
 
         return flags;
     }
+   
+     public String getFlaggerForPic(String picid) {
+         String flagger = "";
+        Session session = cluster.connect("myDental");
+        PreparedStatement ps = session.prepare("select login from flags where picid=?  ALLOW FILTERING");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        ResultSet rs = null;
+        rs = session.execute(boundStatement.bind(picid));
+
+        if (rs.isExhausted()) {
+            System.out.println("No Flags Yet.");
+         
+        } else {
+            for (Row row : rs) {
+                flagger = row.getString("login");
+            }
+        }
+
+        return flagger;
+    }
+   
    
     public int getAllFlags() {
         int totFlags = 0;
@@ -299,5 +324,78 @@ public class PicModel {
         }
 
         return comments;
+    
     }
+        
+    
+	public LinkedList<Pic> getAllPics() {		
+        LinkedList<Pic> Pics = new LinkedList<>();
+        Session session = cluster.connect("myDental");
+        PreparedStatement ps = session.prepare("select picid,caption,user from userpiclist");
+        ResultSet rs = null;
+        
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind( ));
+        
+        if (rs.isExhausted()) {
+            System.out.println("No pictures found");
+            return null;
+        } 
+        else {
+            for (Row row : rs) {
+                Pic pic = new Pic();
+                java.util.UUID UUID = row.getUUID("picid");
+                System.out.println("UUID" + UUID.toString());
+                pic.setCaption(row.getString("caption"));
+                pic.setUser(row.getString("user"));
+                pic.setUUID(UUID);                
+                Pics.add(pic);            
+                }
+        }
+        return Pics;
+    }
+	
+  //methods below here do not work yet
+    
+    
+    public String returnSearchResults(String searchText) {
+ 		String searchHit = null;
+ 	 	
+         Session session = cluster.connect("myDental");
+         PreparedStatement ps = session.prepare("select username from patients where result=?  ALLOW FILTERING");
+         BoundStatement boundStatement = new BoundStatement(ps);
+         ResultSet rs = null;
+         rs = session.execute(boundStatement.bind(searchText));
+         
+         if (rs.isExhausted()) {
+             System.out.println("Nobody found");
+             return null;
+         } else {
+             for (Row row : rs) {	                
+             	searchHit = (row.getString("user"));
+             }
+         }
+         
+         return searchHit;
+ 
+ 	}
+    
+    
+    
+    
+      public boolean updatePic(String picid){
+        Session session = cluster.connect("myDental");
+        PreparedStatement ps = session.prepare("UPDATE userpiclist SET caption = ? WHERE picid = ?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        try{
+        rs = session.execute(boundStatement.bind(picid));
+        }catch(Exception e){
+            System.err.println("Could not update picture "+e.getMessage());
+            return false;
+        }
+        
+        return true;
+    }
+    
 }

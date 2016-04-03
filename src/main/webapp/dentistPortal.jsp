@@ -64,37 +64,37 @@
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="createNewStory.jsp">
                         <img class="img-responsive" src="Pictures/NewStory.png" alt="">
-                        <p>Create New Story</p>
+                        <strong><p>Create New Story</p></strong>
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="ViewStories.jsp">
+                    <a class="thumbnail" href="/myDental/viewStories">
                         <img class="img-responsive" src="Pictures/biyLEz9iL.png" alt="">
-                        <p>View Stories</p>
+                        <strong><p>View Stories</p></strong>
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="Edit.jsp">
                         <img class="img-responsive" src="Pictures/Edit.png" alt="">
-                        <p>Edit Story</p>
+                        <strong><p>Edit Story</p></strong>
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="picUpload.jsp">
                         <img class="img-responsive" src="Pictures/upload.gif" alt="Upload Photos">
-                        <p>Upload Photos</p>
+                        <strong><p>Upload Photos</p></strong>
                     </a>
                 </div>     
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="sendStory.jsp">
                         <img class="img-responsive" src="Pictures/send.jpg" alt="">
-                        <p>Send Story</p>
+                        <strong><p>Send Story</p></strong>
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="/myDental/inbox">
                         <img class="img-responsive" src="Pictures/inbox.png" alt="">
-                        <p>Story Inbox: New Notifications!</p>
+                        <strong><p>Story Inbox: New Notifications!</p></strong>
                     </a>
                 </div>
 

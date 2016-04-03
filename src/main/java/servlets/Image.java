@@ -36,7 +36,9 @@ import stores.Pic;
     "/Images/*",
     "/inbox/",
     "/inbox/*",
-    "/DentalPics/*"
+    "/DentalPics/*",
+    "/viewStories",
+    "/DisplayAllImages/"
 })
 @MultipartConfig
 
@@ -58,6 +60,8 @@ public class Image extends HttpServlet {
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
         CommandsMap.put("inbox", 4);
+        CommandsMap.put("viewStories", 5);
+        CommandsMap.put("DisplayAllImages", 6);
 
     }
 
@@ -97,6 +101,14 @@ public class Image extends HttpServlet {
                 //DisplayImageList(args[2], request, response);
                  DisplayInbox(lg.getUsername(), request, response);
                 break;
+            case 5:
+                //DisplayImageList(args[2], request, response);
+                 DisplayStories(lg.getUsername(), request, response);
+                break;
+            case 6:
+                //DisplayImageList(args[2], request, response);
+                 DisplayAllImages(request, response);
+                break;
             default:
                 error("Bad Operator", response);
         }
@@ -112,13 +124,33 @@ public class Image extends HttpServlet {
         rd.forward(request, response);
     }
     
-        private void DisplayInbox(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void DisplayInbox(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
         java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
         RequestDispatcher rd = request.getRequestDispatcher("/inbox.jsp");
         
         request.setAttribute("Pics", lsPics);
+        rd.forward(request, response);
+    }
+        
+    private void DisplayStories(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+        java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
+        RequestDispatcher rd = request.getRequestDispatcher("/ViewStories.jsp");
+        
+        request.setAttribute("Pics", lsPics);
+        rd.forward(request, response);
+    }    
+    
+    private void DisplayAllImages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics();
+        RequestDispatcher rd = request.getRequestDispatcher("/ShowAllPics.jsp");
+        
+        request.setAttribute("allPics", lsPics);
         rd.forward(request, response);
     }
 

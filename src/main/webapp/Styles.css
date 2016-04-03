@@ -13,6 +13,15 @@
     -ms-filter: blur(50px);
     filter: blur(50px);
 }
+
+ div.container2 {
+      display:inline-block;
+    }
+
+    p {
+      text-align:center;
+    }
+
 .navbar {
     // margin-top: 0;
     position: relative;

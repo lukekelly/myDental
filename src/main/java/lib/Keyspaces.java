@@ -74,7 +74,13 @@ public static void SetUpKeySpaces(Cluster c) {
             		+ " flags int,\n"
             		+ " login text,\n"
             		+ " picid text,\n"
-            		+ " PRIMARY KEY (picid)\n"
+            		+ " PRIMARY KEY (picid, login)\n"
+            		+ "  );";
+            
+            String CreateResults = "CREATE TABLE if not exists mydental.results (\n"            		
+            		+ " result text,\n"
+            		+ " login text,\n"
+            		+ " PRIMARY KEY (result)\n"
             		+ "  );";
             
             
@@ -142,6 +148,14 @@ public static void SetUpKeySpaces(Cluster c) {
                 session.execute(cqlQuery);
             } catch (Exception et) {
                 System.out.println("Can't create Flags table " + et);
+            }
+            
+             System.out.println("" + CreateResults);
+            try {
+                SimpleStatement cqlQuery = new SimpleStatement(CreateResults);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create Results table " + et);
             }
             
             

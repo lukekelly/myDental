@@ -41,9 +41,9 @@
                         <li><a href="#contact">Contact</a></li>
                 </ul>
                          <ul class="nav navbar-nav navbar-right">
-                         <li><a href="/myDental/Profile/<%=lg.getUsername()%>">Patient Profile</a></li>
                     <li><a href="/myDental/logout">Logout</a></li>
                     </ul>
+                  </div>
       
                 <%
                     }
@@ -59,16 +59,18 @@
                 </ul>
                          <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental/Login"><span class="glyphicon glyphicon-log-in"></span>Patient Login</a></li>
-                        <li><a href="/myDental/DentalLogin"><span class="glyphicon glyphicon-log-in"></span>Dental Login</a></li>
+                        <li><a href="/myDental/DentalLogin"><span class="glyphicon glyphicon-log-in"></span>Dentist Login</a></li>
                       <!-- <li><a href="DentalRegister.jsp">DentalRegister</a></li> 
                                       <!--       <li><a href="/myDental/Register">Register</a></li> -->
                     </ul>
                 </div>
-        </nav>
-
-        <%
+                 <%
             }
         %>
+            </div>       
+        </nav>
+
+       
 
         <div id="main" class="jumbotron text-center">
             <h1><strong>Enhancing Dental Communication</strong></h1>

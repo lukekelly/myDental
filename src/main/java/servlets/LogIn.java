@@ -23,7 +23,15 @@ import stores.LoggedIn;
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class LogIn extends HttpServlet {
 
-        Cluster cluster=null;
+          Cluster cluster=null;
+        Error e = null;
+        
+        
+        public LogIn() {
+         super();
+        e = new Error();
+         // TODO Auto-generated constructor stub
+    }
         
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -56,6 +64,7 @@ public class LogIn extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        e.setErrorMessage("");
         response.sendRedirect("Login.jsp");
     }
 
@@ -71,9 +80,10 @@ public class LogIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
+        e.setErrorMessage("");
          String username=request.getParameter("username");
         String password=request.getParameter("password");
+        String firstName = request.getParameter("firstname");
         
 		            if (username.equals(""))
 		              {
@@ -96,6 +106,7 @@ public class LogIn extends HttpServlet {
             LoggedIn lg= new LoggedIn();
             lg.setLoggedin();
             lg.setUsername(username);
+            lg.setFirstName(us.getFirstName(username));
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
@@ -103,7 +114,10 @@ public class LogIn extends HttpServlet {
 	    rd.forward(request,response);
             
         }else{
-            response.sendRedirect("/myDental/Login.jsp");
+                        
+             e.setErrorMessage("  The details you entered may have been incorrect or invalid, please try again...");
+             session.setAttribute("ErrorMessages", e);
+             response.sendRedirect(request.getHeader("Referer"));
         }
     }
     

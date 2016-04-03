@@ -1,10 +1,10 @@
 <%-- 
-    Document   : Inbox
-    Created on : 23-Mar-2016, 18:50:50
+    Document   : View Stories
+    Created on : 02-Apr-2016, 17:29:11
     Author     : Luke
 --%>
 
-<%@page import="java.util.*"%>
+<%@page import= "java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import= "stores.*" %>
 <%@ page import= "models.*" %>
@@ -16,7 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inbox</title>
+        <title>View Stories</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -39,38 +39,32 @@
                 </div>
             </div>
 
-            <%  LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>
-            <%
+            <%  LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                 Cluster cluster = null;
                 cluster = CassandraHosts.getCluster();
 
                 PicModel picMod = new PicModel();
-                picMod.setCluster(cluster);
-
-
-            %>
+                picMod.setCluster(cluster); %>
         </nav> 
-
         <div class="container">
-
             <div class="row">
-
                 <%                    if (lg != null) {
                         if (lg.getloggedin()) {
 
                 %>
                 <div class="col-lg-12">
-                    <h1 class="page-header"><%=lg.getUsername()%>'s Inbox</h1>
+                    <h1 class="page-header"><%=lg.getFirstName()%>'s Stories</h1>
                 </div>
-                <%}
+                <%
                 } else {%>
-                <h1>Your Inbox</h1>
+                <h1>Your uploaded Images</h1>
                 <%}%>
-                 <%
-                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
+                <%
+                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("allPics");
                     int lsFlags = 0;
                     if (lsPics == null) {
                 %>
+                <p>No Pictures found</p>
                 <%
                 } else {
                     Iterator<Pic> iterator;
@@ -78,34 +72,47 @@
                     while (iterator.hasNext()) {
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
-                        
-                        if (lsFlags != 0){                %>
+
+                        if (lsFlags != 0) {%>
 
                 <div class="container-fluid">
-                  
-                        <div class="panel-body">
-                     <!--   <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
+                    <form>	
+                        <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
                         <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
-                        <!-- <a name="flags"><span class="badge"><%=lg.getUsername()%></span></a> -->
-                        <a name="flags"><span class="badge">Flagged by: <%=picMod.getFlaggerForPic(p.getSUUID())%></span></a>
-                        <input type="text" name="page" value="login" hidden>  			
+                        <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
+                        <input type="text" name="page" value="login" hidden >  			
+                        <button class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
                         <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
-                    </div>
-                    
-                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" width="100"></a><br/><%
-                                if (p.getCaption().isEmpty()) {
-                                } else {
-                                    out.println(p.getCaption());
-                                }
-                            }
-                        }
-                    }
-                %>
+                    </form>
+                    <%      } else {%>
+                    <div class="container-fluid">
+                        <form method="POST" action="/myDental/Flag">	
+                            <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
+                          <!--  <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
+                            <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
+                            <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
+                            <input type="text" name="page" value="login" hidden >  			
+                            <button type="submit" class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
+                            <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
+                        </form>
 
-                    
+                        <%  }
+                        %>
+
+                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
+                        if (p.getCaption().isEmpty()) {
+                        } else {%>
+
+                        <div>
+                            <b><%out.println(p.getCaption());%></b>
+                        </div>
+                        <%  }
+                                }
+                            }}
+                        %>
+                    </div>
                 </div>
             </div>
         </div>
-        
-</body>
+    </body>
 </html>

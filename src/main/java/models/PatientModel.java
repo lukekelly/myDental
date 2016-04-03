@@ -147,6 +147,24 @@ public class PatientModel {
         return patient;
     }      
    
+    public String getFirstName(String username){
+    	   String firstName = "no name found";
+    	   Session session = cluster.connect("myDental");
+           PreparedStatement ps = session.prepare("select firstname from patients where username = ?");
+           ResultSet rs = null;
+           BoundStatement boundStatement = new BoundStatement(ps);
+           rs = session.execute(boundStatement.bind(username));                         
+           if (rs.isExhausted()) {
+               System.out.println("No name found");
+               return "";
+           } else {
+               for (Row row : rs) {                  
+                   firstName = row.getString("firstname");               
+                   }
+           }   
+       return firstName ;  
+       }  
+      
 /*public boolean editProfile(String username, String firstname, String lastname, String bio)
 {
     Session session = cluster.connect("myDental");

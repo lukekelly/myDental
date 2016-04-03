@@ -34,5 +34,11 @@
             </div>
         </nav>
         
+                <form method="POST" action="/myDental/Search">
+                 	<input type="text" name="searchText" placeholder="search by name/caption" >	
+ 					<input type="submit"	value="Search"> 
+ 				</form><br><br>
+       
+        
     </body>
 </html>

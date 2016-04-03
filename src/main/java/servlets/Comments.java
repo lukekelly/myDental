@@ -19,7 +19,7 @@ import models.PicModel;
 import stores.*;
 
 /**
- * Servlet for image Notes/Comments
+ * Servlet for Image Notes/Comments
  * @author Luke
  */
 
@@ -116,10 +116,6 @@ public class Comments extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private void PicModel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
 

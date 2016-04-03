@@ -49,7 +49,7 @@
             <h1>Upload Image</h1>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 <input type="file" name="upfile">
-                <input type="text" name="caption" placeholder="Enter a caption here.."> <br/>
+                <input type="text" name="caption" placeholder="Enter a caption here.." hidden><br/>
                 <button type="submit" class="btn btn-success" role="button">Upload Image</button>
             </form>      
         </div>
