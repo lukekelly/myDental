@@ -59,7 +59,7 @@ public static void SetUpKeySpaces(Cluster c) {
                     + "caption varchar,\n"
                     + "sendto varchar, \n"
                     + "pic_added timestamp,\n"
-                    + "PRIMARY KEY (user,sendto)\n"
+                    + "PRIMARY KEY (user,pic_added)\n"
                     + ") WITH CLUSTERING ORDER BY (pic_added desc);";
             
             String CreateComments = "CREATE TABLE if not exists mydental.comments (\n"
