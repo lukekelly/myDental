@@ -57,8 +57,9 @@ public static void SetUpKeySpaces(Cluster c) {
                     + "picid uuid,\n"
                     + "user varchar,\n"
                     + "caption varchar,\n"
+                    + "sendto varchar, \n"
                     + "pic_added timestamp,\n"
-                    + "PRIMARY KEY (user,pic_added)\n"
+                    + "PRIMARY KEY (user,sendto)\n"
                     + ") WITH CLUSTERING ORDER BY (pic_added desc);";
             
             String CreateComments = "CREATE TABLE if not exists mydental.comments (\n"

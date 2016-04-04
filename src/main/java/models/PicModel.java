@@ -39,7 +39,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user, String caption, int flags) {
+    public void insertPic(byte[] b, String type, String name, String user, String caption, int flags, String sendto) {
         try {
             Convertors convertor = new Convertors();
 
@@ -63,7 +63,7 @@ public class PicModel {
             Session session = cluster.connect("myDental");
 
             PreparedStatement psInsertPic = session.prepare("insert into pics (picid, image, thumb, processed, user, interaction_time, imagelength, thumblength, processedlength, type, name) values(?,?,?,?,?,?,?,?,?,?,?)");
-            PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added, caption) values(?,?,?,?)");
+            PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added, caption, sendto) values(?,?,?,?,?)");
             PreparedStatement psInsertFlags = session.prepare("insert into flags (flags,login,picid) values(?,?,?)");
             			
             
@@ -74,7 +74,7 @@ public class PicModel {
 
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf, processedbuf, user, DateAdded, length, thumblength, processedlength, type, name));
-            session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, caption));
+            session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, caption, sendto));
             session.execute(bsInsertFlags.bind(flags, user, picid.toString()));
            
 
@@ -197,7 +197,7 @@ public class PicModel {
     public java.util.LinkedList<Pic> getPicsForUser(String User) {
         java.util.LinkedList<Pic> Pics = new java.util.LinkedList<>();
         Session session = cluster.connect("myDental");
-        PreparedStatement ps = session.prepare("select picid,caption from userpiclist where user =?");
+        PreparedStatement ps = session.prepare("select picid,caption,sendto from userpiclist where user =?");
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
         rs = session.execute( // this is where the query is executed
@@ -214,6 +214,7 @@ public class PicModel {
                 java.util.UUID UUID = row.getUUID("picid");
                 System.out.println("UUID" + UUID.toString());
                 pic.setCaption(row.getString("caption"));
+                pic.setSendto(row.getString("sendto"));
                 pic.setUUID(UUID);
                 Pics.add(pic);
 
@@ -328,14 +329,14 @@ public class PicModel {
     }
         
     
-	public LinkedList<Pic> getAllPics() {		
+	public LinkedList<Pic> getAllPics(String username) {		
         LinkedList<Pic> Pics = new LinkedList<>();
         Session session = cluster.connect("myDental");
-        PreparedStatement ps = session.prepare("select picid,caption,user from userpiclist");
+        PreparedStatement ps = session.prepare("select picid,caption,user, sendto from userpiclist where sendto =?");
         ResultSet rs = null;
         
         BoundStatement boundStatement = new BoundStatement(ps);
-        rs = session.execute(boundStatement.bind( ));
+        rs = session.execute(boundStatement.bind(username));
         
         if (rs.isExhausted()) {
             System.out.println("No pictures found");
@@ -348,6 +349,7 @@ public class PicModel {
                 System.out.println("UUID" + UUID.toString());
                 pic.setCaption(row.getString("caption"));
                 pic.setUser(row.getString("user"));
+                pic.setSendto(row.getString("sendto"));
                 pic.setUUID(UUID);                
                 Pics.add(pic);            
                 }

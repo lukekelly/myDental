@@ -38,7 +38,7 @@ import stores.Pic;
     "/inbox/*",
     "/DentalPics/*",
     "/viewStories",
-    "/DisplayAllImages/"
+    "/DisplayAllImages"
 })
 @MultipartConfig
 
@@ -98,16 +98,13 @@ public class Image extends HttpServlet {
                 DisplayImage(Convertors.DISPLAY_THUMB,args[2], response);
                 break;  
             case 4:
-                //DisplayImageList(args[2], request, response);
                  DisplayInbox(lg.getUsername(), request, response);
                 break;
             case 5:
-                //DisplayImageList(args[2], request, response);
                  DisplayStories(lg.getUsername(), request, response);
                 break;
             case 6:
-                //DisplayImageList(args[2], request, response);
-                 DisplayAllImages(request, response);
+                 DisplayAllImages(lg.getUsername(), request, response);
                 break;
             default:
                 error("Bad Operator", response);
@@ -144,10 +141,18 @@ public class Image extends HttpServlet {
         rd.forward(request, response);
     }    
     
-    private void DisplayAllImages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void DisplayAllImages(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
-        java.util.LinkedList<Pic> lsPics = tm.getAllPics();
+        
+          HttpSession session=request.getSession();
+            LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
+            //String username="";
+            if (lg.getloggedin()){
+                username=lg.getUsername();
+            }
+        
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);
         RequestDispatcher rd = request.getRequestDispatcher("/ShowAllPics.jsp");
         
         request.setAttribute("allPics", lsPics);
@@ -182,6 +187,10 @@ public class Image extends HttpServlet {
             if (caption.isEmpty()) {
             	caption = "";
             }
+            String sendto = request.getParameter("sendto");
+            if (sendto.isEmpty()) {
+            	sendto = "";
+            }
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             int flags = 0;
@@ -201,7 +210,7 @@ public class Image extends HttpServlet {
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
                 
-                tm.insertPic(b, type, filename, username, caption, flags);
+                tm.insertPic(b, type, filename, username, caption, flags, sendto);
 
                 is.close();
             }

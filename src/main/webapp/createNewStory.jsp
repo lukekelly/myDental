@@ -75,6 +75,7 @@
                                         <td>
                                             <input type="file" name="upfile" multiple="multiple">
                                             <input type="text" name="caption" placeholder="Enter a caption here..">
+                                            <input type="text" name="sendto" placeholder="Pick Patient..">
                                             <input type="submit" id="submit" value="Save Story"/>
                                         </td>
                                     </tr>

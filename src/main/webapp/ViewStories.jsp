@@ -4,7 +4,7 @@
     Author     : Luke
 --%>
 
-<%@page import="java.util.*"%>
+<%@page import= "java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import= "stores.*" %>
 <%@ page import= "models.*" %>

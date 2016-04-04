@@ -55,13 +55,26 @@
                     if (lg.getloggedin()) {
 
             %>
-            <div class="col-lg-12">
-                <h1 class="page-header">Patient Portal: <%=lg.getFirstName()%></h1>
+            <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <h1 class="page-header">Patient Portal: <%=lg.getFirstName()%></h1>
+                </div>
+   
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="/myDental/DisplayAllImages">
+                        <img class="img-responsive" src="Pictures/NewStory.png" alt="">
+                        <strong><p>View My Stories</p></strong>
+                    </a>
+                </div>
             </div>
-            <%
-                } else {%>
+            </div>
+        </div>
+                    <% } else {%>
             <h1>Patient Portal: Not Logged In</h1>
             <%  }}  %>
-        </div>
+        
 </body>   
 </html>

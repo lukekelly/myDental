@@ -19,6 +19,7 @@ public class Pic {
     private int length;
     private String type;
     private String caption;
+    private String sendto;
     private String user;
     private java.util.UUID UUID = null;
     private java.util.List<String> comments = null;
@@ -67,6 +68,14 @@ public class Pic {
 
     public String getCaption() {
         return caption;
+    }
+    
+    public void setSendto(String sendto) {
+        this.sendto = sendto;
+    }
+
+    public String getSendto() {
+        return sendto;
     }
     
     public String getUser(){
