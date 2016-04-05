@@ -31,7 +31,10 @@
                         <span class="icon-bar"></span> 
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
-                </div>  
+                </div>
+                 <ul class="nav navbar-nav">
+                        <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
+                    </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental/logout">Logout</a></li>

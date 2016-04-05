@@ -67,10 +67,10 @@ public class Flag extends HttpServlet {
 
         pm.writeFlags(username, picid, flagsInt);
 
-        if (currentPage.equals("/myDental/DisplayAllImages/")) {
+        if (currentPage.equals("/myDental/DisplayAllImages")) {
             response.sendRedirect("/myDental/");
         } else {
-            response.sendRedirect("/myDental/DisplayAllImages/");
+            response.sendRedirect("/myDental/DisplayAllImages");
         }
     }
 

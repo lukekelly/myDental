@@ -24,8 +24,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span> 
                     </button>
-                    <a class="navbar-brand" href="myDental">myDental</a>      
+                    <a class="navbar-brand" href="myDental">myDental</a> 
                 </div>
+                <ul class="nav navbar-nav">
+                        <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
+                    </ul>
                  <div class="collapse navbar-collapse" id="myNavbar">
                     
                     <ul class="nav navbar-nav navbar-right">

@@ -4,7 +4,7 @@
     Author     : Luke
 --%>
 
-<%@page import="java.util.*"%>
+<%@page import= "java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import= "stores.*" %>
 <%@ page import= "models.*" %>
@@ -31,7 +31,10 @@
                         <span class="icon-bar"></span> 
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
-                </div>  
+                </div>
+                 <ul class="nav navbar-nav">
+                        <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
+                    </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental/logout">Logout</a></li>
@@ -60,7 +63,7 @@
 
                 %>
                 <div class="col-lg-12">
-                    <h1 class="page-header"><%=lg.getUsername()%>'s Inbox</h1>
+                    <h1 class="page-header"><%=lg.getFirstName()%>'s Inbox</h1>
                 </div>
                 <%}
                 } else {%>

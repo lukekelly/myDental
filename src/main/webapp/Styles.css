@@ -30,7 +30,7 @@
     // background-color: #00bfff;
     background-color:black;
     z-index:0;
-    opacity:0.7;
+    opacity:0.85;
     //background: transparent;
     //z-index: 9999;
     border: 0;
@@ -49,6 +49,7 @@
     background-color: #fff !important;
     transition: 0.3s all linear;
     font-weight: bolder;
+    
 }
 
 .navbar-default .navbar-toggle {
@@ -61,16 +62,24 @@
     font-size: 30px;
     font-weight: bolder;
     font-family: courier new;
+    border-radius:  10px;
 }
 
 .jumbotron { 
     color: #00bfff;
     font-weight: bolder;
     //padding: 325px 25px;
-    min-height: 400px;
+    min-height: 140px;
     margin-bottom: 0em;
     //background-color: #E50000;
     //background: transparent;
+    background-color:black;
+    z-index:0;
+    opacity:0.7;
+}
+
+.portal{
+     
     background-color:black;
     z-index:0;
     opacity:0.7;
@@ -91,15 +100,21 @@
     font-size: 15px;
     color: #00bfff;
     background-color:black;
+    background-size: cover;
     z-index:0;
-    opacity:0.7;
+    opacity:0.65;
+   
 }
+ h4{
+        color: white; 
+    }
 .container-fluid {
     margin-top: 0em;
-    padding: 60px 50px;
+    padding: 30px 50px;
     // background-color:#00bfff;
     text-align: center;
     font-weight: bolder;
+    min-height: 150px;
     //z-index:0;
     // opacity:0.5;
 }
@@ -130,17 +145,20 @@ h2 {
 }
 
 h4 {
-    font-size: 19px;
+    font-size: 20px;
     line-height: 1.375em;
-    color: #303030;
+    //color: #303030;
     font-weight: bolder;
     margin-bottom: 30px;
 }
 
+.p{font-weight: bolder;}
+
 .footer .glyphicon {
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #f4511e;
+    opacity: 0.7;
 }
 
 .btn-flag:focus {
@@ -361,20 +379,6 @@ table {
     list-style:none;
 }
 
-#slider li.firstanimation {
-    -moz-animation:cycle 25s linear infinite;	
-    -webkit-animation:cycle 25s linear infinite;		
-}
-#slider li.secondanimation {
-    -moz-animation:cycletwo 25s linear infinite;
-    -webkit-animation:cycletwo 25s linear infinite;		
-}
-#slider li.thirdanimation {
-    -moz-animation:cyclethree 25s linear infinite;
-    -webkit-animation:cyclethree 25s linear infinite;		
-}
-
-
 #slider .tooltip {
     background:rgba(0,0,0,0.7);
     width:300px;
@@ -385,11 +389,15 @@ table {
     -moz-transition:all 1.0s ease-in-out;
     -webkit-transition:all 1.0s ease-in-out;  
 }
+.h1{
+    font-weight: bolder;
+}
+
 #slider .tooltip h1 {
     color:#fff;
     font-size:24px;
-    font-weight:300;
-    line-height:60px;
+    font-weight:500;
+    line-height:100px;
     padding:0 0 0 20px;
 }
 #slider li#first:hover .tooltip, 

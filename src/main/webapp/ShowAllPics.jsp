@@ -84,7 +84,7 @@
                         <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
                         <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
                         <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
-                        <input type="text" name="sendto" value="<%=p.getSendto()%>"> 
+                        <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
                         <input type="text" name="page" value="login" hidden >  			
                         <button class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
                         <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
@@ -96,7 +96,7 @@
                           <!--  <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
                             <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
                             <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
-                            <input type="text" name="sendto" value="<%=p.getSendto()%>">
+                            <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
                             <input type="text" name="page" value="login" hidden >  			
                             <button type="submit" class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
                             <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>

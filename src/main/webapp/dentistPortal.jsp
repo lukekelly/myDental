@@ -32,6 +32,10 @@
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>  
+                <ul class="nav navbar-nav">
+                        <li><a href="/myDental/DentalRegister">Register a New Dentist</a></li>
+                        <li><a href="/myDental/Register">Register a New Patient</a></li>
+                    </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental/logout">Logout</a></li>
@@ -45,22 +49,15 @@
                     String username = lg.getUsername();
                     if (lg.getloggedin()) {
             %>
-        </nav>  
-        <ul class="nav navbar-nav navbar-left">
-            <li><a href="/myDental/DentalRegister">Register a new Dental Practitioner</a></li> 
-            <li><a href="/myDental/Register">Register a New Patient</a></li>   
-            <li><a href="/myDental/Images">Picture Library</a></li> 
-        </ul>
-
+        </nav>
 
         <div class="container">
-
             <div class="row">
 
                 <div class="col-lg-12">
                     <h1 class="page-header">Dental Portal: <%=lg.getFirstName()%></h1>
                 </div>
-   
+
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="createNewStory.jsp">
                         <img class="img-responsive" src="Pictures/NewStory.png" alt="">
@@ -86,22 +83,23 @@
                     </a>
                 </div>     
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="sendStory.jsp">
-                        <img class="img-responsive" src="Pictures/send.jpg" alt="">
-                        <strong><p>Send Story</p></strong>
+                    <a class="thumbnail" href="/myDental/Images">
+                        <img class="img-responsive" src="Pictures/pic.jpg" alt="">
+                        <strong><p>Your Library</p></strong>
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="/myDental/inbox">
                         <img class="img-responsive" src="Pictures/inbox.png" alt="">
-                        <strong><p>Story Inbox: New Notifications!</p></strong>
+                        <strong><p>Story Inbox</p></strong>
                     </a>
                 </div>
 
             </div> 
         </div>
-                             <%
-     } else {
-     }}%>
+        <%
+                                     } else {
+                                     }
+                                 }%>
     </body>
 </html>

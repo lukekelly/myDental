@@ -215,6 +215,7 @@ public class Image extends HttpServlet {
                 is.close();
             }
             RequestDispatcher rd = request.getRequestDispatcher("/picUpload.jsp");
+            //response.sendRedirect(request.getHeader("Referer"));
              rd.forward(request, response);
         }
 

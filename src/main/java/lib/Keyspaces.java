@@ -60,7 +60,8 @@ public static void SetUpKeySpaces(Cluster c) {
                     + "sendto varchar, \n"
                     + "pic_added timestamp,\n"
                     + "PRIMARY KEY (user,pic_added)\n"
-                    + ") WITH CLUSTERING ORDER BY (pic_added desc);";
+                    + ") WITH CLUSTERING ORDER BY (pic_added desc); \n"
+                    +  "CREATE INDEX sendto ON userpiclist (sendto);";
             
             String CreateComments = "CREATE TABLE if not exists mydental.comments (\n"
                     + "	comment_id uuid PRIMARY KEY,\n"

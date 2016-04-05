@@ -32,6 +32,9 @@
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>  
+                 <ul class="nav navbar-nav">
+                        <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
+                    </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental/logout">Logout</a></li>
@@ -64,7 +67,7 @@
                     int lsFlags = 0;
                     if (lsPics == null) {
                 %>
-                <p>No Pictures found</p>
+                <p><strong>You have made no stories yet!</strong></p>
                 <%
                 } else {
                     Iterator<Pic> iterator;
@@ -81,7 +84,7 @@
                         <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
                         <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
                         <input type="text" name="page" value="login" hidden >  			
-                        <button class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
+                        <button class="btn btn-danger" role="button" disabled><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
                         <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
                     </form>
                     <%      } else {%>
@@ -92,7 +95,7 @@
                             <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
                             <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
                             <input type="text" name="page" value="login" hidden >  			
-                            <button type="submit" class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
+                            <button type="submit" class="btn btn-success" role="button" disabled><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
                             <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
                         </form>
 
@@ -104,7 +107,7 @@
                         } else {%>
 
                         <div>
-                            <b><%out.println(p.getCaption());%></b>
+                            <b><strong><%out.println(p.getCaption());%></strong></b>
                         </div>
                         <%  }
                                 }

@@ -34,16 +34,17 @@
                     </button>
                     <a class="navbar-brand" href="myDental">myDental</a>      
                 </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
+                </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental">Home</a></li>
+                        <li><a href="/myDental/logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <a href="dentistPortal.jsp" class="btn btn-info" role="button">Dental Portal</a>
-        
 
         <div class="container-fluid">
             <h1>Upload Image</h1>
