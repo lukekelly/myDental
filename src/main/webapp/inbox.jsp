@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import= "stores.*" %>
 <%@ page import= "models.*" %>
+<%@ page import= "servlets.*" %>
 <%@ page import="lib.CassandraHosts"%>
 <%@ page import="com.datastax.driver.core.Cluster"%>
 <%@ page import="java.util.LinkedList"%>
@@ -104,6 +105,26 @@
                         }
                     }
                 %>
+                                    <%
+                java.util.LinkedList<Comment> comments = (java.util.LinkedList<Comment>) request.getAttribute("Comments");
+                if (comments == null) { %>
+            <% } else { %>
+            <h3>Patient Notes</h3>
+            <% Iterator<Comment> iterator = comments.iterator();
+                while (iterator.hasNext()) {
+                    Comment comment = iterator.next();
+            %><table border=""><tr>
+                    <td><%=comment.getUser()%></td>
+                    <td><%=comment.getDateCreated()%></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><%=comment.getContent()%></td>
+                </tr></table><br>
+                <% } %>
+
+            <br>
+            <% }
+            %>
 
                     
                 </div>

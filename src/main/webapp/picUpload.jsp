@@ -46,12 +46,12 @@
             </div>
         </nav>
 
-        <div class="container-fluid">
+        <div class="container">
             <h1>Upload Image</h1>
             <form method="POST" enctype="multipart/form-data" action="Image">
-                <input type="file" name="upfile">
+                <input type="file" name="upfile"> 
                 <input type="text" name="caption" placeholder="Enter a caption here.." hidden><br/>
-                <input type="text" name="sendTo" placeholder="Pick Patient.." hidden="">
+                <input type="text" name="sendto" placeholder="Pick Patient.." hidden="">
                 <button type="submit" class="btn btn-success" role="button">Upload Image</button>
             </form>      
         </div>

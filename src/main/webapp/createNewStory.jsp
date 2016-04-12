@@ -8,6 +8,8 @@
 <%@page import="stores.Comment"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="stores.Pic"%>
+<%@page import="servlets.Error" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,6 +51,22 @@
                 if (lg.getloggedin()) {
         %>
 
+         <%
+            Error e = (Error) session.getAttribute("ErrorMessages");
+            String errorMessage = "";
+            if (e != null) {
+                errorMessage = e.getErrorMessage();
+        %>
+                     
+        <div class="alert alert-success" role="alert" align="centre">
+            <%=errorMessage%> 
+        </div>
+      <%
+            } else {
+            }
+        %>
+        
+        
         <div class="container">
 
             <div class="row">
@@ -57,11 +75,11 @@
                     <h1 class="page-header">Create a New Story</h1>
                 </div>
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-info" onclick="addRow('dataTable')" />Add Slide</button>
+                    <button type="button" class="btn btn-info" onclick="addRow('dataTable')" />Add Image</button>
 
-                    <button type="button" class="btn btn-danger" onclick="deleteRow('dataTable')" />Delete Slide</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteRow('dataTable')" />Delete Image</button>
 
-                    <button type="button" class="btn btn-success">Save Story</button>
+                     <button type="submit" id="submit" class="btn btn-success" form="myForm">Save Story</button>
                     <ul></ul>
                     <input type="text" class="form-control" id="usr" placeholder="Story Title">
                 </div>
@@ -69,30 +87,30 @@
                 <TABLE id="dataTable" width="600px" border="0">
                     <TR>
                         <TD><INPUT type="checkbox" name="chk"/></TD>
-                        <TD><form method="POST" enctype="multipart/form-data" action="Image">
+                        <TD><form id="myForm" method="POST" enctype="multipart/form-data" action="Image">
                                 <table border="1">
                                     <tr>
-                                        <td align="center"><b>Slide #</td>
+                                        <td align="center"><b><label>Select a picture to add to the story you are creating!</label></td>
                                     </tr>
                                     <tr>
                                         <td>
+                                            
+                                             
                                             <input type="file" name="upfile" multiple="multiple">
-                                            <input type="text" name="caption" placeholder="Enter a caption here..">
-                                            <input type="text" name="sendto" placeholder="Pick Patient..">
-                                            <input type="submit" id="submit" value="Save Story"/>
+                                            <input type="text" class="form-control" name="caption" placeholder="Enter a caption here..">
+                                            <input type="text" class="form-control" name="sendto" form="myForm" placeholder="Enter Patient username..">                                       
                                         </td>
                                     </tr>
                                 </table>
                             </form>
                     </TR>
+                   
                 </TABLE>
                 
-                
-
+      
                 
             </div>
         </div>
-
 
         <%}
         } else {

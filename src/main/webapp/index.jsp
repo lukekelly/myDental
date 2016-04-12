@@ -33,13 +33,7 @@
                         if (lg.getloggedin()) {
                 %>        
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/myDental">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#mission">Mission</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+                  
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental/logout">Logout</a></li>
                     </ul>
@@ -51,7 +45,6 @@
                 %>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="#services">Services</a></li>
  
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -76,7 +69,7 @@
 
 
 
-        <div id="services" class="container text-center bg-blue">
+        <div id="services" class="container-fluid text-center bg-grey">
             <br>
             <div class="container">
             <div class="row">

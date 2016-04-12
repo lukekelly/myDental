@@ -49,20 +49,20 @@
 
              <div class="container">
                 <form class="form-signin" role="form" method="POST" action="Register">
-                <h2 class="form-signin-heading">Register</h2>
+                <h2 class="form-signin-heading">Register a Patient</h2>
                 <label for="username" class="sr-only">Username</label>
-                <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+                <input type="text" name="username" class="form-control" placeholder="Username for patient" required autofocus>
                 
                 <label for="inputPassword" class="sr-only">Password</label>
                 
-                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <input type="password" name="password" class="form-control" placeholder="Password for patient" required>
                 <label for="name" class="sr-only">First Name</label>
                 
-                <input type="text" name="name" class="form-control" placeholder="First Name" required>
+                <input type="text" name="name" class="form-control" placeholder="First Name of patient" required>
                 <label for="surname" class="sr-only">Second Name</label>
                 
-                <input type="text" name="surname" class="form-control" placeholder="Second Name" required> 
-                <button type="submit" class="btn btn-primary">Register</button>
+                <input type="text" name="surname" class="form-control" placeholder="Second Name of patient" required> 
+                <button type="submit" class="btn btn-primary">Register Patient on the System</button>
             </form>
               </div>
                             <%}

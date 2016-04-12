@@ -8,6 +8,7 @@ public class LoggedIn {
     boolean loggedin=false;
     String Username=null;
     String firstName=null;
+    String secondName=null;
     @SuppressWarnings("unused")
     
     public LoggedIn(){}
@@ -25,6 +26,14 @@ public class LoggedIn {
     
        public String getFirstName() {
         return firstName;
+    }
+    
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+    
+       public String getSecondName() {
+        return secondName;
     }
 
     public void setLoggedin(){

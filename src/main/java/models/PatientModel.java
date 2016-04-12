@@ -135,13 +135,13 @@ public class PatientModel {
                 patient = new Patient();
                 String username = row.getString("username");
                 String firstName = row.getString ("firstname");
-                String lastName = row.getString ("lastname");
+                String secondName = row.getString ("lastname");
                 Date date = row.getDate("dateadded");                
                 patient.setUsername(username);
                 patient.setFirstName(firstName);
-                patient.setLastName(lastName);
+                patient.setSecondName(secondName);
                 patient.setDate(date);
-                System.out.println("Patient info" + username + firstName + lastName + date);
+                System.out.println("Patient info" + username + firstName + secondName + date);
             }
         }
         return patient;
@@ -164,6 +164,24 @@ public class PatientModel {
            }   
        return firstName ;  
        }  
+    
+        public String getSecondName(String username){
+    	   String secondName = "no name found";
+    	   Session session = cluster.connect("myDental");
+           PreparedStatement ps = session.prepare("select lastname from patients where username = ?");
+           ResultSet rs = null;
+           BoundStatement boundStatement = new BoundStatement(ps);
+           rs = session.execute(boundStatement.bind(username));                         
+           if (rs.isExhausted()) {
+               System.out.println("No name found");
+               return "";
+           } else {
+               for (Row row : rs) {                  
+                   secondName = row.getString("lastname");               
+                   }
+           }   
+       return secondName ;  
+       }
       
 /*public boolean editProfile(String username, String firstname, String lastname, String bio)
 {

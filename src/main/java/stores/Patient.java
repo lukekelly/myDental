@@ -13,7 +13,7 @@ import java.util.Set;
 public class Patient {
     String username = null;
     String firstName = null;
-    String lastName = null;
+    String secondName = null;
     Date date = null;
 
     public Date getDate() {
@@ -41,11 +41,11 @@ public class Patient {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 }

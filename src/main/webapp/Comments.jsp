@@ -60,6 +60,8 @@
                 <p><input type="text" name="comment" placeholder="Write your notes here.."></p>
                 <button type="submit" class="btn btn-success" role="button">Add Note</button>
             </form>
+    
         </div>
+              
     </body>
 </html>

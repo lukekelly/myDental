@@ -84,6 +84,7 @@ public class LogIn extends HttpServlet {
          String username=request.getParameter("username");
         String password=request.getParameter("password");
         String firstName = request.getParameter("firstname");
+         String secondName = request.getParameter("lastname");
         
 		            if (username.equals(""))
 		              {
@@ -107,6 +108,8 @@ public class LogIn extends HttpServlet {
             lg.setLoggedin();
             lg.setUsername(username);
             lg.setFirstName(us.getFirstName(username));
+            lg.setSecondName(us.getSecondName(username));
+            
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);

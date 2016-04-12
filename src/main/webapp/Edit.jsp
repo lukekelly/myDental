@@ -16,7 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dentist Library</title>
+        <title>Edit Stories</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -53,6 +53,42 @@
 
             %>
         </nav> 
+        
+        <div class="container">
+            <div class="row">
+                <%                    if (lg != null) {
+                        if (lg.getloggedin()) {
+
+                %>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Edit <%=lg.getFirstName()%>'s stories</h1>
+                </div>
+                <%
+                } else {%>
+                <%}}%>
+                
+            </div>
+        </div>
+                <div class="container">                                                                                    
+  <div class="table-responsive table-striped">          
+  <table class="table">
+    <thead>
+      <tr>
+           <strong><th>Story</th></strong>
+        <th>Image</th>
+        <th>Caption</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td><input type="text" class="form-control" placeholder="Check Up"></td>
+          <td> <input type="file"></td>
+        <td><input type="text" class="form-control" placeholder="Sign in at the reception"></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
         
         
         

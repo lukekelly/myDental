@@ -49,7 +49,7 @@ public class Image extends HttpServlet {
     private HashMap CommandsMap = new HashMap();
     
     
-
+Error e = null;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -62,7 +62,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("inbox", 4);
         CommandsMap.put("viewStories", 5);
         CommandsMap.put("DisplayAllImages", 6);
-
+         e = new Error();
     }
 
     public void init(ServletConfig config) throws ServletException {
@@ -181,6 +181,9 @@ public class Image extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         for (Part part : request.getParts()) {
+            
+            e.setErrorMessage("");
+            
             System.out.println("Part Name " + part.getName());
 
             String caption = request.getParameter("caption");
@@ -214,9 +217,12 @@ public class Image extends HttpServlet {
 
                 is.close();
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/picUpload.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/createNewStory.jsp");
             //response.sendRedirect(request.getHeader("Referer"));
+            e.setErrorMessage(" Your story has been saved and sent to the patient! ");
+            session.setAttribute("ErrorMessages", e);
              rd.forward(request, response);
+             
         }
 
     }

@@ -33,6 +33,9 @@
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
+                  <ul class="nav navbar-nav">
+                        <li><a href="PatientProfile.jsp">My Profile</a></li>
+                    </ul>
                  <div class="collapse navbar-collapse" id="myNavbar">
                     
                     <ul class="nav navbar-nav navbar-right">
@@ -66,7 +69,7 @@
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="/myDental/DisplayAllImages">
                         <img class="img-responsive" src="Pictures/NewStory.png" alt="">
-                        <strong><p>View My Stories</p></strong>
+                        <strong><p>My Stories</p></strong>
                     </a>
                 </div>
             </div>

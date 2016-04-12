@@ -43,20 +43,20 @@
         
              <div class="container">
                 <form class="form-signin" role="form" method="POST" action="DentalRegister">
-                <h2 class="form-signin-heading">Register a new Dental Practitioner</h2>
+                <h2 class="form-signin-heading">Register a Dental Practitioner</h2>
                 <label for="username" class="sr-only">Username</label>
-                <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
-                <br>
+                <input type="text" name="username" class="form-control" placeholder="Username for dentist" required autofocus>
+          
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Password" required>
-                <br>
+                <input type="password" name="password" class="form-control" placeholder="Password for dentist" required>
+               
                 <label for="name" class="sr-only">First Name</label>
-                <input type="text" name="name" class="form-control" placeholder="First Name" required>
-                <br>
+                <input type="text" name="name" class="form-control" placeholder="First Name of dentist" required>
+                
                 <label for="surname" class="sr-only">Second Name</label>
-                <input type="text" name="surname" class="form-control" placeholder="Second Name" required>
-                <br>
-                <button type="submit" class="btn btn-primary">Register</button>   
+                <input type="text" name="surname" class="form-control" placeholder="Second Name of dentist" required>
+               
+                <button type="submit" class="btn btn-primary">Register Dentist on the System</button>   
             </form>
               </div>
           

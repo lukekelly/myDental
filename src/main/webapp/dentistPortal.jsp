@@ -84,7 +84,7 @@
                 </div>     
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="/myDental/Images">
-                        <img class="img-responsive" src="Pictures/pic.jpg" alt="">
+                        <img class="img-responsive" src="Pictures/picc.jpg" alt="">
                         <strong><p>Your Library</p></strong>
                     </a>
                 </div>
