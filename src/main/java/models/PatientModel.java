@@ -183,12 +183,13 @@ public class PatientModel {
        return secondName ;  
        }
       
-/*public boolean editProfile(String username, String firstname, String lastname, String bio)
-{
-    Session session = cluster.connect("myDental");
-    PreparedStatement ps = session.prepare("UPDATE patients SET firstname = ?, lastname = ? WHERE username = ?");
-    BoundStatement bs = new BoundStatement(ps);
-    session.execute(bs.bind(firstname, lastname, username));
-    return true;
-}*/
+   public void UpdateUserDetails(String username, String firstName, String secondName){
+       
+        Session session = cluster.connect("myDental");    
+        PreparedStatement ps = session.prepare("update patients set firstname=?, lastname=? where username=? ");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        
+        session.execute(boundStatement.bind(firstName, secondName, username ));  
+        
+    }
 }

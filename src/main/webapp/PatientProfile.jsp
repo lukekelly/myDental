@@ -66,7 +66,7 @@
       </div>
           <div class="form-group">
           <div class="col-md-8">
-              <p><%=lg.getUsername()%></p>
+              <span class="badge"><%=lg.getUsername()%></span>
           </div>
         </div>
     </div>
@@ -137,6 +137,14 @@
     </div>
   </div>
 </div>
+          
+        <!--  <form method="POST" action="UpdateInfo">
+ 		Username: <input type="text" name="username" value=<%= lg.getUsername() %>  </br>
+ 		First name: <input type="text" name="firstName">  </br>
+ 		Last name: <input type="text" name="lastName">  </br>
+ 				</br>													
+ 		<input type="submit"	value="Submit change"> 	</br>
+  	</form> -->
                 
         </div>
 

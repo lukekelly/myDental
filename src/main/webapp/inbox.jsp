@@ -93,14 +93,11 @@
                         <!-- <a name="flags"><span class="badge"><%=lg.getUsername()%></span></a> -->
                         <a name="flags"><span class="badge">Flagged by: <%=picMod.getFlaggerForPic(p.getSUUID())%></span></a>
                         <input type="text" name="page" value="login" hidden>  			
-                        <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
+                        <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Patient Notes</a>
                     </div>
                     
                         <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" width="100"></a><br/><%
-                                if (p.getCaption().isEmpty()) {
-                                } else {
-                                    out.println(p.getCaption());
-                                }
+                                
                             }
                         }
                     }

@@ -40,6 +40,7 @@ public static void SetUpKeySpaces(Cluster c) {
             String createPicTable = "CREATE TABLE if not exists mydental.Pics ("
                     + " user varchar,"
                     + " picid uuid, "
+                    + " caption varchar"
                     + " interaction_time timestamp,"
                     + " title varchar,"
                     + " image blob,"
@@ -59,8 +60,8 @@ public static void SetUpKeySpaces(Cluster c) {
                     + "caption varchar,\n"
                     + "sendto varchar, \n"
                     + "pic_added timestamp,\n"
-                    + "PRIMARY KEY (user,pic_added)\n"
-                    + ") WITH CLUSTERING ORDER BY (pic_added desc); \n"
+                    + "PRIMARY KEY (user,picid)\n"
+                    //+ ") WITH CLUSTERING ORDER BY (pic_added); \n"
                     +  "CREATE INDEX sendto ON userpiclist (sendto);";
             
             String CreateComments = "CREATE TABLE if not exists mydental.comments (\n"

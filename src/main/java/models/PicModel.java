@@ -197,12 +197,10 @@ public class PicModel {
     public java.util.LinkedList<Pic> getPicsForUser(String User) {
         java.util.LinkedList<Pic> Pics = new java.util.LinkedList<>();
         Session session = cluster.connect("myDental");
-        PreparedStatement ps = session.prepare("select picid,caption,sendto from userpiclist where user =?");
+        PreparedStatement ps = session.prepare("select user,picid,caption,sendto from userpiclist where user =?");
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
-        rs = session.execute( // this is where the query is executed
-                boundStatement.bind( // here you are binding the 'boundStatement'
-                        User));
+        rs = session.execute( boundStatement.bind(User));
 
         //session.close();
         if (rs.isExhausted()) {
@@ -211,8 +209,10 @@ public class PicModel {
         } else {
             for (Row row : rs) {
                 Pic pic = new Pic();
+              
                 java.util.UUID UUID = row.getUUID("picid");
                 System.out.println("UUID" + UUID.toString());
+                  pic.setUser(row.getString("user"));
                 pic.setCaption(row.getString("caption"));
                 pic.setSendto(row.getString("sendto"));
                 pic.setUUID(UUID);
@@ -385,19 +385,12 @@ public class PicModel {
     
     
     
-      public boolean updatePic(String picid){
+      public void updatePic(String user, String picid, String caption){
+         
         Session session = cluster.connect("myDental");
-        PreparedStatement ps = session.prepare("UPDATE userpiclist SET caption = ? WHERE picid = ?");
-        ResultSet rs = null;
+        PreparedStatement ps = session.prepare("UPDATE userpiclist SET caption = ? WHERE user = ? AND picid = ?");
         BoundStatement boundStatement = new BoundStatement(ps);
-        try{
-        rs = session.execute(boundStatement.bind(picid));
-        }catch(Exception e){
-            System.err.println("Could not update picture "+e.getMessage());
-            return false;
-        }
-        
-        return true;
+        session.execute(boundStatement.bind(user,picid,caption)); 
     }
     
 }

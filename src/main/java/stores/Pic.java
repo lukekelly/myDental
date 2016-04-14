@@ -78,12 +78,13 @@ public class Pic {
         return sendto;
     }
     
+      public void setUser(String user){
+        this.user = user;
+    }
     public String getUser(){
         return user;
     }
-    public void setUser(String user){
-        this.user = user;
-    }
+  
 
     public byte[] getBytes() {
 

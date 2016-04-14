@@ -32,9 +32,9 @@
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>  
-                 <ul class="nav navbar-nav">
-                        <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
-                    </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
+                </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental/logout">Logout</a></li>
@@ -103,16 +103,26 @@
                         %>
 
                         <a><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
-                        if (p.getCaption().isEmpty()) {
-                        } else {%>
+                            if (p.getCaption().isEmpty()) {
+                            } else {%>
 
                         <div>
                             <b><strong><%out.println(p.getCaption());%></strong></b>
                         </div>
+                       
+                        <form method="POST" action="EditPic">
+                            <input type="text" name="user" value="<%=p.getUser()%>"  >
+                            <input name="picid" value="<%=p.getSUUID()%>" >
+                            <input type="text" name="caption" placeholder="Enter a new caption here..">
+                            </br>													
+                            <input type="submit" value="Submit Change"> 	</br>
+                        </form> 
                         <%  }
+                                    }
                                 }
-                            }}
+                            }
                         %>
+
                     </div>
                 </div>
             </div>

@@ -84,14 +84,12 @@
                     <input type="text" class="form-control" id="usr" placeholder="Story Title">
                 </div>
                 <ul></ul>
+                
                 <TABLE id="dataTable" width="600px" border="0">
                     <TR>
                         <TD><INPUT type="checkbox" name="chk"/></TD>
                         <TD><form id="myForm" method="POST" enctype="multipart/form-data" action="Image">
                                 <table border="1">
-                                    <tr>
-                                        <td align="center"><b><label>Select a picture to add to the story you are creating!</label></td>
-                                    </tr>
                                     <tr>
                                         <td>
                                             

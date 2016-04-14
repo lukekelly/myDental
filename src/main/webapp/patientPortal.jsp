@@ -34,7 +34,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                   <ul class="nav navbar-nav">
-                        <li><a href="PatientProfile.jsp">My Profile</a></li>
+                        <li><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-user"></span>My Profile</a></li>
                     </ul>
                  <div class="collapse navbar-collapse" id="myNavbar">
                     
@@ -53,7 +53,7 @@
             %>
         </nav> 
 
-        <div class="container">
+      
               <%                    if (lg != null) {
                     if (lg.getloggedin()) {
 
@@ -69,12 +69,18 @@
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="/myDental/DisplayAllImages">
                         <img class="img-responsive" src="Pictures/NewStory.png" alt="">
-                        <strong><p>My Stories</p></strong>
+                        <strong><p>Newest Story</p></strong>
+                    </a>
+                </div>
+                  <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="checkup.jsp">
+                        <img class="img-responsive" src="Pictures/7.PNG.jpg" alt="">
+                        <strong><p>Check Up</p></strong>
                     </a>
                 </div>
             </div>
             </div>
-        </div>
+   
                     <% } else {%>
             <h1>Patient Portal: Not Logged In</h1>
             <%  }}  %>
