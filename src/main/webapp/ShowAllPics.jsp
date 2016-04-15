@@ -114,6 +114,8 @@
 
                         <div>
                             <b><%out.println(p.getCaption());%></b>
+                           
+                   
                         </div>
                         
                         <%  }
@@ -121,10 +123,19 @@
                                 }
                             }
                         %>
-                    </div>
+                        </div>
+               
+                    
                     
                 </div>
             </div>
         </div>
+                        
+                        
+             <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+                              <textarea id="text" cols="45" rows="3">one two three</textarea>
+                        <input onclick='responsiveVoice.speak("Hello World");' type='button' value='Play'/>
+                        
+                        
     </body>
 </html>
