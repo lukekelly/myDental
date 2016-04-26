@@ -69,8 +69,8 @@ public class Flag extends HttpServlet {
 
         if (currentPage.equals("/myDental/DisplayAllImages")) {
             response.sendRedirect("/myDental/");
-        } else {
-            response.sendRedirect("/myDental/DisplayAllImages");
+        } if (currentPage.equals("/myDental/HygienistVisit")) {
+            response.sendRedirect("/myDental/");
         }
     }
 

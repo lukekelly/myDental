@@ -38,7 +38,8 @@ import stores.Pic;
     "/inbox/*",
     "/DentalPics/*",
     "/viewStories",
-    "/DisplayAllImages"
+    "/DisplayAllImages",
+    "/HygienistVisit"
 })
 @MultipartConfig
 
@@ -62,6 +63,7 @@ Error e = null;
         CommandsMap.put("inbox", 4);
         CommandsMap.put("viewStories", 5);
         CommandsMap.put("DisplayAllImages", 6);
+        CommandsMap.put("HygienistVisit", 7);
          e = new Error();
     }
 
@@ -105,6 +107,9 @@ Error e = null;
                 break;
             case 6:
                  DisplayAllImages(lg.getUsername(), request, response);
+                break;
+            case 7:
+                 DisplayHygienistVisit(lg.getUsername(), request, response);
                 break;
             default:
                 error("Bad Operator", response);
@@ -158,6 +163,25 @@ Error e = null;
         request.setAttribute("allPics", lsPics);
         rd.forward(request, response);
     }
+    
+        private void DisplayHygienistVisit (String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+        
+          HttpSession session=request.getSession();
+            LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
+            
+            //This is a quick and dirty way of retrieving images as part of a story. Replacing what would be the username with the name of the story
+            if (lg.getloggedin()){
+                username="HygienistVisit";
+            }
+        
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);
+        RequestDispatcher rd = request.getRequestDispatcher("/hygienist.jsp");
+        
+        request.setAttribute("allPics", lsPics);
+        rd.forward(request, response);
+    }
 
     private void DisplayImage(int type,String Image, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
@@ -194,6 +218,7 @@ Error e = null;
             if (sendto.isEmpty()) {
             	sendto = "";
             }
+            
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             int flags = 0;
@@ -226,6 +251,7 @@ Error e = null;
         }
 
     }
+    
 
     private void error(String mess, HttpServletResponse response) throws ServletException, IOException {
 

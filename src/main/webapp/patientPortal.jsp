@@ -74,8 +74,38 @@
                 </div>
                   <div class="col-lg-4 col-md-4 col-xs-6 thumb">
                     <a class="thumbnail" href="checkup.jsp">
-                        <img class="img-responsive" src="Pictures/7.PNG.jpg" alt="">
+                        <img class="img-responsive" src="Pictures/6.PNG.jpg" alt="">
                         <strong><p>Check Up</p></strong>
+                    </a>
+                </div>
+                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="/myDental/HygienistVisit">
+                        <img class="img-responsive" src="Pictures/7.PNG.jpg" alt="">
+                        <strong><p>Hygienist Visit</p></strong>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="checkup.jsp">
+                        <img class="img-responsive" src="Pictures/7.PNG.jpg" alt="">
+                        <strong><p>White Filling</p></strong>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="checkup.jsp">
+                        <img class="img-responsive" src="Pictures/7.PNG.jpg" alt="">
+                        <strong><p>Fissure Sealant</p></strong>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="checkup.jsp">
+                        <img class="img-responsive" src="Pictures/7.PNG.jpg" alt="">
+                        <strong><p>Local Anaesthetic</p></strong>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="checkup.jsp">
+                        <img class="img-responsive" src="Pictures/7.PNG.jpg" alt="">
+                        <strong><p>X-ray</p></strong>
                     </a>
                 </div>
             </div>
