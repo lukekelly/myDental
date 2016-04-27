@@ -33,12 +33,12 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>  
                 <ul class="nav navbar-nav">
-                        <li><a href="/myDental/DentalRegister">Register a New Dentist</a></li>
-                        <li><a href="/myDental/Register">Register a New Patient</a></li>
-                    </ul>
+                    <li><a href="/myDental/DentalRegister">Register a New Dentist</a></li>
+                    <li><a href="/myDental/Register">Register a New Patient</a></li>
+                </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental/logout">Logout</a></li>
+                        <li><a href="/myDental/logout">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="/myDental/viewStories">
+                    <a class="thumbnail" href="ViewStories.jsp">
                         <img class="img-responsive" src="Pictures/biyLEz9iL.png" alt="">
                         <strong><p>View Stories</p></strong>
                     </a>
@@ -98,8 +98,8 @@
             </div> 
         </div>
         <%
-                                     } else {
-                                     }
-                                 }%>
+                } else {
+                }
+            }%>
     </body>
 </html>

@@ -4,7 +4,7 @@
     Author     : Luke
 --%>
 
-<%@page import="java.util.*"%>
+<%@page import= "java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import= "stores.*" %>
 <%@ page import= "models.*" %>
@@ -31,69 +31,54 @@
                         <span class="icon-bar"></span> 
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
-                </div>
-                 <ul class="nav navbar-nav">
-                        <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
-                    </ul>
+                </div>  
+                <ul class="nav navbar-nav">
+                    <li><a href="dentistPortal.jsp">Dashboard Home</a></li>
+                </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental/logout">Logout</a></li>
+                        <li><a href="/myDental/logout">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
                     </ul>
                 </div>
             </div>
 
-            <%  LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>
-            <%
+            <%  LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                 Cluster cluster = null;
                 cluster = CassandraHosts.getCluster();
 
                 PicModel picMod = new PicModel();
-                picMod.setCluster(cluster);
-
-
-            %>
+                picMod.setCluster(cluster); %>
         </nav> 
-        
-        <div class="container">
-            <div class="row">
-                <%                    if (lg != null) {
-                        if (lg.getloggedin()) {
 
-                %>
-                <div class="col-lg-12">
-                    <h1 class="page-header">Edit <%=lg.getFirstName()%>'s stories</h1>
-                </div>
-                <%
-                } else {%>
-                <%}}%>
-                
-            </div>
+
+
+        <%                    if (lg != null) {
+                if (lg.getloggedin()) {
+
+        %>
+        <div class="col-lg-12">
+            <h1 class="page-header"><%=lg.getFirstName()%>'s Stories</h1>
         </div>
-                <div class="container">                                                                                    
-  <div class="table-responsive table-striped">          
-  <table class="table">
-    <thead>
-      <tr>
-           <strong><th>Story</th></strong>
-        <th>Image</th>
-        <th>Caption</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-          <td><input type="text" class="form-control" placeholder="Check Up"></td>
-          <td> <input type="file"></td>
-        <td><input type="text" class="form-control" placeholder="Sign in at the reception"></td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-</div>
-        
-        
-        
-        
-        
-</body>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Below are the stories you have published. To view a story, simply select the title.. </div>
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  Check Up</a></li>
+                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  Hygienist Visit</a></li>
+                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  White Filling</a></li>
+                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  Fissure Sealant</a></li>
+                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  Local Anaesthetic</a></li>
+                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  X ray</a></li>
+                <li class="list-group-item"><a href="/myDental/viewStories2"><span class="glyphicon glyphicon-edit"></span> NEWEST STORY</a></li>
+            </ul>
+        </div>
+        <%
+                }
+            }
+        %>
+
+    </body>
 </html>
+
 

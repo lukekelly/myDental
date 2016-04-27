@@ -33,8 +33,8 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                        <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
-                    </ul>
+                    <li><a href="dentistPortal.jsp">Dashboard Home</a></li>
+                </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
 
                     <ul class="nav navbar-nav navbar-right">
@@ -51,22 +51,22 @@
                 if (lg.getloggedin()) {
         %>
 
-         <%
+        <%
             Error e = (Error) session.getAttribute("ErrorMessages");
             String errorMessage = "";
             if (e != null) {
                 errorMessage = e.getErrorMessage();
         %>
-                     
+
         <div class="alert alert-success" role="alert" align="centre">
             <%=errorMessage%> 
         </div>
-      <%
+        <%
             } else {
             }
         %>
-        
-        
+
+
         <div class="container">
 
             <div class="row">
@@ -75,45 +75,45 @@
                     <h1 class="page-header">Create a New Story</h1>
                 </div>
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-info" onclick="addRow('dataTable')" />Add Image</button>
+                    <button type="button" class="btn btn-info" onclick="addRow('dataTable')">Add Image <span class="glyphicon glyphicon-plus-sign"></span></button>
 
-                    <button type="button" class="btn btn-danger" onclick="deleteRow('dataTable')" />Delete Image</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteRow('dataTable')">Delete Image <span class="glyphicon glyphicon-minus-sign"></span></button>
 
-                     <button type="submit" id="submit" class="btn btn-success" form="myForm">Save Story</button>
+                    <button type="submit" id="submit" class="btn btn-success" form="myForm">Save & Send Story <span class="glyphicon glyphicon-send"></span></button>
                     <ul></ul>
                     <input type="text" class="form-control" id="usr" placeholder="Story Title">
-                      
+
                     <input type="text" class="form-control" name="sendto" form="myForm" placeholder="Enter Patient username.."> 
-                    
+
                     <input type="text" class="form-control" placeholder="Appointment Date, in the form: DD/MM/YY">
-                     
-               
-                <ul></ul>
-                
-                <TABLE id="dataTable" width="600px" border="0">
-                    <TR>
-                        <TD><INPUT type="checkbox" name="chk"/></TD>
-                        
-                        <TD><form id="myForm" method="POST" enctype="multipart/form-data" action="Image">
-                                <table border="1">
-                                    <tr>
-                                        <td>
-                                            
-                                             
-                                            <input type="file" name="upfile" multiple="multiple">
-                                            <input type="text" class="form-control" name="caption" placeholder="Enter a caption here..">
-                                                                                 
-                                        </td>
-                                    </tr>
-                                </table>
-                            </form>
-                            
-                    </TR>
-                   
-                </TABLE>
-                
-      </div>
-                
+
+
+                    <ul></ul>
+
+                    <TABLE id="dataTable" width="600px" border="0">
+                        <TR>
+                            <TD><INPUT type="checkbox" name="chk"/></TD>
+
+                            <TD><form id="myForm" method="POST" enctype="multipart/form-data" action="Image">
+                                    <table border="1">
+                                        <tr>
+                                            <td>
+
+
+                                                <input type="file" name="upfile" multiple="multiple">
+                                                <input type="text" class="form-control" name="caption" placeholder="Enter a caption here..">
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+
+                        </TR>
+
+                    </TABLE>
+
+                </div>
+
             </div>
         </div>
 
@@ -121,7 +121,7 @@
         } else {
         %>
         <%
-                                            }%>
+            }%>
 
 
 

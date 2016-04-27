@@ -35,7 +35,7 @@
                     <a class="navbar-brand" href="myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="dentistPortal.jsp">Dental Portal Home</a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
 
@@ -46,23 +46,27 @@
             </div>
         </nav>
 
-        <div class="container">
-            <h1>Upload Image</h1>
-            <form method="POST" enctype="multipart/form-data" action="Image">
-                <input type="file" name="upfile"> 
-                <input type="text" name="caption" placeholder="Enter a caption here.." hidden><br/>
-                <input type="text" name="sendto" placeholder="Pick Patient.." hidden="">
-                <button type="submit" class="btn btn-success" role="button">Upload Image</button>
-            </form>     
-            
-            <form method="POST" enctype="multipart/form-data" action="Image">
-                <input type="file" name="file"> 
-                <input type="text" name="caption" placeholder="Enter a caption here.." hidden><br/>
-                <input type="text" name="story" placeholder="Story name.." hidden="">
-                <button type="submit" class="btn btn-success" role="button">Upload Image</button>
-            </form>  
-        </div>
+        <div class="container-fluid">
+            <div class="col-lg-12">
+                <h1 class="page-header">Image Upload</h1>
+            </div>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">This is where you can upload images from your device to your online image library.</div>
+                <!-- List group -->
+                <ul class="list-group">
+                    <li>   <form method="POST" enctype="multipart/form-data" action="Image" class="center">
+                            <input type="file" name="upfile" multiple="multiple">
+                            <input type="text" name="caption" placeholder="Enter a caption here.." hidden><br/>
+                            <input type="text" name="sendto" hidden="">
+                            <button type="submit" class="btn btn-success" role="button">Upload Image <span class="glyphicon glyphicon-save"></span></button>
+                        </form>
+                    </li>
 
+                </ul>
+            </div>
+
+        </div>
 
     </body>
 

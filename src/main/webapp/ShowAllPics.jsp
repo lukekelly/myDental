@@ -33,8 +33,8 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                        <li><a href="patientPortal.jsp">Patient Portal Home</a></li>
-                    </ul>
+                    <li><a href="patientPortal.jsp">Home</a></li>
+                </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental/logout">Logout</a></li>
@@ -49,7 +49,7 @@
                 PicModel picMod = new PicModel();
                 picMod.setCluster(cluster); %>
         </nav> 
-             
+
         <div class="container">
             <div class="row">
                 <%                    if (lg != null) {
@@ -77,11 +77,11 @@
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
-  
+
                         if (lsFlags != 0) {%>
 
                 <div class="container-fluid">
-                   
+
                     <form>	
                         <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
                         <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
@@ -113,19 +113,19 @@
 
                         <div>
                             <b><%out.println(p.getCaption());%></b>
-                           
-                   
+
+
                         </div>
-                        
+
                         <%  }
                                     }
                                 }
                             }
                         %>
-                        </div>
-               
-                    
-                    
+                    </div>
+
+
+
                 </div>
             </div>
         </div>                     

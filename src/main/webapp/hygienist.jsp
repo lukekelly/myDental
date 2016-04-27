@@ -33,8 +33,8 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                        <li><a href="patientPortal.jsp">Patient Portal Home</a></li>
-                    </ul>
+                    <li><a href="patientPortal.jsp">Home</a></li>
+                </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/myDental/logout">Logout</a></li>
@@ -49,7 +49,7 @@
                 PicModel picMod = new PicModel();
                 picMod.setCluster(cluster); %>
         </nav> 
-             
+
         <div class="container">
             <div class="row">
                 <%                    if (lg != null) {
@@ -77,54 +77,54 @@
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
-  
+
                         if (lsFlags != 0) {%>
 
-         
-                   
-                    <form>	
-                        <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
-                        <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
-                        <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
-                        <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
-                        <input type="text" name="page" value="login" hidden >  			
-                        <button class="btn btn-danger">The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
-                        <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to something <span class="glyphicon glyphicon-comment"></span></a>
-                    </form>
-                    <%      } else {%>
-                   
-                        <form method="POST" action="/myDental/Flag">	
-                            <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
-                          <!--  <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
-                            <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
-                            <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
-                            <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
-                            <input type="text" name="page" value="login" hidden >  			
-                            <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
-                            <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
-                        </form>
 
-                        <%  }
-                        %>
-  <div class="pictureAndTexDiv">
-    <div class="cell">
+
+                <form>	
+                    <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
+                    <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
+                    <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
+                    <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
+                    <input type="text" name="page" value="login" hidden >  			
+                    <button class="btn btn-danger">The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to something <span class="glyphicon glyphicon-comment"></span></a>
+                </form>
+                <%      } else {%>
+
+                <form method="POST" action="/myDental/Flag">	
+                    <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
+                  <!--  <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
+                    <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
+                    <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
+                    <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
+                    <input type="text" name="page" value="login" hidden >  			
+                    <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
+                </form>
+
+                <%  }
+                %>
+                <div class="pictureAndTexDiv">
+                    <div class="cell">
                         <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;"></a><br/><%
                             if (p.getCaption().isEmpty()) {
                             } else {%>
                         <span class="text"><%out.println(p.getCaption());%></span> </div>
-                   
-  </div>
-        
-                        
-                        <%  }
-                                    }
-                                }
-                            }
-                        %>
-                         
+
                 </div>
+
+
+                <%  }
+                            }
+                        }
+                    }
+                %>
+
             </div>
-                      
-                         
+        </div>
+
+
     </body>
 </html>
