@@ -16,7 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>View Stories</title>
+        <title>Hygienist Visit</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -57,7 +57,7 @@
 
                 %>
                 <div class="col-lg-12">
-                    <h1 class="page-header"><%=lg.getFirstName()%>'s most recent story for: Check Up</h1>
+                    <h1 class="page-header"><%=lg.getFirstName()%>'s Hygienist Visit</h1>
                 </div>
                 <%
                 } else {%>
@@ -80,7 +80,7 @@
   
                         if (lsFlags != 0) {%>
 
-                <div class="container-fluid">
+         
                    
                     <form>	
                         <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
@@ -88,11 +88,11 @@
                         <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
                         <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
                         <input type="text" name="page" value="login" hidden >  			
-                        <button class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
+                        <button class="btn btn-danger">The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
+                        <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to something <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
                     <%      } else {%>
-                    <div class="container-fluid">
+                   
                         <form method="POST" action="/myDental/Flag">	
                             <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
                           <!--  <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
@@ -100,34 +100,31 @@
                             <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
                             <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
                             <input type="text" name="page" value="login" hidden >  			
-                            <button type="submit" class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                            <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
+                            <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                         </form>
 
                         <%  }
                         %>
-
-                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
+  <div class="pictureAndTexDiv">
+    <div class="cell">
+                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;"></a><br/><%
                             if (p.getCaption().isEmpty()) {
                             } else {%>
-
-                        <div>
-                            <b><%out.println(p.getCaption());%></b>
-                           
+                        <span class="text"><%out.println(p.getCaption());%></span> </div>
                    
-                        </div>
+  </div>
+        
                         
                         <%  }
                                     }
                                 }
                             }
                         %>
-                        </div>
-               
-                    
-                    
+                         
                 </div>
             </div>
-        </div>                     
+                      
+                         
     </body>
 </html>

@@ -64,8 +64,8 @@
     <div class="item active">
         <div class="container-fluid">
                     <form>	  			
-                        <button class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a class="btn btn-info" role="button">Notes</a>
+           <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
         </div>
         <img src="Pictures/1.PNG.jpg" alt="">
@@ -80,8 +80,8 @@
     <div class="item">
          <div class="container-fluid">
                     <form>	  			
-                        <button class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a class="btn btn-info" role="button">Notes</a>
+                                 <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
         </div>
       <img src="Pictures/3.PNG.jpg" alt="">
@@ -94,8 +94,8 @@
     <div class="item">
          <div class="container-fluid">
                     <form>	  			
-                        <button class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a class="btn btn-info" role="button">Notes</a>
+                             <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
         </div>
       <img src="Pictures/room.jpg" alt="">
@@ -109,8 +109,8 @@
       <div class="item">
            <div class="container-fluid">
                     <form>	  			
-                        <button class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a class="btn btn-info" role="button">Notes</a>
+                              <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
         </div>
       <img src="Pictures/6.PNG.jpg" alt="">
@@ -123,8 +123,8 @@
       <div class="item">
            <div class="container-fluid">
                     <form>	  			
-                        <button class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a class="btn btn-info" role="button">Notes</a>
+                              <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
         </div>
       <img src="Pictures/light.jpg" alt="">
@@ -138,8 +138,8 @@
       <div class="item">
            <div class="container-fluid">
                     <form>	  			
-                        <button class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a class="btn btn-info" role="button">Notes</a>
+                             <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
         </div>
       <img src="Pictures/mirror.jpg" alt="">
@@ -154,8 +154,8 @@
       <div class="item">
            <div class="container-fluid">
                     <form>	  			
-                        <button class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a class="btn btn-info" role="button">Notes</a>
+                    <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
         </div>
       <img src="Pictures/air.jpg" alt="">
@@ -169,8 +169,8 @@
             <div class="item">
            <div class="container-fluid">
                     <form>	  			
-                        <button class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a class="btn btn-info" role="button">Notes</a>
+                               <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
         </div>
       <img src="Pictures/5.PNG.jpg" alt="">
@@ -184,8 +184,8 @@
      <div class="item">
            <div class="container-fluid">
                     <form>	  			
-                        <button class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a class="btn btn-info" role="button">Notes</a>
+                             <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                            <a class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                     </form>
         </div>
       <img src="Pictures/wash.jpg" alt=""/>
@@ -212,78 +212,5 @@
             <h1>Patient Portal: Not Logged In</h1>
             <%  }}  %>
             
-            
-
-
-
-                <%
-                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-                    int lsFlags = 0;
-                    if (lsPics == null) {
-                %>
-                <p><strong>You have made no stories yet!</strong></p>
-                <%
-                } else {
-                    Iterator<Pic> iterator;
-                    iterator = lsPics.iterator();
-                    while (iterator.hasNext()) {
-                        Pic p = (Pic) iterator.next();
-                        lsFlags = picMod.getFlagsForPic(p.getSUUID());
-
-                        if (lsFlags != 0) {%>
-
-                <div class="container-fluid">
-                    <form>	
-                        <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
-                        <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
-                        <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
-                        <input type="text" name="page" value="login" hidden >  			
-                        <button class="btn btn-danger" role="button" disabled><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
-                    </form>
-                    <%      } else {%>
-                    <div class="container-fluid">
-                        <form method="POST" action="/myDental/Flag">	
-                            <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
-                          <!--  <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
-                            <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
-                            <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>  
-                            <input type="text" name="page" value="login" hidden >  			
-                            <button type="submit" class="btn btn-success" role="button" disabled><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                            <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
-                        </form>
-
-                        <%  }
-                        %>
-
-                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
-                            if (p.getCaption().isEmpty()) {
-                            } else {%>
-
-                        <div>
-                            <b><strong><%out.println(p.getCaption());%></strong></b>
-                        </div>
-                       
-                        <form method="POST" action="EditPic">
-                            <input type="text" name="user" value="<%=p.getUser()%>"  >
-                            <input name="picid" value="<%=p.getSUUID()%>" >
-                            <input type="text" name="caption" placeholder="Enter a new caption here..">
-                            </br>													
-                            <input type="submit" value="Submit Change"> 	</br>
-                        </form> 
-                        <%  }
-                                    }
-                                }
-                            }
-                        %>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
-
-        
 </body>   
 </html>

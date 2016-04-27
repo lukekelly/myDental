@@ -82,12 +82,18 @@
                      <button type="submit" id="submit" class="btn btn-success" form="myForm">Save Story</button>
                     <ul></ul>
                     <input type="text" class="form-control" id="usr" placeholder="Story Title">
-                </div>
+                      
+                    <input type="text" class="form-control" name="sendto" form="myForm" placeholder="Enter Patient username.."> 
+                    
+                    <input type="text" class="form-control" placeholder="Appointment Date, in the form: DD/MM/YY">
+                     
+               
                 <ul></ul>
                 
                 <TABLE id="dataTable" width="600px" border="0">
                     <TR>
                         <TD><INPUT type="checkbox" name="chk"/></TD>
+                        
                         <TD><form id="myForm" method="POST" enctype="multipart/form-data" action="Image">
                                 <table border="1">
                                     <tr>
@@ -96,16 +102,17 @@
                                              
                                             <input type="file" name="upfile" multiple="multiple">
                                             <input type="text" class="form-control" name="caption" placeholder="Enter a caption here..">
-                                            <input type="text" class="form-control" name="sendto" form="myForm" placeholder="Enter Patient username..">                                       
+                                                                                 
                                         </td>
                                     </tr>
                                 </table>
                             </form>
+                            
                     </TR>
                    
                 </TABLE>
                 
-      
+      </div>
                 
             </div>
         </div>

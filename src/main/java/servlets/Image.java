@@ -173,7 +173,7 @@ Error e = null;
             
             //This is a quick and dirty way of retrieving images as part of a story. Replacing what would be the username with the name of the story
             if (lg.getloggedin()){
-                username="HygienistVisit";
+                username="HygienistVisitStory";
             }
         
         java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);

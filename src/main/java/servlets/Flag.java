@@ -67,11 +67,7 @@ public class Flag extends HttpServlet {
 
         pm.writeFlags(username, picid, flagsInt);
 
-        if (currentPage.equals("/myDental/DisplayAllImages")) {
-            response.sendRedirect("/myDental/");
-        } if (currentPage.equals("/myDental/HygienistVisit")) {
-            response.sendRedirect("/myDental/");
-        }
+        response.sendRedirect(request.getHeader("Referer"));
     }
 
     @Override
