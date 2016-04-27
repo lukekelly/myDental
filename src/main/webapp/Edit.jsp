@@ -33,7 +33,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>  
                 <ul class="nav navbar-nav">
-                    <li><a href="dentistPortal.jsp">Dashboard Home</a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -77,7 +77,13 @@
                 }
             }
         %>
-
+    <form method="POST" action="EditPic">
+            <input type="text" name="user" value="<%=p.getUser()%>"  >
+            <input name="picid" value="<%=p.getSUUID()%>" >
+            <input type="text" name="caption" placeholder="Enter a new caption here..">
+            </br>													
+            <input type="submit" value="Submit Change"> 	</br>
+        </form> 
     </body>
 </html>
 

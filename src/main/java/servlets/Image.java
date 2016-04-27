@@ -39,7 +39,8 @@ import stores.Pic;
     "/DentalPics/*",
     "/viewStories2",
     "/DisplayAllImages",
-    "/HygienistVisit"
+    "/HygienistVisit",
+    "/DentistHygienistVisit"
 })
 @MultipartConfig
 
@@ -64,6 +65,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("viewStories2", 5);
         CommandsMap.put("DisplayAllImages", 6);
         CommandsMap.put("HygienistVisit", 7);
+        CommandsMap.put("DentistHygienistVisit", 8);
         e = new Error();
     }
 
@@ -111,6 +113,9 @@ public class Image extends HttpServlet {
             case 7:
                 DisplayHygienistVisit(lg.getUsername(), request, response);
                 break;
+            case 8:
+                DisplayDentistHygienistVisit(lg.getUsername(), request, response);
+                break;
             default:
                 error("Bad Operator", response);
         }
@@ -137,8 +142,16 @@ public class Image extends HttpServlet {
     }
 
     private void DisplayStories(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PicModel tm = new PicModel();
+           PicModel tm = new PicModel();
         tm.setCluster(cluster);
+
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+        //String username="";
+        if (lg.getloggedin()) {
+            User = lg.getUsername();
+        }
+
         java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
         RequestDispatcher rd = request.getRequestDispatcher("/ViewStories2.jsp");
 
@@ -183,6 +196,25 @@ public class Image extends HttpServlet {
         rd.forward(request, response);
     }
 
+        private void DisplayDentistHygienistVisit(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+
+        //This is a quick and dirty way of retrieving images as part of a story. Replacing what would be the username with the name of the story
+        if (lg.getloggedin()) {
+            username = "HygienistVisitStory";
+        }
+
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);
+        RequestDispatcher rd = request.getRequestDispatcher("/dentistHygienist.jsp");
+
+        request.setAttribute("allPics", lsPics);
+        rd.forward(request, response);
+    }
+    
     private void DisplayImage(int type, String Image, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);

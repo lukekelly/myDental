@@ -67,12 +67,10 @@
             </div>
 
         </div>
-
-    </body>
-
     <%}
     } else {
 
     %>
     <%        }%>
+    </body>
 </html>

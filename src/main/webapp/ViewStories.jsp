@@ -33,7 +33,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>  
                 <ul class="nav navbar-nav">
-                    <li><a href="dentistPortal.jsp">Dashboard Home</a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -56,6 +56,7 @@
                 if (lg.getloggedin()) {
 
         %>
+        <div class="container">
         <div class="col-lg-12">
             <h1 class="page-header"><%=lg.getFirstName()%>'s Stories</h1>
         </div>
@@ -65,13 +66,14 @@
             <!-- List group -->
             <ul class="list-group">
                 <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-book"></span>  Check Up</a></li>
-                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-book"></span>  Hygienist Visit</a></li>
+                <li class="list-group-item"><a href="/myDental/DentistHygienistVisit"><span class="glyphicon glyphicon-book"></span>  Hygienist Visit</a></li>
                 <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-book"></span>  White Filling</a></li>
                 <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-book"></span>  Fissure Sealant</a></li>
                 <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-book"></span>  Local Anaesthetic</a></li>
                 <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-book"></span>  X ray</a></li>
-                <li class="list-group-item"><a href="/myDental/viewStories2"><span class="glyphicon glyphicon-book"></span> NEWEST STORY</a></li>
+                <li class="list-group-item"><a href="/myDental/viewStories2"><span class="glyphicon glyphicon-book"></span>NEWEST STORY</a></li>
             </ul>
+        </div>
         </div>
         <%
                 }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ViewStories2
-    Created on : 27-Apr-2016, 17:43:55
+    Document   : dentistHygienist
+    Created on : 27-Apr-2016, 19:54:44
     Author     : Luke
 --%>
 
@@ -16,7 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>View Stories</title>
+        <title>Hygienist Visit</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -31,9 +31,9 @@
                         <span class="icon-bar"></span> 
                     </button>
                     <a class="navbar-brand" href="/myDental">myDental</a>      
-                </div>  
+                </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard Home</a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -50,7 +50,6 @@
                 picMod.setCluster(cluster); %>
         </nav> 
 
-
         <div class="container">
             <div class="row">
                 <%                    if (lg != null) {
@@ -58,13 +57,13 @@
 
                 %>
                 <div class="col-lg-12">
-                    <h1 class="page-header"><%=lg.getFirstName()%>: Your most recent published story</h1>
+                   <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
                 </div>
                 <%
                 } else {%>
                 <%}%>
                 <%
-                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
+                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("allPics");
                     int lsFlags = 0;
 
                     if (lsPics == null) {
@@ -80,13 +79,16 @@
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
 
                         if (lsFlags != 0) {%>
-       <form>	
+
+
+
+                <form>	
                     <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
                     <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
                     <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
                     <input type="text" name="page" value="login" hidden >  			
-                    <button class="btn btn-danger" disabled>The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
+                    <button class="btn btn-danger">The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
                     <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to something <span class="glyphicon glyphicon-comment"></span></a>
                 </form>
                 <%      } else {%>
@@ -98,7 +100,7 @@
                     <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
                     <input type="text" name="page" value="login" hidden >  			
-                    <button class="btn btn-success" disabled>Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                    <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
                     <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                 </form>
 
@@ -123,6 +125,6 @@
             </div>
         </div>
 
-           
+
     </body>
 </html>
