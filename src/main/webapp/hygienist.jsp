@@ -37,7 +37,7 @@
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental/logout">Logout</a></li>
+                        <li><a href="/myDental/logout">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
                     <input type="text" name="page" value="login" hidden >  			
                     <button class="btn btn-danger">The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
-                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to something <span class="glyphicon glyphicon-comment"></span></a>
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to say something <span class="glyphicon glyphicon-comment"></span></a>
                 </form>
                 <%      } else {%>
 
@@ -111,8 +111,12 @@
                         <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;"></a><br/><%
                             if (p.getCaption().isEmpty()) {
                             } else {%>
+                       
                         <span class="text"><%out.println(p.getCaption());%></span> </div>
+                    <textarea id="text" hidden><%out.println(p.getCaption());%></textarea>
 
+                    <button onclick="responsiveVoice.speak($('#text').val(), 'UK English Female');" type='button' value='PLAY' class="btn btn-warning"> <span class="glyphicon glyphicon-volume-up"></span></button>
+                 
                 </div>
 
 
@@ -124,7 +128,10 @@
 
             </div>
         </div>
-
+            
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <script src="http://responsivevoice.org/responsivevoice/responsivevoice.js"></script>
 
     </body>
+    
 </html>

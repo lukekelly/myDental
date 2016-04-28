@@ -33,7 +33,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="dentistPortal.jsp">Dashboard Home</a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -57,7 +57,7 @@
 
                 %>
                 <div class="col-lg-12">
-                   <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
+                   <h1 class="page-header">Hygienist Visit</h1>
                 </div>
                 <%
                 } else {%>
@@ -88,8 +88,8 @@
                     <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
                     <input type="text" name="page" value="login" hidden >  			
-                    <button class="btn btn-danger">The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
-                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to something <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-danger" disabled>The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to say something <span class="glyphicon glyphicon-comment"></span></a>
                 </form>
                 <%      } else {%>
 
@@ -100,7 +100,7 @@
                     <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
                     <input type="text" name="page" value="login" hidden >  			
-                    <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                    <button class="btn btn-success" disabled>Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
                     <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
                 </form>
 

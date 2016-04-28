@@ -50,18 +50,17 @@
                 picMod.setCluster(cluster); %>
         </nav> 
 
-
-
         <%                    if (lg != null) {
                 if (lg.getloggedin()) {
 
         %>
+        <div class="container">
         <div class="col-lg-12">
             <h1 class="page-header"><%=lg.getFirstName()%>'s Stories</h1>
         </div>
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Below are the stories you have published. To view a story, simply select the title.. </div>
+            <div class="panel-heading">Below are the stories you have published. To edit a story, simply select the title.. </div>
             <!-- List group -->
             <ul class="list-group">
                 <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  Check Up</a></li>
@@ -73,17 +72,12 @@
                 <li class="list-group-item"><a href="/myDental/viewStories2"><span class="glyphicon glyphicon-edit"></span> NEWEST STORY</a></li>
             </ul>
         </div>
+        </div>
         <%
                 }
             }
         %>
-    <form method="POST" action="EditPic">
-            <input type="text" name="user" value="<%=p.getUser()%>"  >
-            <input name="picid" value="<%=p.getSUUID()%>" >
-            <input type="text" name="caption" placeholder="Enter a new caption here..">
-            </br>													
-            <input type="submit" value="Submit Change"> 	</br>
-        </form> 
+   
     </body>
 </html>
 

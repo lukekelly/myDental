@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental/logout">Logout</a></li>
+                        <li><a href="/myDental/logout">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
                     </ul>
                 </div>
             </div>

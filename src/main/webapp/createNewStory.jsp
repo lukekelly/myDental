@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/myDental/logout">Logout</a></li>
+                        <li><a href="/myDental/logout">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Create a New Story</h1>
                 </div>
-                <div class="col-sm-4">
+               
                     <button type="button" class="btn btn-info" onclick="addRow('dataTable')">Add Image <span class="glyphicon glyphicon-plus-sign"></span></button>
 
                     <button type="button" class="btn btn-danger" onclick="deleteRow('dataTable')">Delete Image <span class="glyphicon glyphicon-minus-sign"></span></button>
@@ -115,7 +115,6 @@
                 </div>
 
             </div>
-        </div>
 
         <%}
         } else {
