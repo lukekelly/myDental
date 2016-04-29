@@ -57,8 +57,9 @@
                 <ul class="list-group">
                     <li>   <form method="POST" enctype="multipart/form-data" action="Image" class="center">
                             <input type="file" name="upfile" multiple="multiple">
-                            <input type="text" name="caption" placeholder="Enter a caption here.." hidden><br/>
-                            <input type="text" name="sendto" hidden="">
+                            <input type="text" name="caption" placeholder="Enter a caption here.." ><br/>
+                            <input type="text" name="sendto">
+                            <input type="text" name="treatment">
                             <button type="submit" class="btn btn-success" role="button">Upload Image <span class="glyphicon glyphicon-save"></span></button>
                         </form>
                     </li>

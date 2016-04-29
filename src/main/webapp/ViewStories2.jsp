@@ -78,7 +78,6 @@
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
-
                         if (lsFlags != 0) {%>
        <form>	
                     <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           

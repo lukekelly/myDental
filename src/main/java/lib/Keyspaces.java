@@ -59,6 +59,7 @@ public static void SetUpKeySpaces(Cluster c) {
                     + "user varchar,\n"
                     + "caption varchar,\n"
                     + "sendto varchar, \n"
+                    + "title varchar, \n"
                     + "pic_added timestamp,\n"
                     + "PRIMARY KEY (user,picid)\n"
                     //+ ") WITH CLUSTERING ORDER BY (pic_added); \n"

@@ -90,8 +90,9 @@
                         <div class="panel-body">
                      <!--   <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
                         <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
+                        
                         <!-- <a name="flags"><span class="badge"><%=lg.getUsername()%></span></a> -->
-                        <a name="flags"><span class="badge">Flagged by: <%=picMod.getFlaggerForPic(p.getSUUID())%></span></a>
+                        <a name="flags"><span class="badge">Your patient, <%=picMod.getFlaggerForPic(p.getSUUID())%>, flagged this image in <%=p.getSendto()%></span></a>
                         <input type="text" name="page" value="login" hidden>  			
                         <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Patient Notes</a>
                     </div>

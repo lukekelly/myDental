@@ -33,7 +33,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="patientPortal.jsp">Home</a></li>
+                    <li><a href="patientPortal.jsp">Home<span class="glyphicon glyphicon-home"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -69,11 +69,11 @@
                     if (lsPics == null) {
                 %>
                 <p>No Stories Found</p>
+                
                 <%
                 } else {
-                    Iterator<Pic> iterator;
-                    iterator = lsPics.iterator();
-                    while (iterator.hasNext()) {
+                    Iterator<Pic> iterator = lsPics.iterator();
+                  while (iterator.hasNext()) {
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
@@ -87,9 +87,9 @@
                     <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
                     <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
-                    <input type="text" name="page" value="login" hidden >  			
-                    <button class="btn btn-danger">The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
-                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to say something <span class="glyphicon glyphicon-comment"></span></a>
+                    <input type="text" name="page" value="login" hidden >  		
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button" style="position: relative; z-index: 1;">Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-danger" style="position: relative; z-index: 1;"><img src="Pictures/worried.PNG" alt="worried" height="70" width="70"/></button>
                 </form>
                 <%      } else {%>
 
@@ -100,12 +100,12 @@
                     <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
                     <input type="text" name="page" value="login" hidden >  			
-                    <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
-                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                 </form>
 
-                <%  }
-                %>
+                <%  }%>            
+              
                 <div class="pictureAndTexDiv">
                     <div class="cell">
                         <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;"></a><br/><%
@@ -118,17 +118,20 @@
                     <button onclick="responsiveVoice.speak($('#text').val(), 'UK English Female');" type='button' value='PLAY' class="btn btn-warning"> <span class="glyphicon glyphicon-volume-up"></span></button>
                  
                 </div>
-
-
+       
+   
+      
                 <%  }
                             }
-                        }
+                       }
+
                     }
+                
                 %>
 
-            </div>
+        
+          </div>
         </div>
-            
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                     <script src="http://responsivevoice.org/responsivevoice/responsivevoice.js"></script>
 

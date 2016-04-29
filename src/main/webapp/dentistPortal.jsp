@@ -33,8 +33,8 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>  
                 <ul class="nav navbar-nav">
-                    <li><a href="/myDental/DentalRegister">Register a New Dentist</a></li>
-                    <li><a href="/myDental/Register">Register a New Patient</a></li>
+                    <li><a href="/myDental/DentalRegister">Register Dentist  <span class="glyphicon glyphicon-plus glyphicon glyphicon-user"></span></a></li>
+                    <li><a href="/myDental/Register">Register Patient  <span class="glyphicon glyphicon-user"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">

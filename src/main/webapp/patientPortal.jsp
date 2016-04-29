@@ -24,6 +24,13 @@
     </head>
     <body class="body">
         <nav class="navbar navbar-default navbar-fixed-top">
+                        <%  LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                Cluster cluster = null;
+                cluster = CassandraHosts.getCluster();
+
+                PicModel picMod = new PicModel();
+                picMod.setCluster(cluster);
+            %>
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -34,7 +41,15 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-user"></span>My Profile</a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-user"></span><%=lg.getFirstName()%></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
 
@@ -44,13 +59,7 @@
                 </div>
             </div>
 
-            <%  LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                Cluster cluster = null;
-                cluster = CassandraHosts.getCluster();
 
-                PicModel picMod = new PicModel();
-                picMod.setCluster(cluster);
-            %>
         </nav> 
 
 
@@ -63,7 +72,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Patient Portal: <%=lg.getFirstName()%></h1>
+                    <h1 class="page-header"><strong>Patient Portal: </strong> <%=lg.getFirstName()%> <%=lg.getSecondName()%> </h1>
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">

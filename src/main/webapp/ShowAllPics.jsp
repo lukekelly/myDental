@@ -33,7 +33,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="patientPortal.jsp">Home</a></li>
+                    <li><a href="patientPortal.jsp">Home<span class="glyphicon glyphicon-home"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -57,11 +57,12 @@
 
                 %>
                 <div class="col-lg-12">
-                    <h1 class="page-header"><%=lg.getFirstName()%>'s most recent story for: Check Up</h1>
+                    <h1 class="page-header"><%=lg.getFirstName()%>'s most recent story for: </h1>
                 </div>
                 <%
                 } else {%>
                 <%}%>
+                
                 <%
                     java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("allPics");
                     int lsFlags = 0;
@@ -77,57 +78,58 @@
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
+                     if (lsFlags != 0) {%>
 
-                        if (lsFlags != 0) {%>
 
-                <div class="container-fluid">
 
-                    <form>	
-                        <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
-                        <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
-                        <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
-                        <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
-                        <input type="text" name="page" value="login" hidden >  			
-                        <button class="btn btn-danger" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                        <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
-                    </form>
-                    <%      } else {%>
-                    <div class="container-fluid">
-                        <form method="POST" action="/myDental/Flag">	
-                            <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
-                          <!--  <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
-                            <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
-                            <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
-                            <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
-                            <input type="text" name="page" value="login" hidden >  			
-                            <button type="submit" class="btn btn-success" role="button"><img src="Pictures/!.jpg" alt="" height="30" width="30"/></button>	
-                            <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Notes</a>
-                        </form>
+                <form>	
+                    <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
+                    <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
+                    <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
+                    <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
+                    <input type="text" name="page" value="login" hidden >  			
+                    <button class="btn btn-danger">The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to say something <span class="glyphicon glyphicon-comment"></span></a>
+                </form>
+                <%      } else {%>
 
-                        <%  }
-                        %>
+                <form method="POST" action="/myDental/Flag">	
+                    <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>
+                  <!--  <a name="flags"><span class="badge"><%=picMod.getFlagsForPic(p.getSUUID())%></span></a> -->
+                    <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
+                    <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
+                    <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
+                    <input type="text" name="page" value="login" hidden >  			
+                    <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
+                </form>
 
-                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>"></a><br/><%
+                <%  }
+                %>
+                <div class="pictureAndTexDiv">
+                    <div class="cell">
+                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;"></a><br/><%
                             if (p.getCaption().isEmpty()) {
                             } else {%>
+                       
+                        <span class="text"><%out.println(p.getCaption());%></span> </div>
+                    <textarea id="text" hidden><%out.println(p.getCaption());%></textarea>
 
-                        <div>
-                            <b><%out.println(p.getCaption());%></b>
-
-
-                        </div>
-
-                        <%  }
-                                    }
-                                }
-                            }
-                        %>
-                    </div>
-
-
-
+                    <button onclick="responsiveVoice.speak($('#text').val(), 'UK English Female');" type='button' value='PLAY' class="btn btn-warning"> <span class="glyphicon glyphicon-volume-up"></span></button>
+                 
                 </div>
+
+
+                <%  }
+                            }
+                        }
+                    }
+                %>
+
             </div>
-        </div>                     
+        </div>
+            
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <script src="http://responsivevoice.org/responsivevoice/responsivevoice.js"></script>                 
     </body>
 </html>

@@ -23,6 +23,13 @@
     </head>
     <body class="body">        
         <nav class="navbar navbar-default navbar-fixed-top">
+                    <%
+
+            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+            if (lg != null) {
+                String username = lg.getUsername();
+                if (lg.getloggedin()) {
+        %>
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -33,7 +40,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard <span class="glyphicon glyphicon-dashboard"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
 
@@ -43,13 +50,7 @@
                 </div>
             </div>
         </nav>
-        <%
 
-            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-            if (lg != null) {
-                String username = lg.getUsername();
-                if (lg.getloggedin()) {
-        %>
 
         <%
             Error e = (Error) session.getAttribute("ErrorMessages");
@@ -79,32 +80,25 @@
 
                     <button type="button" class="btn btn-danger" onclick="deleteRow('dataTable')">Delete Image <span class="glyphicon glyphicon-minus-sign"></span></button>
 
-                    <button type="submit" id="submit" class="btn btn-success" form="myForm">Save & Send Story <span class="glyphicon glyphicon-send"></span></button>
+                    <button type="submit" id="submit" class="btn btn-success" form="myForm">Save & Send Image to Story <span class="glyphicon glyphicon-send"></span></button>
                     <ul></ul>
-                    <input type="text" class="form-control" id="usr" placeholder="Story Title">
+                   
 
                     <input type="text" class="form-control" name="sendto" form="myForm" placeholder="Enter Patient username.."> 
-
-                    <input type="text" class="form-control" placeholder="Appointment Date, in the form: DD/MM/YY">
+                     <input type="text" class="form-control" name="treatment" form="myForm" placeholder="Story Title" hidden>
+                   <input type="text" class="form-control" placeholder="Appointment Date: DD/MM/YY">
 
 
                     <ul></ul>
-
+                    <div class="container-fluid">
                     <TABLE id="dataTable" width="600px" border="0">
                         <TR>
                             <TD><INPUT type="checkbox" name="chk"/></TD>
 
                             <TD><form id="myForm" method="POST" enctype="multipart/form-data" action="Image">
                                     <table border="1">
-                                        <tr>
-                                            <td>
-
-
                                                 <input type="file" name="upfile" multiple="multiple">
                                                 <input type="text" class="form-control" name="caption" placeholder="Enter a caption here..">
-
-                                            </td>
-                                        </tr>
                                     </table>
                                 </form>
 
@@ -113,6 +107,7 @@
                     </TABLE>
 
                 </div>
+            </div>
 
             </div>
 

@@ -34,7 +34,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="patientPortal.jsp">Home</a></li>
+                    <li><a href="patientPortal.jsp">Home<span class="glyphicon glyphicon-home"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
 

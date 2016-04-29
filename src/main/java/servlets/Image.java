@@ -249,7 +249,11 @@ public class Image extends HttpServlet {
             if (sendto.isEmpty()) {
                 sendto = "";
             }
-
+            String treatment = request.getParameter("treatment");
+            if (treatment.isEmpty()) {
+                treatment = "";
+            }
+            
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             int flags = 0;
@@ -269,7 +273,7 @@ public class Image extends HttpServlet {
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
 
-                tm.insertPic(b, type, filename, username, caption, flags, sendto);
+                tm.insertPic(b, type, filename, username, caption, flags, sendto, treatment);
 
                 is.close();
             }

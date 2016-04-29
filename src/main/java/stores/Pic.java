@@ -20,6 +20,7 @@ public class Pic {
     private String type;
     private String caption;
     private String sendto;
+    private String treatment;
     private String user;
     private java.util.UUID UUID = null;
     private java.util.List<String> comments = null;
@@ -76,6 +77,14 @@ public class Pic {
 
     public String getSendto() {
         return sendto;
+    }
+    
+    public void setTreatment(String treatment) {
+        this.treatment = treatment;
+    }
+
+    public String getTreatment() {
+        return treatment;
     }
     
       public void setUser(String user){
