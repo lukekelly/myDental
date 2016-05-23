@@ -11,12 +11,14 @@
 <%@ page import="lib.CassandraHosts"%>
 <%@ page import="com.datastax.driver.core.Cluster"%>
 <%@ page import="java.util.LinkedList"%>
+<%@ page import= "java.util.Iterator" %>
+<%@ page import= "java.util.ListIterator" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>View Stories</title>
+        <title>Latest Story</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -56,20 +58,21 @@
                         if (lg.getloggedin()) {
 
                 %>
-                <div class="col-lg-12">
-                    <h1 class="page-header"><%=lg.getFirstName()%>'s most recent story for: </h1>
+           <div class="col-lg-12">
+                    <h1 class="page-header"><%=lg.getFirstName()%>: Your Newest Story</h1>
                 </div>
                 <%
                 } else {%>
                 <%}%>
-                
                 <%
                     java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("allPics");
                     int lsFlags = 0;
 
                     if (lsPics == null) {
                 %>
-                <p>No Stories Found</p>
+                <div class="col-lg-12">
+                    <h1 class="page-header"><%=lg.getFirstName()%>, you have no new stories!</h1>
+                </div>
                 <%
                 } else {
                     Iterator<Pic> iterator;
@@ -78,18 +81,16 @@
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
-                     if (lsFlags != 0) {%>
-
-
-
+                        if (lsFlags != 0) {%>
+  
                 <form>	
                     <input type="text" name="flags" value="<%=picMod.getFlagsForPic(p.getSUUID())%>" hidden>           
                     <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
                     <input type="text" name="login" value="<%=lg.getUsername()%>" hidden> 
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
-                    <input type="text" name="page" value="login" hidden >  			
-                    <button class="btn btn-danger">The dentist has been told</button><img src="Pictures/!.jpg" alt="" height="30" width="30"/>
-                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">I want to say something <span class="glyphicon glyphicon-comment"></span></a>
+                    <input type="text" name="page" value="login" hidden >  		
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button" style="position: relative; z-index: 1;">Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-danger" style="position: relative; z-index: 1;"><img src="Pictures/worried.PNG" alt="worried" height="70" width="70"/></button>
                 </form>
                 <%      } else {%>
 
@@ -100,23 +101,22 @@
                     <input type="text" name="login" value="<%=lg.getUsername()%>" hidden>
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
                     <input type="text" name="page" value="login" hidden >  			
-                    <button class="btn btn-success">Please tell the dentist   <span class="glyphicon glyphicon-thumbs-down"></span></button>	
-                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> I want to say something  <span class="glyphicon glyphicon-comment"></span></a>
+                    <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                 </form>
 
-                <%  }
-                %>
+                <%  }%>            
+
                 <div class="pictureAndTexDiv">
+                   
                     <div class="cell">
-                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;"></a><br/><%
+                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;" height="600"></a><br/><%
                             if (p.getCaption().isEmpty()) {
                             } else {%>
-                       
-                        <span class="text"><%out.println(p.getCaption());%></span> </div>
-                    <textarea id="text" hidden><%out.println(p.getCaption());%></textarea>
 
-                    <button onclick="responsiveVoice.speak($('#text').val(), 'UK English Female');" type='button' value='PLAY' class="btn btn-warning"> <span class="glyphicon glyphicon-volume-up"></span></button>
-                 
+                        <span class="text"><%out.println(p.getCaption());%></span> </div>
+
+
                 </div>
 
 
@@ -128,8 +128,8 @@
 
             </div>
         </div>
-            
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                    <script src="http://responsivevoice.org/responsivevoice/responsivevoice.js"></script>                 
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://responsivevoice.org/responsivevoice/responsivevoice.js"></script>                 
     </body>
 </html>

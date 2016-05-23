@@ -1,9 +1,8 @@
 <%-- 
-    Document   : dentistHygienist
-    Created on : 27-Apr-2016, 19:54:44
+    Document   : FissureSealentDentist
+    Created on : 05-May-2016, 23:30:10
     Author     : Luke
 --%>
-
 <%@page import= "java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import= "stores.*" %>
@@ -16,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hygienist Visit</title>
+        <title>Fissure Sealent</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -33,9 +32,8 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-
                     <li><a href="ViewStories.jsp">Stories <span class="glyphicon glyphicon-book"></span></a></li>
-                    <li><a href="dentistPortal.jsp">Dashboard <span class="glyphicon glyphicon-dashboard"></span></a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -59,7 +57,7 @@
 
                 %>
                 <div class="col-lg-12">
-                    <h1 class="page-header">Hygienist Visit</h1>
+                    <h1 class="page-header"> Fissure Sealent Appointment</h1>
                 </div>
                 <%
                 } else {%>
@@ -75,11 +73,11 @@
                 <%
                 } else {
                     Iterator<Pic> iterator = lsPics.iterator();
-                    while (iterator.hasNext()) {
+                  for (int i = 0; i < lsPics.size(); i++) {
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
-
+                        
                         if (lsFlags != 0) {%>
 
 
@@ -91,7 +89,7 @@
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden> 
                     <input type="text" name="page" value="login" hidden >  		
                     <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button" style="position: relative; z-index: 1;">Notes <span class="glyphicon glyphicon-comment"></span></a>
-                    <button class="btn btn-danger" style="position: relative; z-index: 1;"><img src="Pictures/worried.PNG" alt="worried" height="70" width="70"/></button>
+                    <button class="btn btn-danger" style="position: relative; z-index: 1;" disabled><img src="Pictures/worried.PNG" alt="worried" height="70" width="70"/></button>
                 </form>
                 <%      } else {%>
 
@@ -103,14 +101,14 @@
                     <input type="text" name="sendto" value="<%=p.getSendto()%>" hidden>
                     <input type="text" name="page" value="login" hidden >  			
                     <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                    <button class="btn btn-success" disabled><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                 </form>
 
                 <%  }%>            
 
                 <div class="pictureAndTexDiv">
                     <div class="cell">
-                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;"></a><br/><%
+                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;" height="600"></a><br/><%
                             if (p.getCaption().isEmpty()) {
                             } else {%>
 
@@ -127,11 +125,13 @@
 
 
                 <%  }
-                            }
-                        }
+            }
+       }
 
                     }
-
+    
+                
+        
                 %>
 
             </div>

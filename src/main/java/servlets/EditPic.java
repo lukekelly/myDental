@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import lib.CassandraHosts;
+import lib.Convertors;
 import models.*;
 import stores.LoggedIn;
 import stores.Pic;
@@ -39,17 +40,19 @@ public class EditPic extends HttpServlet {
 
         PicModel pm = new PicModel();
         pm.setCluster(cluster);
+        String args[] = Convertors.SplitRequestPath(request);
+        
 
         HttpSession session = request.getSession();
         System.out.println("Session in servlet " + session);
         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-        
+        request.setAttribute("picID", args[2]);
        
-        String picid = request.getParameter("picid");
+        java.util.UUID picID = java.util.UUID.fromString(args[2]);
         String caption = request.getParameter("caption");
-        String user = request.getParameter("user");
+        String user = "newdentist";
 
-        pm.updatePic(user, picid, caption);
+        pm.updatePic(user, picID, caption);
         response.sendRedirect(request.getHeader("Referer"));
 
     }

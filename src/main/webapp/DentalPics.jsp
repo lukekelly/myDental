@@ -35,7 +35,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>  
                 <ul class="nav navbar-nav">
-                        <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
+                        <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
                     </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -81,11 +81,11 @@
             while (iterator.hasNext()) {
                 Pic p = (Pic) iterator.next();
         %>
-
         <div class="row">
+       <div class="col-sm-3">
             <div class="span1"><img src="/myDental/Thumb/<%=p.getSUUID()%>" width="200" height="200"></div>
         </div>	
-
+        </div>
 
 
         <%

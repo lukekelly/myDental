@@ -1,8 +1,9 @@
 <%-- 
-    Document   : checkup
-    Created on : 13-Apr-2016, 10:44:53
+    Document   : CheckUpDentist
+    Created on : 05-May-2016, 22:28:22
     Author     : Luke
 --%>
+
 <%@page import= "java.util.Iterator"%>
 <%@page import= "com.datastax.driver.core.Cluster"%>
 <%@page import= "lib.CassandraHosts"%>
@@ -34,7 +35,8 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="patientPortal.jsp">Home<span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="ViewStories.jsp">Stories <span class="glyphicon glyphicon-book"></span></a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
 
@@ -65,7 +67,7 @@
                         <div class="container-fluid">
                             <form>	  			
                                 <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                                <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                             </form>
                         </div>
                         <img src="Pictures/1.PNG.jpg" alt="">
@@ -81,8 +83,8 @@
                     <div class="item">
                         <div class="container-fluid">
                             <form>	  			
-                                <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                                <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                                        <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                             </form>
                         </div>
                         <img src="Pictures/3.PNG.jpg" alt="">
@@ -95,8 +97,8 @@
                     <div class="item">
                         <div class="container-fluid">
                             <form>	  			
-                                <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                                <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                                         <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                             </form>
                         </div>
                         <img src="Pictures/room.jpg" alt="">
@@ -110,8 +112,8 @@
                     <div class="item">
                         <div class="container-fluid">
                             <form>	  			
-                                <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                                <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                                         <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                             </form>
                         </div>
                         <img src="Pictures/6.PNG.jpg" alt="">
@@ -124,8 +126,8 @@
                     <div class="item">
                         <div class="container-fluid">
                             <form>	  			
-                                <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                                <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                                        <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                             </form>
                         </div>
                         <img src="Pictures/light.jpg" alt="">
@@ -139,8 +141,8 @@
                     <div class="item">
                         <div class="container-fluid">
                             <form>	  			
-                                <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                                <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                                         <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                             </form>
                         </div>
                         <img src="Pictures/mirror.jpg" alt="">
@@ -155,8 +157,8 @@
                     <div class="item">
                         <div class="container-fluid">
                             <form>	  			
-                                <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                                <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                                         <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                             </form>
                         </div>
                         <img src="Pictures/air.jpg" alt="">
@@ -170,8 +172,8 @@
                     <div class="item">
                         <div class="container-fluid">
                             <form>	  			
-                                <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                                <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                                         <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                             </form>
                         </div>
                         <img src="Pictures/5.PNG.jpg" alt="">
@@ -185,8 +187,8 @@
                     <div class="item">
                         <div class="container-fluid">
                             <form>	  			
-                                <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
-                                <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
+                                      <a class="btn btn-info" role="button"> Notes <span class="glyphicon glyphicon-comment"></span></a>
+                    <button class="btn btn-success"><img src="Pictures/notworried.PNG" alt="Not Worried" height="70" width="70"/></button>
                             </form>
                         </div>
                         <img src="Pictures/wash.jpg" alt=""/>
@@ -212,7 +214,7 @@
         <% } else {%>
         <h1>Patient Portal: Not Logged In</h1>
         <%  }
-            }%>
+                }%>
 
     </body>   
 </html>

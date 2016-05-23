@@ -1,6 +1,6 @@
 <%-- 
-    Document   : dentistHygienist
-    Created on : 27-Apr-2016, 19:54:44
+    Document   : EditStory
+    Created on : 06-May-2016, 09:50:23
     Author     : Luke
 --%>
 
@@ -16,7 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hygienist Visit</title>
+        <title>Hygienist Visit: Edit</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -118,7 +118,15 @@
                     <textarea id="text" hidden><%out.println(p.getCaption());%></textarea>
 
                     <button onclick="responsiveVoice.speak($('#text').val(), 'UK English Female');" type='button' value='PLAY' class="btn btn-warning"> <span class="glyphicon glyphicon-volume-up"></span></button>
+                    
+                                 
+        
 
+                        <input type="text" name="caption" placeholder="Enter a new caption here..">
+                        </br>													
+                         <button type="button" class="btn btn-info">Update Caption </button>
+                    
+                </div>
                 </div>
 
 

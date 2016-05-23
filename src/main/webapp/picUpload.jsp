@@ -35,7 +35,7 @@
                     <a class="navbar-brand" href="myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
 
@@ -54,16 +54,16 @@
                 <!-- Default panel contents -->
                 <div class="panel-heading">This is where you can upload images from your device to your online image library.</div>
                 <!-- List group -->
+                
                 <ul class="list-group">
                     <li>   <form method="POST" enctype="multipart/form-data" action="Image" class="center">
                             <input type="file" name="upfile" multiple="multiple">
-                            <input type="text" name="caption" placeholder="Enter a caption here.." ><br/>
-                            <input type="text" name="sendto">
-                            <input type="text" name="treatment">
+                            <input type="text" name="caption" placeholder="Enter a caption here.."  hidden><br/>
+                            <input type="text" name="treatment" hidden>
+                            <input type="text" name="sendto" hidden>
                             <button type="submit" class="btn btn-success" role="button">Upload Image <span class="glyphicon glyphicon-save"></span></button>
                         </form>
                     </li>
-
                 </ul>
             </div>
 

@@ -16,6 +16,10 @@
     filter: blur(50px);
 }
 
+.bodyindex{
+    background-color: rgb(153, 153, 153);
+}
+
 #main{
     background: url("Pictures/background.jpg") no-repeat center center fixed;
     background-color: rgb(153, 153, 153);
@@ -476,6 +480,8 @@ table {
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;
+    color: white;
+    position: relative;
 }
 .form-signin .checkbox {
     font-weight: normal;

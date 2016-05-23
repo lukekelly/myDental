@@ -34,7 +34,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                  <ul class="nav navbar-nav">
-                        <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
+                        <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
                     </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -75,6 +75,7 @@
                     int lsFlags = 0;
                     if (lsPics == null) {
                 %>
+                <p><strong><%=lg.getFirstName()%>, you have no notifications!</strong></p>
                 <%
                 } else {
                     Iterator<Pic> iterator;
@@ -92,7 +93,7 @@
                         <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden> 
                         
                         <!-- <a name="flags"><span class="badge"><%=lg.getUsername()%></span></a> -->
-                        <a name="flags"><span class="badge">Your patient, <%=picMod.getFlaggerForPic(p.getSUUID())%>, flagged this image in <%=p.getSendto()%></span></a>
+                        <a name="flags"><span class="alert-danger">Your patient, <%=picMod.getFlaggerForPic(p.getSUUID())%>, has flagged this image in <%=p.getTreatment()%></span></a>
                         <input type="text" name="page" value="login" hidden>  			
                         <a href="/myDental/Comments/<%=p.getSUUID()%>" class="btn btn-info" role="button">Patient Notes</a>
                     </div>
@@ -104,6 +105,7 @@
                     }
                 %>
                                     <%
+                    
                 java.util.LinkedList<Comment> comments = (java.util.LinkedList<Comment>) request.getAttribute("Comments");
                 if (comments == null) { %>
             <% } else { %>

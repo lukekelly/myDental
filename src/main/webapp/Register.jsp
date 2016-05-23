@@ -4,6 +4,7 @@
     Author     : Luke
 --%>
 <%@page import="stores.LoggedIn"%>
+<%@page import="servlets.Error" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,14 @@
     </head>
     <body class="body">        
              <nav class="navbar navbar-default navbar-fixed-top">
+                                    <%
+                        
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String username = lg.getUsername();
+                            if (lg.getloggedin()) {
+                    %>
+    
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -27,7 +36,7 @@
                     <a class="navbar-brand" href="myDental">myDental</a> 
                 </div>
                 <ul class="nav navbar-nav">
-                        <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
+                        <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
                     </ul>
                  <div class="collapse navbar-collapse" id="myNavbar">
                     
@@ -37,19 +46,30 @@
                 </div>
             </div>
         </nav>
-                   <%
-                        
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        if (lg != null) {
-                            String username = lg.getUsername();
-                            if (lg.getloggedin()) {
-                    %>
-    
-        
+                <%
+            Error e = (Error) session.getAttribute("ErrorMessages");
+            String errorMessage = "";
+            if (e != null) {
+                errorMessage = e.getErrorMessage();
+        %>
+
+        <div class="alert alert-success" role="alert" align="centre">
+            <%=errorMessage%> 
+        </div>
+        <%
+            } else {
+                
+            }
+        %>
+
+          <div class="container">
+            <div class="row">     
+                    <div class="col-lg-12">
+                    <h1 class="page-header">Register a Patient</h1>
+                </div>   
 
              <div class="container">
                 <form class="form-signin" role="form" method="POST" action="Register">
-                <h2 class="form-signin-heading">Register a Patient</h2>
                 <label for="username" class="sr-only">Username</label>
                 <input type="text" name="username" class="form-control" placeholder="Username for patient" required autofocus>
                 
@@ -62,7 +82,7 @@
                 <label for="surname" class="sr-only">Second Name</label>
                 
                 <input type="text" name="surname" class="form-control" placeholder="Second Name of patient" required> 
-                <button type="submit" class="btn btn-primary">Register Patient on the System</button>
+                <button type="submit" class="btn btn-primary">Register Patient</button>
             </form>
               </div>
                             <%}
@@ -72,6 +92,7 @@
                                         
                             
                     }%>
-         
+            </div>
+          </div>
     </body>
 </html>

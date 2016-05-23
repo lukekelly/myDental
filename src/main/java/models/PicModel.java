@@ -39,51 +39,48 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user, String caption, int flags, String sendto, String treatment) {
-        try {
-            Convertors convertor = new Convertors();
-
-            flags = 0;
-            String types[] = Convertors.SplitFiletype(type);
-            ByteBuffer buffer = ByteBuffer.wrap(b);
-            int length = b.length;
-            java.util.UUID picid = convertor.getTimeUUID();
-
-            //Quick way to do this, will fill the disk quickly!
-            Boolean success = (new File("/var/tmp/myDental/")).mkdirs();
-            FileOutputStream output = new FileOutputStream(new File("/var/tmp/myDental/" + picid));
-
-            output.write(b);
-            byte[] thumbb = picresize(picid.toString(), types[1]);
-            int thumblength = thumbb.length;
-            ByteBuffer thumbbuf = ByteBuffer.wrap(thumbb);
-            byte[] processedb = picdecolour(picid.toString(), types[1]);
-            ByteBuffer processedbuf = ByteBuffer.wrap(processedb);
-            int processedlength = processedb.length;
-            Session session = cluster.connect("myDental");
-
-            PreparedStatement psInsertPic = session.prepare("insert into pics (picid, image, thumb, processed, user, interaction_time, imagelength, thumblength, processedlength, type, name) values(?,?,?,?,?,?,?,?,?,?,?)");
-            PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added, caption, sendto, treatment) values(?,?,?,?,?,?)");
-            PreparedStatement psInsertFlags = session.prepare("insert into flags (flags,login,picid) values(?,?,?)");
-            			
+public void insertPic(byte[] b, String type, String name, String user, String caption, int flags, String sendto, String treatment) {
+    try {
+        Convertors convertor = new Convertors();
+        flags = 0;
+        String types[] = Convertors.SplitFiletype(type);
+        ByteBuffer buffer = ByteBuffer.wrap(b);
+        int length = b.length;
+        java.util.UUID picid = convertor.getTimeUUID();
+        //Fills the disk quickly!
+        Boolean success = (new File("/var/tmp/myDental/")).mkdirs();
+        FileOutputStream output = new FileOutputStream(new File("/var/tmp/myDental/" + picid));
+        output.write(b);
+        byte[] thumbb = picresize(picid.toString(), types[1]);
+        int thumblength = thumbb.length;
+        ByteBuffer thumbbuf = ByteBuffer.wrap(thumbb);
+        byte[] processedb = picdecolour(picid.toString(), types[1]);
+        ByteBuffer processedbuf = ByteBuffer.wrap(processedb);
+        int processedlength = processedb.length;
+        Session session = cluster.connect("myDental");
             
-            BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
-            BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
-            BoundStatement bsInsertFlags = new BoundStatement(psInsertFlags);
-           
+        //CQL queries to add image to the pics and users pics table. Also to the flags table.
+        PreparedStatement psInsertPic = session.prepare("insert into pics (picid, image, thumb, processed, user, interaction_time, imagelength, thumblength, processedlength, type, name) values(?,?,?,?,?,?,?,?,?,?,?)");
+        PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added, caption, sendto, treatment) values(?,?,?,?,?,?)");
+        PreparedStatement psInsertFlags = session.prepare("insert into flags (flags,login,picid) values(?,?,?)");
 
-            Date DateAdded = new Date();
-            session.execute(bsInsertPic.bind(picid, buffer, thumbbuf, processedbuf, user, DateAdded, length, thumblength, processedlength, type, name));
-            session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, caption, sendto, treatment));
-            session.execute(bsInsertFlags.bind(flags, user, picid.toString()));
-           
+        //Binding statements
+        BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
+        BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
+        BoundStatement bsInsertFlags = new BoundStatement(psInsertFlags);
+            
+        //Add data to the DB
+        Date DateAdded = new Date();
+        session.execute(bsInsertPic.bind(picid, buffer, thumbbuf, processedbuf, user, DateAdded, length, thumblength, processedlength, type, name));
+        session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, caption, sendto, treatment));
+        session.execute(bsInsertFlags.bind(flags, user, picid.toString()));
 
-            session.close();
+        session.close();
 
-        } catch (IOException ex) {
-            System.out.println("Error --> " + ex);
-        }
+    } catch (IOException ex) {
+        System.out.println("Error: " + ex);
     }
+}
 
     public byte[] picresize(String picid, String type) {
         try {
@@ -200,19 +197,19 @@ public class PicModel {
         PreparedStatement ps = session.prepare("select user,picid,caption,sendto,treatment from userpiclist where user =?");
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
-        rs = session.execute( boundStatement.bind(User));
+        rs = session.execute(boundStatement.bind(User));
 
-        //session.close();
         if (rs.isExhausted()) {
-            System.out.println("No Images returned");
+            System.out.println("No Images returned!");
             return null;
         } else {
             for (Row row : rs) {
                 Pic pic = new Pic();
-              
+                
+                //Retrieve all data attached to the picture
                 java.util.UUID UUID = row.getUUID("picid");
                 System.out.println("UUID" + UUID.toString());
-                  pic.setUser(row.getString("user"));
+                pic.setUser(row.getString("user"));
                 pic.setCaption(row.getString("caption"));
                 pic.setSendto(row.getString("sendto"));
                 pic.setTreatment(row.getString("treatment"));
@@ -280,6 +277,7 @@ public class PicModel {
         return p;
 
     }
+    
 
     public void insertComment(String username, UUID picID, String comment) {
         Convertors convertor = new Convertors();
@@ -388,12 +386,12 @@ public class PicModel {
     
     
     
-      public void updatePic(String user, String picid, String caption){
+      public void updatePic(String user, UUID picID, String caption){
          
         Session session = cluster.connect("myDental");
         PreparedStatement ps = session.prepare("UPDATE userpiclist SET caption = ? WHERE user = ? AND picid = ?");
         BoundStatement boundStatement = new BoundStatement(ps);
-        session.execute(boundStatement.bind(user,picid,caption)); 
+        session.execute(boundStatement.bind(user,picID,caption)); 
     }
     
 }

@@ -182,7 +182,7 @@ public class PatientModel {
            }   
        return secondName ;  
        }
-      
+    
    public void UpdateUserDetails(String username, String firstName, String secondName){
        
         Session session = cluster.connect("myDental");    

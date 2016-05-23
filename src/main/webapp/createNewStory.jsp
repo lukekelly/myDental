@@ -5,9 +5,6 @@
 --%>
 
 <%@page import="stores.LoggedIn"%>
-<%@page import="stores.Comment"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="stores.Pic"%>
 <%@page import="servlets.Error" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,13 +20,13 @@
     </head>
     <body class="body">        
         <nav class="navbar navbar-default navbar-fixed-top">
-                    <%
+            <%
 
-            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-            if (lg != null) {
-                String username = lg.getUsername();
-                if (lg.getloggedin()) {
-        %>
+                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                if (lg != null) {
+                    String username = lg.getUsername();
+                    if (lg.getloggedin()) {
+            %>
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -75,41 +72,50 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Create a New Story</h1>
                 </div>
-               
-                    <button type="button" class="btn btn-info" onclick="addRow('dataTable')">Add Image <span class="glyphicon glyphicon-plus-sign"></span></button>
 
-                    <button type="button" class="btn btn-danger" onclick="deleteRow('dataTable')">Delete Image <span class="glyphicon glyphicon-minus-sign"></span></button>
+                <button type="button" class="btn btn-info" onclick="addRow('dataTable')">Add Image <span class="glyphicon glyphicon-plus-sign"></span></button>
 
-                    <button type="submit" id="submit" class="btn btn-success" form="myForm">Save & Send Image to Story <span class="glyphicon glyphicon-send"></span></button>
-                    <ul></ul>
-                   
-
-                    <input type="text" class="form-control" name="sendto" form="myForm" placeholder="Enter Patient username.."> 
-                     <input type="text" class="form-control" name="treatment" form="myForm" placeholder="Story Title" hidden>
-                   <input type="text" class="form-control" placeholder="Appointment Date: DD/MM/YY">
+                <button type="button" class="btn btn-danger" onclick="deleteRow('dataTable')">Delete Image <span class="glyphicon glyphicon-minus-sign"></span></button>
 
 
-                    <ul></ul>
-                    <div class="container-fluid">
-                    <TABLE id="dataTable" width="600px" border="0">
-                        <TR>
-                            <TD><INPUT type="checkbox" name="chk"/></TD>
+                <button type="submit" id="submit" form="myForm" class="btn btn-success" role="button">Save & Send Image to Story <span class="glyphicon glyphicon-send"></span></button>
 
-                            <TD><form id="myForm" method="POST" enctype="multipart/form-data" action="Image">
-                                    <table border="1">
-                                                <input type="file" name="upfile" multiple="multiple">
-                                                <input type="text" class="form-control" name="caption" placeholder="Enter a caption here..">
-                                    </table>
-                                </form>
+                <ul></ul>
 
-                        </TR>
 
-                    </TABLE>
-
+                <ul></ul>
+                 <div class="col-lg-4 col-md-4 col-xs-6">
+                        <script>
+                            var loadFile = function (event) {
+                                var output = document.getElementById('output');
+                                output.src = URL.createObjectURL(event.target.files[0]);
+                            };
+                        </script>
+                    </div>
+                
+                <div class="container-fluid">
+                    <div class="col-lg-4 col-md-4 col-xs-6">
+                        <TABLE id="dataTable" width="600px" border="0">
+                            <TR>
+                                <TD><INPUT type="checkbox" name="chk"/></TD>
+                                <TD>
+                                    <form method="POST" id="myForm" enctype="multipart/form-data" action="Image" >
+                                        <table border="1">  
+                                            <input type="file" name="upfile" multiple="multiple" onchange="loadFile(event)">
+                                            <input type="text" name="caption" class="form-control" placeholder="Enter a caption here.."  ><br/>
+                                            <input type="text" name="treatment" class="form-control" placeholder="Title.." >
+                                            <input type="text" name="sendto" class="form-control" placeholder="Patient.." >                                          
+                                        </table>
+                                        <img id="output" height="100"/>
+                                    </form>
+                            </TR>
+                        </TABLE>
+                    </div>
                 </div>
+                   
+              
             </div>
-
-            </div>
+        </div>
 
         <%}
         } else {
@@ -117,9 +123,13 @@
         <%
             }%>
 
-
-
         <script>
+
+            $("#imgInp").change(function () {
+                readURL(this);
+            });
+
+
             function addRow(tableID) {
 
                 var table = document.getElementById(tableID);

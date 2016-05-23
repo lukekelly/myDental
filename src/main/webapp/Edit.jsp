@@ -33,7 +33,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>  
                 <ul class="nav navbar-nav">
-                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -63,13 +63,13 @@
             <div class="panel-heading">Below are the stories you have published. To edit a story, simply select the title.. </div>
             <!-- List group -->
             <ul class="list-group">
-                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  Check Up</a></li>
-                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  Hygienist Visit</a></li>
-                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  White Filling</a></li>
-                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  Fissure Sealant</a></li>
-                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  Local Anaesthetic</a></li>
-                <li class="list-group-item"><a href="PatientProfile.jsp"><span class="glyphicon glyphicon-edit"></span>  X ray</a></li>
-                <li class="list-group-item"><a href="/myDental/viewStories2"><span class="glyphicon glyphicon-edit"></span> NEWEST STORY</a></li>
+                <li class="list-group-item"><a> <span class="glyphicon glyphicon-edit"></span>  Check Up</a></li>
+                <li class="list-group-item"><a href="/myDental/Edit"><span class="glyphicon glyphicon-edit"></span>  Hygienist Visit</a></li>
+                <li class="list-group-item"><a><span class="glyphicon glyphicon-edit"></span>  White Filling</a></li>
+                <li class="list-group-item"><a><span class="glyphicon glyphicon-edit"></span>  Fissure Sealant</a></li>
+                <li class="list-group-item"><a><span class="glyphicon glyphicon-edit"></span>  Local Anaesthetic</a></li>
+                <li class="list-group-item"><a><span class="glyphicon glyphicon-edit"></span>  X ray</a></li>
+                <li class="list-group-item"><a><span class="glyphicon glyphicon-edit"></span> NEWEST STORY</a></li>
             </ul>
         </div>
         </div>

@@ -38,9 +38,15 @@ import stores.Pic;
     "/inbox/*",
     "/DentalPics/*",
     "/viewStories2",
-    "/DisplayAllImages",
+    "/ShowStory",
     "/HygienistVisit",
-    "/DentistHygienistVisit"
+    "/DentistHygienistVisit",
+    "/WhiteFilling",
+    "/WhiteFillingDentist",
+    "/FissureSealent",
+    "/FissureSealentDentist",
+    "/Edit"
+        
 })
 @MultipartConfig
 
@@ -63,9 +69,14 @@ public class Image extends HttpServlet {
         CommandsMap.put("Thumb", 3);
         CommandsMap.put("inbox", 4);
         CommandsMap.put("viewStories2", 5);
-        CommandsMap.put("DisplayAllImages", 6);
+        CommandsMap.put("ShowStory", 6);
         CommandsMap.put("HygienistVisit", 7);
         CommandsMap.put("DentistHygienistVisit", 8);
+        CommandsMap.put("WhiteFilling", 9);
+        CommandsMap.put("WhiteFillingDentist", 10);
+        CommandsMap.put("FissureSealent", 11);
+        CommandsMap.put("FissureSealentDentist", 12);
+        CommandsMap.put("Edit", 13);
         e = new Error();
     }
 
@@ -108,7 +119,7 @@ public class Image extends HttpServlet {
                 DisplayStories(lg.getUsername(), request, response);
                 break;
             case 6:
-                DisplayAllImages(lg.getUsername(), request, response);
+                DisplayStory(lg.getUsername(), request, response);
                 break;
             case 7:
                 DisplayHygienistVisit(lg.getUsername(), request, response);
@@ -116,11 +127,26 @@ public class Image extends HttpServlet {
             case 8:
                 DisplayDentistHygienistVisit(lg.getUsername(), request, response);
                 break;
+            case 9:
+                DisplayWhiteFilling(lg.getUsername(), request, response);
+                break;  
+             case 10:
+                DisplayWhiteFillingDentist(lg.getUsername(), request, response);
+                break;
+            case 11:
+                DisplayFissureSealent(lg.getUsername(), request, response);
+                break;
+            case 12:
+                DisplayFissureSealentDentist(lg.getUsername(), request, response);
+                break;
+            case 13:
+                DisplayDentistHygienistVisitEdit(lg.getUsername(), request, response);
+                break;
             default:
                 error("Bad Operator", response);
         }
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void DisplayImageList(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
@@ -130,7 +156,7 @@ public class Image extends HttpServlet {
         request.setAttribute("Pics", lsPics);
         rd.forward(request, response);
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void DisplayInbox(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
@@ -140,26 +166,26 @@ public class Image extends HttpServlet {
         request.setAttribute("Pics", lsPics);
         rd.forward(request, response);
     }
-
-    private void DisplayStories(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-           PicModel tm = new PicModel();
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void DisplayStories(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
         tm.setCluster(cluster);
 
         HttpSession session = request.getSession();
         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
         //String username="";
         if (lg.getloggedin()) {
-            User = lg.getUsername();
+            username = lg.getUsername();
         }
 
-        java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);
         RequestDispatcher rd = request.getRequestDispatcher("/ViewStories2.jsp");
 
-        request.setAttribute("Pics", lsPics);
+        request.setAttribute("allPics", lsPics);
         rd.forward(request, response);
     }
-
-    private void DisplayAllImages(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void DisplayStory(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
 
@@ -176,7 +202,7 @@ public class Image extends HttpServlet {
         request.setAttribute("allPics", lsPics);
         rd.forward(request, response);
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void DisplayHygienistVisit(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
@@ -196,7 +222,7 @@ public class Image extends HttpServlet {
         rd.forward(request, response);
     }
 
-        private void DisplayDentistHygienistVisit(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void DisplayDentistHygienistVisit(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
 
@@ -214,7 +240,96 @@ public class Image extends HttpServlet {
         request.setAttribute("allPics", lsPics);
         rd.forward(request, response);
     }
+        private void DisplayDentistHygienistVisitEdit(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+
+        //This is a quick and dirty way of retrieving images as part of a story. Replacing what would be the username with the name of the story
+        if (lg.getloggedin()) {
+            username = "HygienistVisitStory";
+        }
+
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);
+        RequestDispatcher rd = request.getRequestDispatcher("/EditStory.jsp");
+
+        request.setAttribute("allPics", lsPics);
+        rd.forward(request, response);
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void DisplayWhiteFilling(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+
+        if (lg.getloggedin()) {
+            username = "whitefillingstory";
+        }
+
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);
+        RequestDispatcher rd = request.getRequestDispatcher("/WhiteFilling.jsp");
+
+        request.setAttribute("allPics", lsPics);
+        rd.forward(request, response);
+    }
     
+      private void DisplayWhiteFillingDentist(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+
+        if (lg.getloggedin()) {
+            username = "whitefillingstory";
+        }
+
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);
+        RequestDispatcher rd = request.getRequestDispatcher("/WhiteFillingDentist.jsp");
+
+        request.setAttribute("allPics", lsPics);
+        rd.forward(request, response);
+    }
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        private void DisplayFissureSealent(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+
+        if (lg.getloggedin()) {
+            username = "fissuresealentstory";
+        }
+
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);
+        RequestDispatcher rd = request.getRequestDispatcher("/FissureSealent.jsp");
+
+        request.setAttribute("allPics", lsPics);
+        rd.forward(request, response);
+    }
+    private void DisplayFissureSealentDentist(String username, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+
+        if (lg.getloggedin()) {
+            username = "fissuresealentstory";
+        }
+
+        java.util.LinkedList<Pic> lsPics = tm.getAllPics(username);
+        RequestDispatcher rd = request.getRequestDispatcher("/FissureSealentDentist.jsp");
+
+        request.setAttribute("allPics", lsPics);
+        rd.forward(request, response);
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void DisplayImage(int type, String Image, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
@@ -233,7 +348,7 @@ public class Image extends HttpServlet {
         }
         out.close();
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         for (Part part : request.getParts()) {
 
@@ -253,7 +368,7 @@ public class Image extends HttpServlet {
             if (treatment.isEmpty()) {
                 treatment = "";
             }
-            
+
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             int flags = 0;
@@ -277,9 +392,10 @@ public class Image extends HttpServlet {
 
                 is.close();
             }
+
             RequestDispatcher rd = request.getRequestDispatcher("/createNewStory.jsp");
             //response.sendRedirect(request.getHeader("Referer"));
-            e.setErrorMessage(" Your story has been saved and sent to the patient! ");
+            e.setErrorMessage(" You story has been saved and sent to the patient! ");
             session.setAttribute("ErrorMessages", e);
             rd.forward(request, response);
 

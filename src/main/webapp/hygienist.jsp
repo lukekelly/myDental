@@ -69,15 +69,15 @@
                     if (lsPics == null) {
                 %>
                 <p>No Stories Found</p>
-                
+
                 <%
                 } else {
                     Iterator<Pic> iterator = lsPics.iterator();
-                  while (iterator.hasNext()) {
+                  for (int i = 0; i < lsPics.size(); i++) {
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
-
+                       
                         if (lsFlags != 0) {%>
 
 
@@ -105,36 +105,39 @@
                 </form>
 
                 <%  }%>            
-              
+
                 <div class="pictureAndTexDiv">
                     <div class="cell">
-                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;"></a><br/><%
+                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;" height="600"></a><br/><%
                             if (p.getCaption().isEmpty()) {
                             } else {%>
-                       
+
                         <span class="text"><%out.println(p.getCaption());%></span> </div>
                     <textarea id="text" hidden><%out.println(p.getCaption());%></textarea>
 
                     <button onclick="responsiveVoice.speak($('#text').val(), 'UK English Female');" type='button' value='PLAY' class="btn btn-warning"> <span class="glyphicon glyphicon-volume-up"></span></button>
-                 
-                </div>
-       
-   
-      
-                <%  }
-                            }
-                       }
 
-                    }
+                </div>
+
+
+
+
+
+
+                <%  }
+            }
+       }
+                    
+    }
                 
                 %>
 
-        
-          </div>
+            </div>
+
         </div>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                    <script src="http://responsivevoice.org/responsivevoice/responsivevoice.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://responsivevoice.org/responsivevoice/responsivevoice.js"></script>
 
     </body>
-    
+
 </html>

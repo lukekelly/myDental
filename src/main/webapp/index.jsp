@@ -16,7 +16,7 @@
     <link href="Styles.css" type="text/css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-    <body class="body" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <body class="body bodyindex" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
         <nav class="navbar navbar-default navbar-inverse">
             <div class="container">
                 <div class="navbar-header">

@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="/myDental/DisplayAllImages">
+                    <a class="thumbnail" href="/myDental/ShowStory">
                         <img class="img-responsive" src="Pictures/sstory.png" alt="">
                         <strong><p>Newest Story</p></strong>
                     </a>
@@ -94,13 +94,13 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" >
+                    <a class="thumbnail" href="/myDental/WhiteFilling">
                         <img class="img-responsive" src="Pictures/filling.jpg" alt="">
                         <strong><p>White Filling</p></strong>
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" >
+                    <a class="thumbnail" href="/myDental/FissureSealent">
                         <img class="img-responsive" src="Pictures/sealent.jpg" alt="">
                         <strong><p>Fissure Sealant</p></strong>
                     </a>

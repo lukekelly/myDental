@@ -28,7 +28,7 @@
                     <a class="navbar-brand" href="myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-                        <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-home"></span></a></li>
+                        <li><a href="dentistPortal.jsp">Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
                     </ul>
                  <div class="collapse navbar-collapse" id="myNavbar">
                     
@@ -38,12 +38,14 @@
                 </div>
             </div>
         </nav>
-       
-    
+     <div class="container">
+            <div class="row">     
+                    <div class="col-lg-12">
+                    <h1 class="page-header">Register a Dental Practitioner</h1>
+                </div>
         
              <div class="container">
                 <form class="form-signin" role="form" method="POST" action="DentalRegister">
-                <h2 class="form-signin-heading">Register a Dental Practitioner</h2>
                 <label for="username" class="sr-only">Username</label>
                 <input type="text" name="username" class="form-control" placeholder="Username for dentist" required autofocus>
           
@@ -56,10 +58,11 @@
                 <label for="surname" class="sr-only">Second Name</label>
                 <input type="text" name="surname" class="form-control" placeholder="Second Name of dentist" required>
                
-                <button type="submit" class="btn btn-primary">Register Dentist on the System</button>   
+                <button type="submit" class="btn btn-primary">Register Dentist</button>   
             </form>
               </div>
           
-         
+            </div>
+     </div>
     </body>
 </html>

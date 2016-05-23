@@ -16,6 +16,7 @@ public class Comment {
     private UUID commentID = null;
     private UUID picID = null;
     private String user = null;
+    private String firstname = null;
     private Date dateCreated = null;
     private String content = null;
     private int flag = 0;
@@ -46,6 +47,14 @@ public class Comment {
 
     public void setUser(String user) {
         this.user = user;
+    }
+    
+       public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public Date getDateCreated() {

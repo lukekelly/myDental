@@ -17,12 +17,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Image Notes</title>
+        <title>Patient Notes</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link href="Styles.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">  
     </head>
-    
+
     <body class="body">
 
 
@@ -60,8 +60,11 @@
                 <p><input type="text" name="comment" placeholder="Write your notes here.."></p>
                 <button type="submit" class="btn btn-success" role="button">Add Note</button>
             </form>
-    
-        </div>
-              
+                
+                                 
+       
+
+       
+
     </body>
 </html>

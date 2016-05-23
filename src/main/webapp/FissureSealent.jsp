@@ -1,6 +1,6 @@
 <%-- 
-    Document   : dentistHygienist
-    Created on : 27-Apr-2016, 19:54:44
+    Document   : FissureSealent
+    Created on : 05-May-2016, 23:17:18
     Author     : Luke
 --%>
 
@@ -16,7 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hygienist Visit</title>
+        <title>Fissure Sealent</title>
         <link rel="icon" type="image/png" href="MyDental.png"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="Styles.css" type="text/css" rel="stylesheet"> 
@@ -33,9 +33,7 @@
                     <a class="navbar-brand" href="/myDental">myDental</a>      
                 </div>
                 <ul class="nav navbar-nav">
-
-                    <li><a href="ViewStories.jsp">Stories <span class="glyphicon glyphicon-book"></span></a></li>
-                    <li><a href="dentistPortal.jsp">Dashboard <span class="glyphicon glyphicon-dashboard"></span></a></li>
+                    <li><a href="patientPortal.jsp">Home<span class="glyphicon glyphicon-home"></span></a></li>
                 </ul>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -59,7 +57,7 @@
 
                 %>
                 <div class="col-lg-12">
-                    <h1 class="page-header">Hygienist Visit</h1>
+                    <h1 class="page-header"><%=lg.getFirstName()%>'s Fissure Sealent Appointment</h1>
                 </div>
                 <%
                 } else {%>
@@ -75,11 +73,11 @@
                 <%
                 } else {
                     Iterator<Pic> iterator = lsPics.iterator();
-                    while (iterator.hasNext()) {
+                  for (int i = 0; i < lsPics.size(); i++) {
                         Pic p = (Pic) iterator.next();
                         lsFlags = picMod.getFlagsForPic(p.getSUUID());
                         //Here we are trying to check if the patient has been sent any pictures by the dentist             
-
+                        
                         if (lsFlags != 0) {%>
 
 
@@ -110,7 +108,7 @@
 
                 <div class="pictureAndTexDiv">
                     <div class="cell">
-                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;"></a><br/><%
+                        <a><img src="/myDental/Thumb/<%=p.getSUUID()%>" style="position: relative; z-index: 1;" height="600"></a><br/><%
                             if (p.getCaption().isEmpty()) {
                             } else {%>
 
@@ -127,11 +125,13 @@
 
 
                 <%  }
-                            }
-                        }
+            }
+       }
 
                     }
-
+    
+                
+        
                 %>
 
             </div>
